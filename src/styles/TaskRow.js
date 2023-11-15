@@ -3,13 +3,16 @@ import styled from "styled-components";
 
 const TaskRow = styled.div`
   display: flex;
+  align-items: stretch;
   flex-wrap: nowrap;
   text-align: center;
   border-bottom: 1px solid #ddd;
   max-width: 1700px;
+  min-height: 20px;
   justify-content: center;
-  padding: 10px 0;
+  padding: 0;
   position: relative; // 为伪元素定位做准备
+  border-left: 1px solid #ddd;
 
   &:after {
     content: ""; // 伪元素需要内容才能显示

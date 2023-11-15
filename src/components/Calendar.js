@@ -12,7 +12,7 @@ import TaskDayCell from "@/styles/TaskDayCell";
 const Calendar = () => {
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
-  const daysInMonth = new Date(year, month, 0).getDate();
+  const daysInMonth = new Date(year, month - 1, 0).getDate();
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   const getWeekdayLabel = (day) => {
@@ -25,7 +25,7 @@ const Calendar = () => {
     const dayOfWeek = date.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
-
+  console.log("Tasks:", tasks);
   return (
     <>
       <MonthHeader>{`${month} ${year}`}</MonthHeader>
@@ -39,14 +39,8 @@ const Calendar = () => {
       </DayGrid>
       {tasks.map((task, index) => (
         <TaskRow key={task.id}>
-          {" "}
-          {/* 使用 TaskRow 渲染任务 */}
-          {days.map((_, dayIndex) => (
-            <TaskDayCell key={dayIndex}>
-              {" "}
-              {/* 使用 TaskDayCell 渲染任务日期单元格 */}
-              {/* 如果任务与某天相关联，在这里显示 */}
-            </TaskDayCell>
+          {task.days.map((_, dayIndex) => (
+            <TaskDayCell key={dayIndex}>{/* 这里可以根据任务的具体情况来添加内容 */}</TaskDayCell>
           ))}
         </TaskRow>
       ))}
