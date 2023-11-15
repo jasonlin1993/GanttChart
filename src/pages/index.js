@@ -1,9 +1,19 @@
-import App from "./App";
+// src/pages/index.js
+import React from "react";
+import Calendar from "../components/Calendar";
+import ChooseMonthAndYear from "../components/ChooseMonthAndYear";
+import AddTask from "@/components/AddTask";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
-      <App />
+      <Calendar />
+      <hr />
+      <ChooseMonthAndYear />
+      <hr />
+      <AddTask />
     </>
   );
-}
+};
+
+export default Home;
