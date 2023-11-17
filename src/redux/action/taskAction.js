@@ -6,4 +6,11 @@ export const addTask = (task) => {
   };
 };
 
+export const removeTask = (taskId) => {
+  return {
+    type: "REMOVE_TASK",
+    payload: taskId,
+  };
+};
+
 export default addTask;

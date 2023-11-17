@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { removeTask } from "../redux/action/taskAction";
 
 const TaskInputContainer = styled.div`
   display: flex;
@@ -28,11 +30,17 @@ const DeleteButton = styled.button`
   color: #ef5350;
 `;
 
-const TaskInput = ({ task, onDelete }) => {
+const TaskInput = ({ task }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(removeTask(task.id));
+  };
+
   return (
     <TaskInputContainer>
       <Input defaultValue={task.name} />
-      <DeleteButton onClick={() => onDelete(task.id)}>X</DeleteButton>
+      <DeleteButton onClick={handleDelete}>X</DeleteButton>
     </TaskInputContainer>
   );
 };

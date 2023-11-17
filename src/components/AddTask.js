@@ -10,10 +10,8 @@ const AddTask = () => {
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
-    // 使用正確的年份和月份來計算天數
     const daysInMonth = new Date(year, month - 1, 0).getDate();
-    // 創建一個對應當月天數的數組，所有值都設為 false
-    const daysArray = Array.from({ length: daysInMonth }, () => false);
+    const daysArray = Array.from({ length: daysInMonth });
     console.log("dayArray:", daysArray);
     const newTask = {
       id: Date.now(),
