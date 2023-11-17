@@ -5,15 +5,20 @@ import { addTask } from "../redux/action/taskAction";
 
 const AddTask = () => {
   const { year, month } = useSelector((state) => state.date);
-  const daysInMonth = new Date(year, month - 1, 0).getDate();
+  const daysInMonth = new Date(year, month, 0).getDate();
+  console.log(daysInMonth);
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
-    const daysArray = Array.from({ length: daysInMonth }, () => false); // 创建一个长度等于月份天数的数组，初始值为 false
+    // 使用正確的年份和月份來計算天數
+    const daysInMonth = new Date(year, month - 1, 0).getDate();
+    // 創建一個對應當月天數的數組，所有值都設為 false
+    const daysArray = Array.from({ length: daysInMonth }, () => false);
+    console.log("dayArray:", daysArray);
     const newTask = {
       id: Date.now(),
       name: "New Task",
-      days: daysArray, // 添加天数信息
+      days: daysArray,
     };
     dispatch(addTask(newTask));
   };

@@ -9,9 +9,12 @@ const MonthHeader = styled.div`
   font-weight: bold;
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
   font-size: 24px;
-  max-width: 1700px;
+
   justify-content: center;
+  width: 100%;
+  max-width: 1500px;
 `;
 
 export default MonthHeader;

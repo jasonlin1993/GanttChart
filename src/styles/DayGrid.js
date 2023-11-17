@@ -5,8 +5,10 @@ const DayGrid = styled.div`
   flex-wrap: nowrap; // 確保所有元素都在一行中顯示
   text-align: center;
   border-bottom: 1px solid #ddd;
-  max-width: 1700px;
+  width: 1500px;
+  max-width: 100%;
   justify-content: center;
+  border-left: 1px solid #ddd;
 `;
 
 export default DayGrid;
