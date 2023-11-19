@@ -7,8 +7,8 @@ const TaskRow = styled.div`
   flex-wrap: nowrap;
   text-align: center;
   border-bottom: 1px solid #ddd;
+
   max-width: 100%;
-  width: 1500px;
   min-height: 20px;
   justify-content: center;
   padding: 0;
@@ -24,7 +24,6 @@ const TaskRow = styled.div`
     width: 1px; /
   }
 
-  // 针对周末的样式，如果有需要
 `;
 
 export default TaskRow;

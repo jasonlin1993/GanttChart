@@ -13,8 +13,7 @@ const MonthHeader = styled.div`
   font-size: 24px;
 
   justify-content: center;
-  width: 100%;
-  max-width: 1500px;
+  max-width: 100%;
 `;
 
 export default MonthHeader;

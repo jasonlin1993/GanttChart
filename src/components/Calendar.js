@@ -22,7 +22,7 @@ const Calendar = () => {
     const daysInMonth = new Date(year, month, 0).getDate();
     // 更新 days 狀態
     setDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
-  }, [year, month]); // 添加 year 和 month 到依賴陣列，當它們變化時重新執行此 effect
+  }, [year, month, tasks]); // 添加 year 和 month 到依賴陣列，當它們變化時重新執行此 effect
 
   const getWeekdayLabel = (day) => {
     const date = new Date(year, month - 1, day);
@@ -35,9 +35,24 @@ const Calendar = () => {
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
   console.log("Tasks:", tasks);
+
+  const isDayWithinTaskDuration = (day, task) => {
+    const currentDate = new Date(year, month - 1, day).setHours(0, 0, 0, 0);
+    const start = task.startDate ? new Date(task.startDate).setHours(0, 0, 0, 0) : null;
+    const end = task.endDate ? new Date(task.endDate).setHours(0, 0, 0, 0) : null;
+    return start && end && currentDate >= start && currentDate <= end;
+  };
+
   return (
-    <div style={{ display: "flex", Width: "100%", border: "1px solid  #ddd" }}>
-      <div style={{ minWidth: "200px" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        boxSizing: "border-box",
+      }}
+    >
+      <div style={{ maxWidth: "100%", width: "200px" }}>
         <div style={{ height: "53px" }} />
         <div style={{ height: "30px" }} />
         <div style={{ height: "35px" }} />
@@ -45,7 +60,12 @@ const Calendar = () => {
           <TaskInput key={task.id} task={task} />
         ))}
       </div>
-      <div>
+      <div
+        style={{
+          maxWidth: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         <MonthHeader>{`${year} 年 ${month} 月 `}</MonthHeader>
         <DayGrid>
           {days.map((day, index) => (
@@ -58,9 +78,19 @@ const Calendar = () => {
 
         {tasks.map((task, index) => (
           <TaskRow key={task.id}>
-            {days.map((day, dayIndex) => (
-              <TaskDayCell key={dayIndex} $isWeekend={isWeekend(day)} $hasTask={task.days[dayIndex - 1]}></TaskDayCell>
-            ))}
+            {days.map((day, dayIndex) => {
+              const isInDuration = isDayWithinTaskDuration(day, task);
+              // 打印日期和是否在任務持續時間內的結果
+              console.log(`Day: ${day}, isInDuration: ${isInDuration}`);
+              return (
+                <TaskDayCell
+                  key={dayIndex}
+                  $isWeekend={isWeekend(day)}
+                  $hasTask={isInDuration}
+                  style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                />
+              );
+            })}
           </TaskRow>
         ))}
       </div>

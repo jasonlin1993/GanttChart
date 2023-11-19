@@ -5,6 +5,7 @@ const TaskDayCell = styled.div`
   flex: 1;
   border-left: 1px solid #ddd;
   height: 44px;
+  max-width: 100%;
   background-color: ${(props) => (props.$isWeekend ? "#f0f0f0" : "none")};
   &:first-child {
     border-left: none;
