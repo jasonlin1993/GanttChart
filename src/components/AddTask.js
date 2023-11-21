@@ -5,14 +5,11 @@ import { addTask } from "../redux/action/taskAction";
 
 const AddTask = () => {
   const { year, month } = useSelector((state) => state.date);
-  const daysInMonth = new Date(year, month, 0).getDate();
-  console.log(daysInMonth);
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
     const daysInMonth = new Date(year, month - 1, 0).getDate();
     const daysArray = Array.from({ length: daysInMonth });
-    console.log("dayArray:", daysArray);
     const newTask = {
       id: Date.now(),
       name: "New Task",

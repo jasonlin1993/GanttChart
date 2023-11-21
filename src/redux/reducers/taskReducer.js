@@ -6,11 +6,10 @@ const initialState = {
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TASK":
-      const newState = {
+      return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        tasks: [...state.tasks, { ...action.payload }],
       };
-      return newState;
 
     case "REMOVE_TASK":
       return {
@@ -18,45 +17,21 @@ const taskReducer = (state = initialState, action) => {
         tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
 
-    case "ADD_TASK_WITH_DURATION":
-      return {
-        ...state,
-        tasks: state.tasks.map((task) => {
-          if (task.id === action.payload.id) {
-            return {
-              ...task,
-              startDate: action.payload.startDate,
-              endDate: action.payload.endDate,
-            };
-          }
-          return task;
-        }),
-      };
-
     case "UPDATE_TASK_NAME":
       return {
         ...state,
-        tasks: state.tasks.map((task) => {
-          if (task.id === action.payload.taskId) {
-            return { ...task, name: action.payload.newName };
-          }
-          return task;
-        }),
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.taskId ? { ...task, name: action.payload.newName } : task
+        ),
       };
-
     case "UPDATE_TASK_DURATION":
       return {
         ...state,
-        tasks: state.tasks.map((task) => {
-          if (task.id === action.payload.taskId) {
-            return {
-              ...task,
-              startDate: action.payload.startDate,
-              endDate: action.payload.endDate,
-            };
-          }
-          return task;
-        }),
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.taskId
+            ? { ...task, startDate: action.payload.startDate, endDate: action.payload.endDate }
+            : task
+        ),
       };
 
     default:

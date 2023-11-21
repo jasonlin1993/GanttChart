@@ -12,13 +12,12 @@ import TaskInput from "@/styles/TaskInput";
 const Calendar = () => {
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
-  const daysInMonth = new Date(year, month, 0).getDate();
-  console.log("Month:", daysInMonth);
   // const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   const [days, setDays] = useState([]);
 
   useEffect(() => {
     // 計算當月天數，請注意 month 需要減 1
+
     const daysInMonth = new Date(year, month, 0).getDate();
     // 更新 days 狀態
     setDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
@@ -29,12 +28,12 @@ const Calendar = () => {
     const labels = ["S", "M", "T", "W", "T", "F", "S"];
     return labels[date.getDay()];
   };
+
   const isWeekend = (day) => {
     const date = new Date(year, month - 1, day);
     const dayOfWeek = date.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
-  console.log("Tasks:", tasks);
 
   const isDayWithinTaskDuration = (day, task) => {
     const currentDate = new Date(year, month - 1, day).setHours(0, 0, 0, 0);
@@ -80,8 +79,6 @@ const Calendar = () => {
           <TaskRow key={task.id}>
             {days.map((day, dayIndex) => {
               const isInDuration = isDayWithinTaskDuration(day, task);
-              // 打印日期和是否在任務持續時間內的結果
-              console.log(`Day: ${day}, isInDuration: ${isInDuration}`);
               return (
                 <TaskDayCell
                   key={dayIndex}

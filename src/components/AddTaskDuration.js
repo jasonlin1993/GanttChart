@@ -1,26 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTaskWithDuration, updateTaskDuration } from "../redux/action/taskAction";
+import { updateTaskDuration } from "../redux/action/taskAction";
 
 const AddTaskDuration = () => {
-  const tasks = useSelector((state) => state.tasks.tasks); // 從 store 獲取任務
-  const [selectedTaskId, setSelectedTaskId] = useState(tasks[0]?.id || ""); // 預設選擇第一個任務
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
-  const handleAddTaskDuration = () => {
+  const [selectedTaskId, setSelectedTaskId] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  useEffect(() => {
+    // 只有當所選任務不在列表中時，才重置所選任務 ID
+    if (tasks.length > 0 && !tasks.some((task) => task.id === selectedTaskId)) {
+      setSelectedTaskId(tasks.length > 0 ? tasks[0].id : "");
+    }
+  }, [tasks, selectedTaskId]);
+
+  const handleAddTaskDuration = (e) => {
+    e.preventDefault();
     if (startDate && endDate && selectedTaskId) {
-      // 使用正確的任務 ID 和日期派發動作
+      console.log("Adding task duration with:", selectedTaskId, startDate, endDate);
       dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
-      console.log(`Task Duration Updated: ${selectedTaskId}, ${startDate}, ${endDate}`);
+    } else {
+      console.error("Error: Missing values for task duration update");
     }
   };
 
   return (
-    <>
+    <form onSubmit={handleAddTaskDuration}>
       <h3>Task duration</h3>
-      <h3>Which Task?</h3>
+      <label htmlFor="select-task">Which Task?</label>
       <select value={selectedTaskId} onChange={(e) => setSelectedTaskId(e.target.value)}>
         {tasks.map((task) => (
           <option key={task.id} value={task.id}>
@@ -28,12 +38,12 @@ const AddTaskDuration = () => {
           </option>
         ))}
       </select>
-      <h3>Start Date</h3>
+      <label htmlFor="start-date">Start Date</label>
       <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-      <h3>End Date</h3>
+      <label htmlFor="end-date">End Date</label>
       <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      <button onClick={handleAddTaskDuration}>Add</button>
-    </>
+      <button type="submit">Add</button>
+    </form>
   );
 };
 
