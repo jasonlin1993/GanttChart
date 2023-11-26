@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 import MonthHeader from "@/styles/MonthHeader";
 import DayGrid from "@/styles/DayGrid";
 import DayWrapper from "@/styles/DayWrapper";
@@ -8,7 +9,6 @@ import DayCell from "@/styles/DayCell";
 import TaskRow from "@/styles/TaskRow";
 import TaskDayCell from "@/styles/TaskDayCell";
 import TaskInput from "@/styles/TaskInput";
-
 const Calendar = () => {
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -21,7 +21,7 @@ const Calendar = () => {
     const daysInMonth = new Date(year, month, 0).getDate();
     // 更新 days 狀態
     setDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
-  }, [year, month, tasks]); // 添加 year 和 month 到依賴陣列，當它們變化時重新執行此 effect
+  }, [year, month, tasks]);
 
   const getWeekdayLabel = (day) => {
     const date = new Date(year, month - 1, day);
@@ -37,9 +37,11 @@ const Calendar = () => {
 
   const isDayWithinTaskDuration = (day, task) => {
     const currentDate = new Date(year, month - 1, day).setHours(0, 0, 0, 0);
-    const start = task.startDate ? new Date(task.startDate).setHours(0, 0, 0, 0) : null;
-    const end = task.endDate ? new Date(task.endDate).setHours(0, 0, 0, 0) : null;
-    return start && end && currentDate >= start && currentDate <= end;
+    const start = new Date(task.startDate).setHours(0, 0, 0, 0);
+    const end = new Date(task.endDate).setHours(0, 0, 0, 0);
+    const isInDuration = start && end && currentDate >= start && currentDate <= end;
+    console.log(`Task ${task.id}: ${isInDuration}`); // 调试输出
+    return isInDuration ? "has-task" : "";
   };
 
   return (
@@ -83,7 +85,7 @@ const Calendar = () => {
                 <TaskDayCell
                   key={dayIndex}
                   $isWeekend={isWeekend(day)}
-                  $hasTask={isInDuration}
+                  $hasTask={isDayWithinTaskDuration(day, task)}
                   style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
                 />
               );

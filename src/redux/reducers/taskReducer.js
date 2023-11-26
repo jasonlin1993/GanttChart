@@ -33,7 +33,6 @@ const taskReducer = (state = initialState, action) => {
             : task
         ),
       };
-
     default:
       return state;
   }

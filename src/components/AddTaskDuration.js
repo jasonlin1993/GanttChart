@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTaskDuration } from "../redux/action/taskAction";
 
@@ -6,20 +6,23 @@ const AddTaskDuration = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
+  const [taskName, setTaskName] = useState(""); // 新状态用于存储输入的任务名称
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  useEffect(() => {
-    // 只有當所選任務不在列表中時，才重置所選任務 ID
-    if (tasks.length > 0 && !tasks.some((task) => task.id === selectedTaskId)) {
-      setSelectedTaskId(tasks.length > 0 ? tasks[0].id : "");
-    }
-  }, [tasks, selectedTaskId]);
+  const handleTaskNameChange = (name) => {
+    setTaskName(name);
+    const foundTask = tasks.find((task) => task.name === name);
+    setSelectedTaskId(foundTask ? foundTask.id : null);
+  };
 
-  const handleAddTaskDuration = (e) => {
-    e.preventDefault();
-    if (startDate && endDate && selectedTaskId) {
+  const handleAddTaskDuration = () => {
+    if (!selectedTaskId) {
+      console.error("Error: Please enter a valid task name to update the duration for");
+      return;
+    }
+    if (startDate && endDate) {
       console.log("Adding task duration with:", selectedTaskId, startDate, endDate);
       dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
     } else {
@@ -28,22 +31,21 @@ const AddTaskDuration = () => {
   };
 
   return (
-    <form onSubmit={handleAddTaskDuration}>
+    <>
       <h3>Task duration</h3>
-      <label htmlFor="select-task">Which Task?</label>
-      <select value={selectedTaskId} onChange={(e) => setSelectedTaskId(e.target.value)}>
-        {tasks.map((task) => (
-          <option key={task.id} value={task.id}>
-            {task.name}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="start-date">Start Date</label>
+      <h3>Which Task?</h3>
+      <input
+        type="text"
+        value={taskName}
+        onChange={(e) => handleTaskNameChange(e.target.value)}
+        placeholder="Enter task name"
+      />
+      <h3>Start Date</h3>
       <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-      <label htmlFor="end-date">End Date</label>
+      <h3>End Date</h3>
       <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      <button type="submit">Add</button>
-    </form>
+      <button onClick={handleAddTaskDuration}>Add</button>
+    </>
   );
 };
 
