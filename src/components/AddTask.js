@@ -2,6 +2,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../redux/action/taskAction";
+import Button from "@/styles/Button";
 
 const AddTask = () => {
   const { year, month } = useSelector((state) => state.date);
@@ -21,7 +22,16 @@ const AddTask = () => {
   return (
     <>
       <h3>Add Task</h3>
-      <button onClick={handleAddTask}>Add Task</button>
+      <Button onClick={handleAddTask}>
+        <picture>
+          <img
+            src="../../icons/plus-solid.svg"
+            alt="AddIcon"
+            style={{ width: "10px", padding: "5px 4.5px 0px 0px", textAlign: "center" }}
+          />
+          Add Task
+        </picture>
+      </Button>
     </>
   );
 };

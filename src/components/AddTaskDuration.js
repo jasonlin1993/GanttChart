@@ -6,7 +6,7 @@ const AddTaskDuration = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
-  const [taskName, setTaskName] = useState(""); // 新状态用于存储输入的任务名称
+  const [taskName, setTaskName] = useState(null);
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
