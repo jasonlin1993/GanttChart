@@ -1,10 +1,14 @@
 // src/pages/index.js
 import React from "react";
+import GlobalStyle from "@/styles/Global";
+import MainPage from "@/components/MainPage";
 
 const Home = () => {
   return (
     <>
-      <div>這是網站首頁</div>
+      <GlobalStyle>
+        <MainPage />
+      </GlobalStyle>
     </>
   );
 };
