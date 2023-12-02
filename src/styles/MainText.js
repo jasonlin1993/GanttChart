@@ -6,6 +6,10 @@ const MainText = styled.section`
   font-family: "微軟正黑體";
   line-height: 73px;
   font-weight: bold;
+
+  @media (max-width: 450px) {
+    font-size: 36px; // 垂直堆疊元素
+  }
 `;
 
 const Text = styled.div`
