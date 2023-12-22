@@ -6,7 +6,7 @@ const AddTaskDuration = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
-  const [taskName, setTaskName] = useState(null);
+  const [taskName, setTaskName] = useState("");
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");

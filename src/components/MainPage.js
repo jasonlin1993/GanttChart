@@ -31,7 +31,7 @@ const MainPage = () => {
           <img
             src="../../images/MainPagePic.svg"
             alt="MainPage"
-            style={{ maxWidth: "100%", width: "900px", height: "auto" }}
+            style={{ maxWidth: "100%", width: "750px", height: "auto" }}
           />
         </picture>
       </MainLayout>

@@ -8,7 +8,7 @@ const MainText = styled.section`
   font-weight: bold;
 
   @media (max-width: 450px) {
-    font-size: 36px; // 垂直堆疊元素
+    font-size: 36px;
   }
 `;
 

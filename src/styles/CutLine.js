@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Line = styled.hr`
   display: flex;
-  width: 55%;
+  width: 70%;
   border: 3px solid rgb(0, 47, 123);
 `;
 

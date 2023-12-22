@@ -7,7 +7,7 @@ const FeatureBoxLayout = styled.div`
   gap: 30px;
 
   @media (max-width: 1200px) {
-    justify-content: space-around; // 平均分布子元素
+    justify-content: space-around;
   }
 
   @media (max-width: 768px) {

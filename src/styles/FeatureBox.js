@@ -5,8 +5,8 @@ const FeatureBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 230px;
+  height: 230px;
   border: 3px solid rgb(0, 47, 123);
   margin: 15px;
   border-radius: 5%;
