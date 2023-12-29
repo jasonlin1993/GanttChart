@@ -10,6 +10,7 @@ const StyledInput = styled.input`
   color: rgb(0, 47, 123);
   font-family: "微軟正黑體";
   font-size: 15px;
+  bottom: 5px;
 
   &:focus {
     outline: none;

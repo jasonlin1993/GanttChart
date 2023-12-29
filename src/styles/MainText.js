@@ -21,4 +21,12 @@ const Text = styled.div`
   margin: 30px 10px;
 `;
 
-export { MainText, Text };
+const StyledText = styled.div`
+  color: rgb(0, 47, 123);
+  font-family: "微軟正黑體", sans-serif;
+  font-weight: bold;
+  margin: 0 2.5rem;
+  bottom: 5px;
+`;
+
+export { MainText, Text, StyledText };

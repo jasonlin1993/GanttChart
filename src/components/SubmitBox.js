@@ -4,7 +4,7 @@ import RegisterHeader from "@/styles/RegisterHeader";
 import CloseButton from "@/styles/CloseButton";
 import StyledInput from "@/styles/StyledInput";
 import { useRouter } from "next/router";
-import { MainText, Text } from "@/styles/MainText";
+import { StyledText } from "@/styles/MainText";
 
 const SubmitBox = () => {
   const router = useRouter();
@@ -30,13 +30,12 @@ const SubmitBox = () => {
                   註冊
                   <CloseButton onClick={handleBackToHome}>x</CloseButton>
                 </RegisterHeader>
-                <div style={{ marginBottom: "0.5rem" }}>Email</div>
+                <StyledText>Email</StyledText>
                 <StyledInput type="email" placeholder="Email" />
-                <div style={{ marginBottom: "0.5rem" }}>password</div>
+                <StyledText>Password</StyledText>
                 <StyledInput type="password" placeholder="Password" />
 
-                <div style={{ marginBottom: "1rem" }}>已經有帳號?</div>
-                <div style={{ marginBottom: "1rem" }}>登入</div>
+                <StyledText>已經有帳號了? 登入</StyledText>
                 <div>
                   <button style={{ marginBottom: "1rem" }}>註冊</button>
                 </div>
