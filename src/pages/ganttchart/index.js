@@ -1,22 +1,18 @@
 import React from "react";
 import Calendar from "@/components/Calendar";
-import ChooseMonthAndYear from "@/components/ChooseMonthAndYear";
-import AddTask from "@/components/AddTask";
 import AddTaskDuration from "@/components/AddTaskDuration";
 import GlobalStyle from "@/styles/Global";
+import Header from "@/components/Header";
+import FeatureBox from "@/components/FeatureBox";
 
 const ganttChart = () => {
   return (
     <>
-      <GlobalStyle>
-        <Calendar />
-        <hr />
-        <ChooseMonthAndYear />
-        <hr />
-        <AddTask />
-        <hr />
-        <AddTaskDuration />
-      </GlobalStyle>
+      <GlobalStyle />
+      <Header />
+      <FeatureBox />
+      <Calendar />
+      <AddTaskDuration />
     </>
   );
 };

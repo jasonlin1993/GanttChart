@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import MonthHeader from "@/styles/MonthHeader";
+import MonthLabelStyle from "@/styles/MonthLabel.styled";
 import DayGrid from "@/styles/DayGrid";
 import DayWrapper from "@/styles/DayWrapper";
 import WeekdayCell from "@/styles/WeekdayCell";
@@ -13,7 +13,7 @@ import TaskInput from "@/styles/TaskInput";
 const Calendar = () => {
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
-  // const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
   const [days, setDays] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Calendar = () => {
 
   const getWeekdayLabel = (day) => {
     const date = new Date(year, month - 1, day);
-    const labels = ["S", "M", "T", "W", "T", "F", "S"];
+    const labels = ["日", "一", "二", "三", "四", "五", "六"];
     return labels[date.getDay()];
   };
 
@@ -45,29 +45,9 @@ const Calendar = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        boxSizing: "border-box",
-      }}
-    >
-      <div style={{ maxWidth: "100%", width: "200px" }}>
-        <div style={{ height: "50px", border: "0.5px solid #ddd" }} />
-        <div style={{ height: "31px", border: "0.5px solid #ddd" }} />
-        <div style={{ height: "31px", border: "0.5px solid #ddd" }} />
-        {tasks.map((task, index) => (
-          <TaskInput key={task.id} task={task} />
-        ))}
-      </div>
-      <div
-        style={{
-          maxWidth: "100%",
-          boxSizing: "border-box",
-        }}
-      >
-        <MonthHeader>{`${year} 年 ${month} 月 `}</MonthHeader>
+    <>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+        <MonthLabelStyle>{`${year} 年 ${month} 月 `}</MonthLabelStyle>
         <DayGrid>
           {days.map((day, index) => (
             <DayWrapper key={index} $isWeekend={isWeekend(day)}>
@@ -78,22 +58,25 @@ const Calendar = () => {
         </DayGrid>
 
         {tasks.map((task, index) => (
-          <TaskRow key={task.id}>
-            {days.map((day, dayIndex) => {
-              const isInDuration = isDayWithinTaskDuration(day, task);
-              return (
-                <TaskDayCell
-                  key={dayIndex}
-                  $isWeekend={isWeekend(day)}
-                  $hasTask={isInDuration}
-                  style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
-                />
-              );
-            })}
-          </TaskRow>
+          <React.Fragment key={task.id}>
+            <TaskInput task={task} />
+            <TaskRow key={task.id}>
+              {days.map((day, dayIndex) => {
+                const isInDuration = isDayWithinTaskDuration(day, task);
+                return (
+                  <TaskDayCell
+                    key={dayIndex}
+                    $isWeekend={isWeekend(day)}
+                    $hasTask={isInDuration}
+                    style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                  />
+                );
+              })}
+            </TaskRow>
+          </React.Fragment>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

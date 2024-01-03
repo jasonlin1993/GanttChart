@@ -6,11 +6,11 @@ import { removeTask, updateTaskName } from "../redux/action/taskAction";
 const TaskInputContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 0.1px solid #ddd;
-  width:  100%;
-  justify-content:center;
-  height: 43.3px;
-  box-sizing：border-box;
+  border: 0.1px solid #002f7b;
+  max-width: 100%;
+  width: 1600px;
+  justify-content: center;
+  height: 50px;
 `;
 
 const Input = styled.input`
@@ -24,7 +24,6 @@ const Input = styled.input`
 `;
 
 const DeleteButton = styled.button`
-  // 在這裡新增刪除按鈕的樣式
   border: 0;
   background-color: transparent;
   padding: 0 5px;
