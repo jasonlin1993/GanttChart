@@ -15,6 +15,11 @@ const MainPage = () => {
           <ButtonStyled>登入</ButtonStyled>
         </div>
       </Header>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div>
+          <Image width={950} height={690} alt="MainPagePic" src="/images/MainPagePic.jpg" />
+        </div>
+      </div>
     </>
   );
 };

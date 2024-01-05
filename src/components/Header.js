@@ -7,13 +7,7 @@ export default function Header({ children }) {
   return (
     <>
       <StyledHeader>
-        <Image
-          style={{ margin: "20px -15px 20px 20px", borderRadius: "50%" }}
-          width={50}
-          height={50}
-          alt="Logo"
-          src="/images/logo.png"
-        />
+        <Image style={{ margin: "20px -15px 20px 20px" }} width={50} height={50} alt="Logo" src="/images/logo.png" />
         <Flex>
           <h1> Gantt Chart</h1>
         </Flex>
