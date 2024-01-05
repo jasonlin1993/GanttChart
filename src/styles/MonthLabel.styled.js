@@ -9,13 +9,11 @@ const MonthLabelStyle = styled.div`
   font-weight: bold;
   padding: 10px 0;
   border-top: 1px solid #002f7b;
-  border-left: 1px solid #002f7b;
-  border-right: 1px solid #002f7b;
+  border-bottom: 1px solid #002f7b;
 
   font-size: 24px;
   color: #002f7b;
-  max-width: 100%;
-  width: 1600px;
+  width: 100%;
 `;
 
 export default MonthLabelStyle;

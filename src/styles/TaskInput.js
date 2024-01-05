@@ -6,11 +6,11 @@ import { removeTask, updateTaskName } from "../redux/action/taskAction";
 const TaskInputContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 0.1px solid #002f7b;
-  max-width: 100%;
-  width: 1600px;
+  border: 1px solid #002f7b;
+  border-right: none;
+  width: 100%;
   justify-content: center;
-  height: 50px;
+  height: 51px;
 `;
 
 const Input = styled.input`

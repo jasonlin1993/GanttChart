@@ -56,23 +56,24 @@ const Calendar = () => {
             </DayWrapper>
           ))}
         </DayGrid>
-
         {tasks.map((task, index) => (
           <React.Fragment key={task.id}>
-            <TaskInput task={task} />
-            <TaskRow key={task.id}>
-              {days.map((day, dayIndex) => {
-                const isInDuration = isDayWithinTaskDuration(day, task);
-                return (
-                  <TaskDayCell
-                    key={dayIndex}
-                    $isWeekend={isWeekend(day)}
-                    $hasTask={isInDuration}
-                    style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
-                  />
-                );
-              })}
-            </TaskRow>
+            <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+              <TaskInput task={task} />
+              <TaskRow key={task.id}>
+                {days.map((day, dayIndex) => {
+                  const isInDuration = isDayWithinTaskDuration(day, task);
+                  return (
+                    <TaskDayCell
+                      key={dayIndex}
+                      $isWeekend={isWeekend(day)}
+                      $hasTask={isInDuration}
+                      style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                    />
+                  );
+                })}
+              </TaskRow>
+            </div>
           </React.Fragment>
         ))}
       </div>

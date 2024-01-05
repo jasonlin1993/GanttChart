@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTaskDuration } from "../redux/action/taskAction";
+import ButtonStyled from "@/styles/Button.styled";
 
 const AddTaskDuration = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -32,19 +33,24 @@ const AddTaskDuration = () => {
 
   return (
     <>
-      <h3>Task duration</h3>
-      <h3>Which Task?</h3>
-      <input
-        type="text"
-        value={taskName}
-        onChange={(e) => handleTaskNameChange(e.target.value)}
-        placeholder="Enter task name"
-      />
-      <h3>Start Date</h3>
-      <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-      <h3>End Date</h3>
-      <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-      <button onClick={handleAddTaskDuration}>Add</button>
+      <div style={{ display: "flex", flexDirection: "column", margin: "0 20px" }}>
+        <h3>任務名稱</h3>
+        <input
+          type="text"
+          value={taskName}
+          onChange={(e) => handleTaskNameChange(e.target.value)}
+          placeholder="Enter task name"
+        />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", margin: "0 10px" }}>
+        <h3>開始時間</h3>
+        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", margin: "0 10px" }}>
+        <h3>結束時間</h3>
+        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+      </div>
+      <ButtonStyled onClick={handleAddTaskDuration}>新增任務時間</ButtonStyled>
     </>
   );
 };

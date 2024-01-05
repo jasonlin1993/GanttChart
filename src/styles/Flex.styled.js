@@ -3,5 +3,7 @@ import styled from "styled-components";
 export const Flex = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 30px;
 `;
