@@ -3,23 +3,28 @@ import React from "react";
 import Header from "@/components/Header";
 import GlobalStyle from "@/styles/Global";
 import ButtonStyled from "@/styles/Button.styled";
-import Image from "next/image";
+
+import { useRouter } from "next/router";
 
 const MainPage = () => {
+  const router = useRouter();
+
+  const handleSignupClick = () => {
+    router.push("/signup");
+  };
+
+  const handleSigninClick = () => {
+    router.push("/signin");
+  };
   return (
     <>
       <GlobalStyle />
       <Header>
         <div style={{ display: "flex", flexDirection: "row", margin: "30px" }}>
-          <ButtonStyled>註冊</ButtonStyled>
-          <ButtonStyled>登入</ButtonStyled>
+          <ButtonStyled onClick={handleSignupClick}>註冊</ButtonStyled>
+          <ButtonStyled onClick={handleSigninClick}>登入</ButtonStyled>
         </div>
       </Header>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div>
-          <Image width={950} height={690} alt="MainPagePic" src="/images/MainPagePic.jpg" />
-        </div>
-      </div>
     </>
   );
 };

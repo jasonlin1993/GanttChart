@@ -1,7 +1,6 @@
 import { StyledHeader } from "@/styles/Header.styled";
 import { Flex } from "@/styles/Flex.styled";
 import Image from "next/image";
-import ButtonStyled from "@/styles/Button.styled";
 
 export default function Header({ children }) {
   return (
