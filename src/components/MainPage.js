@@ -1,9 +1,8 @@
 // src/pages/index.js
 import React from "react";
 import Header from "@/components/Header";
-import GlobalStyle from "@/styles/Global";
+import { GlobalStyle } from "@/styles/Global";
 import ButtonStyled from "@/styles/Button.styled";
-
 import { useRouter } from "next/router";
 
 const MainPage = () => {

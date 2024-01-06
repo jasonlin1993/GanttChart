@@ -1,7 +1,8 @@
 import React from "react";
 import Calendar from "@/components/Calendar";
 
-import GlobalStyle from "@/styles/Global";
+import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
+
 import Header from "@/components/Header";
 import FeatureBox from "@/components/FeatureBox";
 

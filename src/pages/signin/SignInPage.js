@@ -1,5 +1,4 @@
-import GlobalStyle from "@/styles/Global";
-import { GlobalBackGroundColor } from "@/styles/Global";
+import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 
 const SigninPage = () => {
   return (
