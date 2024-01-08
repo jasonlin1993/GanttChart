@@ -36,12 +36,26 @@ function SigninForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!email || !password) {
+      alert("請輸入電子郵件和密碼");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      alert("請輸入有效的電子郵件地址");
+      return;
+    }
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((response) => {})
+      .then((response) => {
+        router.push("/ganttchart");
+      })
       .catch((error) => {
         console.log("登入失敗:", error.message);
+        alert("登入失敗" + error.message);
       });
   }
 
@@ -52,9 +66,10 @@ function SigninForm() {
   function hadleMainPageClick() {
     router.push("/");
   }
+
   return (
     <>
-      <FormStyled onClick={handleSubmit}>
+      <FormStyled onSubmit={handleSubmit}>
         <HeaderTextFormStyled>
           <FontAwesomeIcon className="signicon" icon={faXmark} onClick={hadleMainPageClick} />
           <h2> 🔐 會員登入</h2>
@@ -86,7 +101,7 @@ function SigninForm() {
           />
           <br />
 
-          <FormSubmitInputStyled type="submit" value="登入" onClick={handleStart} />
+          <FormSubmitInputStyled type="submit" value="登入" />
           <br />
           <hr />
 
