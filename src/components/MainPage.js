@@ -1,13 +1,12 @@
 // src/pages/index.js
 import React from "react";
 import Header from "@/components/Header";
-import { GlobalStyle } from "@/styles/Global";
+import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
 import ButtonStyled from "@/styles/Button.styled";
 import { useRouter } from "next/router";
 
 const MainPage = () => {
   const router = useRouter();
-
   const handleSignupClick = () => {
     router.push("/signup");
   };
@@ -18,6 +17,7 @@ const MainPage = () => {
   return (
     <>
       <GlobalStyle />
+      <GlobalMainPageBackGroundColor />
       <Header>
         <div style={{ display: "flex", flexDirection: "row", margin: "30px" }}>
           <ButtonStyled onClick={handleSignupClick}>註冊</ButtonStyled>

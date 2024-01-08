@@ -1,13 +1,18 @@
 import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 
-const SigninPage = () => {
+import SigninForm from "@/components/SigninForm";
+import { FormContainer } from "@/styles/Form.styled";
+
+const SignupPage = () => {
   return (
     <>
       <GlobalBackGroundColor />
       <GlobalStyle />
-      <h1>test</h1>
+      <FormContainer>
+        <SigninForm />
+      </FormContainer>
     </>
   );
 };
 
-export default SigninPage;
+export default SignupPage;

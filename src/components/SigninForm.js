@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import firebase from "../lib/firebase";
 import {
   FormStyled,
   HeaderTextFormStyled,
@@ -8,71 +9,62 @@ import {
   FormSubmitInputStyled,
   HaveMemberTextStyled,
 } from "@/styles/Form.styled";
-
 import { useRouter } from "next/router";
-import firebase from "../lib/firebase";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-function SignupForm() {
+function SigninForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  function handleStart() {
+    router.push("/ganttchart");
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        firebase
-          .auth()
-          .signOut()
-          .then(() => {
-            setEmail("");
-            setPassword("");
-            router.push("/");
-          });
-      })
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {})
       .catch((error) => {
-        console.error("註冊失敗", error);
-        alert("註冊失敗: " + error.message);
+        console.log("登入失敗:", error.message);
       });
   }
 
-  function handleSigninClick() {
-    router.push("/signin");
+  function handleSignupClick() {
+    router.push("/signup");
   }
 
   function hadleMainPageClick() {
     router.push("/");
   }
-
   return (
     <>
-      <FormStyled onSubmit={handleSubmit}>
+      <FormStyled onClick={handleSubmit}>
         <HeaderTextFormStyled>
-          <FontAwesomeIcon className="icon" icon={faXmark} onClick={hadleMainPageClick} />
-          <h2> 🔐 會員註冊</h2>
+          <FontAwesomeIcon className="signicon" icon={faXmark} onClick={hadleMainPageClick} />
+          <h2> 🔐 會員登入</h2>
         </HeaderTextFormStyled>
 
         <FormContainerStyled>
           <TextFormStyled>
-            <label htmlFor="name">廠商名稱</label>
-          </TextFormStyled>
-          <FormInputStyled
-            type="name"
-            id="name"
-            name="name"
-            placeholder="XX建設股份有限公司"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <br />
-
-          <TextFormStyled>
             <label htmlFor="email">Email</label>
           </TextFormStyled>
+
           <FormInputStyled
             type="email"
             id="email"
@@ -81,10 +73,10 @@ function SignupForm() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
-
           <TextFormStyled>
             <label htmlFor="pwd">Password</label>
           </TextFormStyled>
+
           <FormInputStyled
             type="password"
             id="pwd"
@@ -94,15 +86,15 @@ function SignupForm() {
           />
           <br />
 
-          <FormSubmitInputStyled type="submit" value="註冊" />
+          <FormSubmitInputStyled type="submit" value="登入" onClick={handleStart} />
           <br />
           <hr />
 
-          <HaveMemberTextStyled onClick={handleSigninClick}>已經有帳號了?</HaveMemberTextStyled>
+          <HaveMemberTextStyled onClick={handleSignupClick}>尚未註冊會員?</HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
     </>
   );
 }
 
-export default SignupForm;
+export default SigninForm;

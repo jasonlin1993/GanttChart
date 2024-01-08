@@ -25,10 +25,54 @@ export const FormStyled = styled.div`
 `;
 
 export const HeaderTextFormStyled = styled.header`
-  width: 100%; // Take the full width of the container
-  text-align: center; // Center the text inside the header
+  width: 100%;
+  text-align: center;
   position: relative;
-  bottom: 100px;
+  bottom: 40px;
+
+  .signicon {
+    position: absolute;
+    bottom: 75px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background-color 1s;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.5);
+      width: 28px;
+      height: 28px;
+      font-size: 28px;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 600px) {
+      bottom: 30px;
+      right: 20px;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background-color 1s;
+
+    &:hover {
+      background-color: rgba(128, 128, 128, 0.5);
+      width: 28px;
+      height: 28px;
+      font-size: 28px;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 600px) {
+      bottom: 30px;
+      right: 20px;
+    }
+  }
 `;
 
 export const TextFormStyled = styled.h2`
@@ -39,7 +83,7 @@ export const FormContainerStyled = styled.form`
   display: flex;
   width: 80%;
   flex-direction: column;
-  bottom: 65px;
+  bottom: 20px;
   position: relative;
 `;
 
@@ -64,6 +108,9 @@ export const FormSubmitInputStyled = styled.input`
   margin-top: 10px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   cursor: pointer;
+  &:hover {
+    background-color: #00378f;
+  }
 `;
 
 export const HaveMemberTextStyled = styled.p`

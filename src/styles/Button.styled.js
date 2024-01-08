@@ -5,7 +5,7 @@ const ButtonStyled = styled.button`
   height: 20px;
   padding: 5px 10px 30px 5px;
   border: 1px solid #002f7b;
-  background-color: #eef0f2;
+  background-color: "#eef0f2";
   cursor: pointer;
   text-align: center;
   justify-content: center;
@@ -15,7 +15,7 @@ const ButtonStyled = styled.button`
   font-size: 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   &:hover {
-    background-color: #eec643;
+    background-color: #d1d6dc;
   }
 `;
 
