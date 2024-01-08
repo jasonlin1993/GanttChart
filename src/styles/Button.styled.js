@@ -20,22 +20,43 @@ export const ButtonStyled = styled.button`
 `;
 
 export const MainPageButtonStyled = styled.button`
-  width: 320px;
-  height: 20px;
-  padding: 5px 10px 40px 10px;
-  border: 5px solid black;
-  background-color: "#eef0f2";
-  cursor: pointer;
+  font-family: "微軟正黑體";
+  min-width: 200px;
+  border: none;
+  border-radius: 4px;
+  background-color: #16a085;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
   text-align: center;
-  justify-content: center;
-  border-radius: 5px;
-
-  color: #002f7b;
-  font-size: 25px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition-duration: 0.4s;
+  padding: 10px 20px;
+  box-shadow: 0 5px 15px #193047;
+  font-size: 30px;
   &:hover {
-    background-color: #46505d;
-    color: #eef0f2;
+    background: #ffffff;
+    box-shadow: 0px 2px 10px 5px #1abc9c;
+    color: #000000;
+    cursor: pointer;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: #1abc9c;
+    opacity: 0;
+    transition: all 0.8s;
+    font-family: "微軟正黑體";
+  }
+
+  &:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
   }
 `;
 
