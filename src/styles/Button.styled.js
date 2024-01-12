@@ -60,6 +60,23 @@ export const MainPageButtonStyled = styled.button`
   }
 `;
 
+export const GoogleAuthButtonStyled = styled.button`
+  height: 50px;
+  background-color: #eef0f2;
+  color: black;
+  font-family: "微軟正黑體";
+  font-size: 25px;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: #dce0e4;
+  }
+`;
+
 export const LogoutButtonStyled = styled.div`
   margin: 30px;
 `;

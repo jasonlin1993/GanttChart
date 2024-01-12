@@ -28,11 +28,11 @@ export const HeaderSignInTextFormStyled = styled.header`
   width: 100%;
   text-align: center;
   position: absolute;
-  top: 90px;
+  top: 60px;
 
   .SignInIcon {
     position: absolute;
-    bottom: 70px;
+    bottom: 40px;
     right: 20px;
     font-size: 28px;
     cursor: pointer;
@@ -154,5 +154,5 @@ export const SubmitMessageStyled = styled.h3`
 `;
 
 export const FormLineStyled = styled.hr`
-  margin-top: 15px;
+  margin: 10px;
 `;

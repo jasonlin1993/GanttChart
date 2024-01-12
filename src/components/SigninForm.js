@@ -14,6 +14,9 @@ import {
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { GoogleAuthButtonStyled } from "@/styles/Button.styled";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function SigninForm() {
   const [email, setEmail] = useState("");
@@ -54,7 +57,20 @@ function SigninForm() {
         router.push("/ganttchart");
       })
       .catch((error) => {
-        setErrorMessage("帳號或密碼輸入錯誤");
+        setErrorMessage("帳號或密碼輸入錯誤", error);
+      });
+  }
+
+  function handleGoogleClick(e) {
+    e.preventDefault();
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(() => {
+        router.push("/ganttchart");
+      })
+      .catch((error) => {
+        console.error("Google 第三方登入錯誤訊息: ", error);
       });
   }
 
@@ -62,7 +78,7 @@ function SigninForm() {
     router.push("/signup");
   }
 
-  function hadleMainPageClick() {
+  function handleMainPageClick() {
     router.push("/");
   }
 
@@ -70,7 +86,7 @@ function SigninForm() {
     <>
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignInTextFormStyled>
-          <FontAwesomeIcon className="SignInIcon" icon={faXmark} onClick={hadleMainPageClick} />
+          <FontAwesomeIcon className="SignInIcon" icon={faXmark} onClick={handleMainPageClick} />
           <h2> 🔐 會員登入</h2>
         </HeaderSignInTextFormStyled>
 
@@ -101,6 +117,10 @@ function SigninForm() {
 
           {errorMessage && <ErrorMessageStyled>{errorMessage}</ErrorMessageStyled>}
           <FormLineStyled />
+          <GoogleAuthButtonStyled onClick={handleGoogleClick}>
+            <FontAwesomeIcon icon={faGoogle} style={{ margin: "0px 40px 0px 0px" }} />
+            Google 快速登入
+          </GoogleAuthButtonStyled>
           <HaveMemberTextStyled onClick={handleSignupClick}>尚未註冊會員?</HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
