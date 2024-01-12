@@ -9,6 +9,7 @@ export const MainPageSectionStyled = styled.section`
 
 export const MainPageText = styled.div`
   color: white;
+  width: "100%";
   font-size: 80px;
   font-weight: 700;
   margin: 120px 50px;

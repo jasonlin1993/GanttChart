@@ -24,15 +24,15 @@ export const FormStyled = styled.div`
   position: relative;
 `;
 
-export const HeaderTextFormStyled = styled.header`
+export const HeaderSignInTextFormStyled = styled.header`
   width: 100%;
   text-align: center;
-  position: relative;
-  bottom: 40px;
+  position: absolute;
+  top: 90px;
 
-  .signicon {
+  .SignInIcon {
     position: absolute;
-    bottom: 75px;
+    bottom: 70px;
     right: 20px;
     font-size: 28px;
     cursor: pointer;
@@ -47,12 +47,20 @@ export const HeaderTextFormStyled = styled.header`
     }
 
     @media (max-width: 600px) {
-      bottom: 30px;
+      position: absolute;
+      bottom: 40px;
       right: 20px;
     }
   }
+`;
 
-  .icon {
+export const HeaderSignUpTextFormStyled = styled.header`
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50px;
+
+  .SignUpIcon {
     position: absolute;
     bottom: 30px;
     right: 20px;
@@ -69,7 +77,8 @@ export const HeaderTextFormStyled = styled.header`
     }
 
     @media (max-width: 600px) {
-      bottom: 30px;
+      position: absolute;
+      bottom: 40px;
       right: 20px;
     }
   }
@@ -83,18 +92,22 @@ export const FormContainerStyled = styled.form`
   display: flex;
   width: 80%;
   flex-direction: column;
-  bottom: 20px;
-  position: relative;
 `;
 
 export const FormInputStyled = styled.input`
   height: 40px;
-  padding: 15px;
+  padding: 18px;
   font-family: "Viga", sans-serif;
   color: gray;
   border: 1px solid #7f8d9f;
   background-color: #eef0f2;
   font-size: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  &:focus {
+    border: 1px solid #ee3f3f;
+    color: #004ecc;
+  }
 `;
 
 export const FormSubmitInputStyled = styled.input`
@@ -106,6 +119,7 @@ export const FormSubmitInputStyled = styled.input`
   font-weight: 700;
   border-radius: 5px;
   margin-top: 10px;
+  margin-bottom: 10px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   cursor: pointer;
   &:hover {
@@ -124,4 +138,21 @@ export const HaveMemberTextStyled = styled.p`
   &:hover {
     color: #eec643;
   }
+`;
+
+export const ErrorMessageStyled = styled.h3`
+  color: red;
+  display: flex;
+  justify-content: center;
+`;
+
+export const SubmitMessageStyled = styled.h3`
+  color: red;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+`;
+
+export const FormLineStyled = styled.hr`
+  margin-top: 15px;
 `;

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import {
   FormStyled,
-  HeaderTextFormStyled,
+  HeaderSignUpTextFormStyled,
   TextFormStyled,
   FormContainerStyled,
   FormInputStyled,
   FormSubmitInputStyled,
   HaveMemberTextStyled,
+  SubmitMessageStyled,
+  FormLineStyled,
 } from "@/styles/Form.styled";
 
 import { useRouter } from "next/router";
@@ -19,9 +21,10 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
+  const [submitMessage, setSubmitMessage] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
+
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -32,12 +35,13 @@ function SignupForm() {
           .then(() => {
             setEmail("");
             setPassword("");
-            router.push("/");
+            setSubmitMessage("註冊成功，請登入會員");
+            router.push("/signup");
           });
       })
       .catch((error) => {
         console.error("註冊失敗", error);
-        alert("註冊失敗: " + error.message);
+        setSubmitMessage("註冊失敗");
       });
   }
 
@@ -52,10 +56,10 @@ function SignupForm() {
   return (
     <>
       <FormStyled onSubmit={handleSubmit}>
-        <HeaderTextFormStyled>
-          <FontAwesomeIcon className="icon" icon={faXmark} onClick={hadleMainPageClick} />
+        <HeaderSignUpTextFormStyled>
+          <FontAwesomeIcon className="SignUpIcon" icon={faXmark} onClick={hadleMainPageClick} />
           <h2> 🔐 會員註冊</h2>
-        </HeaderTextFormStyled>
+        </HeaderSignUpTextFormStyled>
 
         <FormContainerStyled>
           <TextFormStyled>
@@ -68,7 +72,6 @@ function SignupForm() {
             placeholder="XX建設股份有限公司"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <br />
 
           <TextFormStyled>
             <label htmlFor="email">Email</label>
@@ -80,7 +83,6 @@ function SignupForm() {
             placeholder="test@test.com"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <br />
 
           <TextFormStyled>
             <label htmlFor="pwd">Password</label>
@@ -92,11 +94,11 @@ function SignupForm() {
             placeholder="至少六位數"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <br />
 
           <FormSubmitInputStyled type="submit" value="註冊" />
-          <br />
-          <hr />
+
+          {submitMessage && <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>}
+          <FormLineStyled />
 
           <HaveMemberTextStyled onClick={handleSigninClick}>已經有帳號了?</HaveMemberTextStyled>
         </FormContainerStyled>

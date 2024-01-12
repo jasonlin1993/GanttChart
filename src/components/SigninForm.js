@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import firebase from "../lib/firebase";
 import {
   FormStyled,
-  HeaderTextFormStyled,
+  HeaderSignInTextFormStyled,
   TextFormStyled,
   FormContainerStyled,
   FormInputStyled,
   FormSubmitInputStyled,
   HaveMemberTextStyled,
+  FormLineStyled,
+  ErrorMessageStyled,
 } from "@/styles/Form.styled";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,28 +32,29 @@ function SigninForm() {
     return () => unsubscribe();
   }, []);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!email || !password) {
-      alert("請輸入電子郵件和密碼");
+      setErrorMessage("請輸入電子郵件或密碼");
       return;
     }
 
     if (!email.includes("@")) {
-      alert("請輸入有效的電子郵件地址");
+      setErrorMessage("請輸入有效的電子郵件地址");
       return;
     }
 
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((response) => {
+      .then(() => {
         router.push("/ganttchart");
       })
       .catch((error) => {
-        console.log("登入失敗:", error.message);
-        alert("登入失敗" + error.message);
+        setErrorMessage("帳號或密碼輸入錯誤");
       });
   }
 
@@ -66,16 +69,15 @@ function SigninForm() {
   return (
     <>
       <FormStyled onSubmit={handleSubmit}>
-        <HeaderTextFormStyled>
-          <FontAwesomeIcon className="signicon" icon={faXmark} onClick={hadleMainPageClick} />
+        <HeaderSignInTextFormStyled>
+          <FontAwesomeIcon className="SignInIcon" icon={faXmark} onClick={hadleMainPageClick} />
           <h2> 🔐 會員登入</h2>
-        </HeaderTextFormStyled>
+        </HeaderSignInTextFormStyled>
 
         <FormContainerStyled>
           <TextFormStyled>
             <label htmlFor="email">Email</label>
           </TextFormStyled>
-
           <FormInputStyled
             type="email"
             id="email"
@@ -83,11 +85,10 @@ function SigninForm() {
             placeholder="test@test.com"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <br />
+
           <TextFormStyled>
             <label htmlFor="pwd">Password</label>
           </TextFormStyled>
-
           <FormInputStyled
             type="password"
             id="pwd"
@@ -95,12 +96,11 @@ function SigninForm() {
             placeholder="至少六位數"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <br />
 
           <FormSubmitInputStyled type="submit" value="登入" />
-          <br />
-          <hr />
 
+          {errorMessage && <ErrorMessageStyled>{errorMessage}</ErrorMessageStyled>}
+          <FormLineStyled />
           <HaveMemberTextStyled onClick={handleSignupClick}>尚未註冊會員?</HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>

@@ -12,10 +12,6 @@ export const StyledHeader = styled.header`
 
   justify-content: space-between;
   align-content: center;
-
-  &:hover {
-    background-color: #003fa3;
-  }
 `;
 
 export const HeaderMemberLoginStyled = styled.div`
