@@ -11,7 +11,7 @@ import {
   WeekdayCell,
 } from "@/styles/Calendar.styled";
 
-import TaskInput from "@/styles/TaskInput";
+import TaskInput from "@/components/TaskInput";
 
 const Calendar = () => {
   const { year, month } = useSelector((state) => state.date);
@@ -50,6 +50,7 @@ const Calendar = () => {
   return (
     <>
       <MonthLabelStyle>{`${year} 年 ${month} 月 `}</MonthLabelStyle>
+
       <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
         <div
           style={{

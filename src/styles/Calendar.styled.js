@@ -42,7 +42,7 @@ export const MonthLabelStyle = styled.div`
   border-bottom: 1px solid #002f7b;
   font-size: 25px;
   color: #002f7b;
-  width: 100%;
+  max-width: 100%;
 `;
 
 export const TaskDayCell = styled.div`
