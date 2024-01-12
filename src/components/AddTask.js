@@ -2,7 +2,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../redux/action/taskAction";
-import ButtonStyled from "@/styles/Button.styled";
+import { ButtonStyled } from "@/styles/Button.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 

@@ -6,8 +6,7 @@ import { removeTask, updateTaskName } from "../redux/action/taskAction";
 const TaskInputContainer = styled.div`
   display: flex;
   align-items: center;
-  border: 1px solid #002f7b;
-  border-right: none;
+  border-bottom: 1px solid #002f7b;
   width: 100%;
   justify-content: center;
   height: 51px;
@@ -18,9 +17,7 @@ const Input = styled.input`
   padding: 0 0 0 10px;
   border: none;
   outline: none;
-  &:focus {
-    outline: none;
-  }
+  max-width: 100%;
 `;
 
 const DeleteButton = styled.button`
@@ -49,7 +46,13 @@ const TaskInput = ({ task }) => {
 
   return (
     <TaskInputContainer>
-      <Input value={taskName} onChange={handleNameChange} onBlur={handleNameUpdate} />
+      <Input
+        value={taskName}
+        onChange={handleNameChange}
+        onBlur={() => {
+          handleNameUpdate();
+        }}
+      />
       <DeleteButton onClick={handleDelete}>X</DeleteButton>
     </TaskInputContainer>
   );

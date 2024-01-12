@@ -3,7 +3,7 @@ import Calendar from "@/components/Calendar";
 import { GlobalStyle } from "@/styles/Global";
 import Header from "@/components/Header";
 import FeatureBox from "@/components/FeatureBox";
-import ButtonStyled from "@/styles/Button.styled";
+import { ButtonStyled, LogoutButtonStyled } from "@/styles/Button.styled";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 
@@ -35,9 +35,9 @@ function GanttChart() {
     <>
       <GlobalStyle />
       <Header>
-        <div style={{ margin: "30px" }}>
+        <LogoutButtonStyled>
           <ButtonStyled onClick={handleLogout}>登出</ButtonStyled>
-        </div>
+        </LogoutButtonStyled>
       </Header>
       <FeatureBox />
       <Calendar />

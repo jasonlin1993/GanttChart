@@ -60,4 +60,6 @@ export const MainPageButtonStyled = styled.button`
   }
 `;
 
-export default ButtonStyled;
+export const LogoutButtonStyled = styled.div`
+  margin: 30px;
+`;

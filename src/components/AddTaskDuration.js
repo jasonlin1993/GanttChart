@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTaskDuration } from "../redux/action/taskAction";
-import ButtonStyled from "@/styles/Button.styled";
+import { ButtonStyled } from "@/styles/Button.styled";
 
 const AddTaskDuration = () => {
   const tasks = useSelector((state) => state.tasks.tasks);

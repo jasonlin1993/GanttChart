@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import MonthLabelStyle from "@/styles/MonthLabel.styled";
-import DayGrid from "@/styles/DayGrid";
-import DayWrapper from "@/styles/DayWrapper";
-import WeekdayCell from "@/styles/WeekdayCell";
-import DayCell from "@/styles/DayCell";
-import TaskRow from "@/styles/TaskRow";
-import TaskDayCell from "@/styles/TaskDayCell";
+import {
+  DayCell,
+  DayGrid,
+  DayWrapper,
+  MonthLabelStyle,
+  TaskDayCell,
+  TaskRow,
+  WeekdayCell,
+} from "@/styles/Calendar.styled";
+
 import TaskInput from "@/styles/TaskInput";
 
 const Calendar = () => {
@@ -46,37 +49,47 @@ const Calendar = () => {
 
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-        <MonthLabelStyle>{`${year} 年 ${month} 月 `}</MonthLabelStyle>
-        <DayGrid>
-          {days.map((day, index) => (
-            <DayWrapper key={index} $isWeekend={isWeekend(day)}>
-              <WeekdayCell>{getWeekdayLabel(day)}</WeekdayCell>
-              <DayCell>{day}</DayCell>
-            </DayWrapper>
-          ))}
-        </DayGrid>
-        {tasks.map((task, index) => (
-          <React.Fragment key={task.id}>
-            <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-              <TaskInput task={task} />
-              <TaskRow key={task.id}>
-                {days.map((day, dayIndex) => {
-                  const isInDuration = isDayWithinTaskDuration(day, task);
-                  return (
-                    <TaskDayCell
-                      key={dayIndex}
-                      $isWeekend={isWeekend(day)}
-                      $hasTask={isInDuration}
-                      style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
-                    />
-                  );
-                })}
-              </TaskRow>
-            </div>
-          </React.Fragment>
-        ))}
+      <MonthLabelStyle>{`${year} 年 ${month} 月 `}</MonthLabelStyle>
+      <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "72px",
+            minWidth: "205px",
+            borderBottom: "1px solid #002f7b",
+          }}
+        />
+        <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+          <DayGrid>
+            {days.map((day, index) => (
+              <DayWrapper key={index} $isWeekend={isWeekend(day)}>
+                <WeekdayCell>{getWeekdayLabel(day)}</WeekdayCell>
+                <DayCell>{day}</DayCell>
+              </DayWrapper>
+            ))}
+          </DayGrid>
+        </div>
       </div>
+      {tasks.map((task, index) => (
+        <React.Fragment key={task.id}>
+          <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+            <TaskInput task={task} />
+            <TaskRow key={task.id}>
+              {days.map((day, dayIndex) => {
+                const isInDuration = isDayWithinTaskDuration(day, task);
+                return (
+                  <TaskDayCell
+                    key={dayIndex}
+                    $isWeekend={isWeekend(day)}
+                    $hasTask={isInDuration}
+                    style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                  />
+                );
+              })}
+            </TaskRow>
+          </div>
+        </React.Fragment>
+      ))}
     </>
   );
 };

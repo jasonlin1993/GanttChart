@@ -30,10 +30,6 @@ function SigninForm() {
     return () => unsubscribe();
   }, []);
 
-  function handleStart() {
-    router.push("/ganttchart");
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
 

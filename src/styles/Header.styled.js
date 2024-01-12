@@ -17,3 +17,27 @@ export const StyledHeader = styled.header`
     background-color: #003fa3;
   }
 `;
+
+export const HeaderMemberLoginStyled = styled.div`
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 30px;
+  margin: 0px 10px;
+  width: 250px;
+  cursor: pointer;
+  font-size: 25px;
+`;
+
+export const FlexHeaderStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 30px;
+`;
+
+export const HeaderH1TextStyled = styled.h1`
+  cursor: pointer;
+`;

@@ -1,14 +1,25 @@
 // src/pages/index.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
+import { HeaderMemberLoginStyled } from "@/styles/Header.styled";
 import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
-import { ButtonStyled, MainPageButtonStyled } from "@/styles/Button.styled";
+import { MainPageButtonStyled } from "@/styles/Button.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { MainPageSectionStyled, MainPageText, DescribeText } from "@/styles/MainPage.styled";
+import firebase from "../lib/firebase";
 
 const MainPage = () => {
   const router = useRouter();
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      setIsUserLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleSignupClick = () => {
     router.push("/signup");
   };
@@ -16,14 +27,20 @@ const MainPage = () => {
   const handleSigninClick = () => {
     router.push("/signin");
   };
+
+  const handleProjectClick = () => {
+    router.push("/ganttchart");
+  };
+
+  const handleHeaderClick = isUserLoggedIn ? handleProjectClick : handleSigninClick;
+  const headerButtonText = isUserLoggedIn ? "開始新專案" : "會員登入";
+
   return (
     <>
       <GlobalStyle />
       <GlobalMainPageBackGroundColor />
       <Header>
-        <div style={{ display: "flex", flexDirection: "row", margin: "30px" }}>
-          <ButtonStyled onClick={handleSigninClick}>登入</ButtonStyled>
-        </div>
+        <HeaderMemberLoginStyled onClick={handleHeaderClick}>{headerButtonText}</HeaderMemberLoginStyled>
       </Header>
       <MainPageSectionStyled>
         <Image src="/images/logo.png" width={300} height={300} alt="Icon" />
