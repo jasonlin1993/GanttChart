@@ -4,14 +4,10 @@ export const StyledTaskInputContainer = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #002f7b;
-  min-width: 205px;
   width: 100%;
+  min-width: 200px;
   justify-content: center;
   height: 51px;
-
-  @media (max-width: 1300px) {
-    width: 100%;
-  }
 `;
 
 export const StyledInput = styled.input`
@@ -20,9 +16,12 @@ export const StyledInput = styled.input`
   border: none;
   outline: none;
   width: 100%;
+  margin-left: 15px;
+  color: #002f7b;
+  font-size: 18px;
 
-  @media (max-width: 1300px) {
-    width: 100%;
+  &:hover {
+    border: 1px solid red;
   }
 `;
 

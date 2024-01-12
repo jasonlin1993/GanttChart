@@ -7,10 +7,9 @@ export const DayCell = styled.div`
 
 export const DayGrid = styled.div`
   display: flex;
-
   text-align: center;
   max-width: 100%;
-  width: 1000px;
+  width: 1600px;
   justify-content: right;
   border: 1px solid #002f7b;
   border-top: none;
@@ -21,7 +20,6 @@ export const DayWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   border-right: 1px solid #002f7b;
-
   max-width: 100%;
   width: 1600px;
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
@@ -50,7 +48,7 @@ export const TaskDayCell = styled.div`
   border-right: 1px solid #002f7b;
   height: 50px;
   max-width: 100%;
-  width: 1200px;
+  width: 1600px;
 
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
   &:first-child {
@@ -63,7 +61,7 @@ export const TaskRow = styled.div`
   border-bottom: 1px solid #002f7b;
   border-left: 1px solid #002f7b;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1600px;
   min-height: 20px;
   padding: 0;
   justify-content: end;
@@ -81,5 +79,5 @@ export const TaskRow = styled.div`
 export const WeekdayCell = styled.div`
   padding: 5px 0;
   border-bottom: 1px solid #ddd;
-  max-width: 100%;
+  width: 100%;
 `;

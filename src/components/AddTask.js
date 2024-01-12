@@ -15,7 +15,7 @@ const AddTask = () => {
     const daysArray = Array.from({ length: daysInMonth });
     const newTask = {
       id: Date.now(),
-      name: "New Task",
+      name: "新增任務",
       days: daysArray,
     };
     dispatch(addTask(newTask));

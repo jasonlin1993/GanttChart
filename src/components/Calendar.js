@@ -54,7 +54,7 @@ const Calendar = () => {
       <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
         <div
           style={{
-            width: "100%",
+            width: "390px",
             height: "72px",
             minWidth: "205px",
             borderBottom: "1px solid #002f7b",
@@ -71,6 +71,7 @@ const Calendar = () => {
           </DayGrid>
         </div>
       </div>
+
       {tasks.map((task, index) => (
         <React.Fragment key={task.id}>
           <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
