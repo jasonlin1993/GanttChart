@@ -70,24 +70,21 @@ const Calendar = () => {
               </DayWrapper>
             ))}
           </DayGrid>
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {tasks.map((task) => (
-              <TaskRow key={task.id}>
-                {days.map((day, dayIndex) => {
-                  const isInDuration = isDayWithinTaskDuration(day, task);
-                  return (
-                    <TaskDayCell
-                      key={dayIndex}
-                      $isWeekend={isWeekend(day)}
-                      $hasTask={isInDuration}
-                      style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
-                    />
-                  );
-                })}
-              </TaskRow>
-            ))}
-          </div>
+          {tasks.map((task) => (
+            <TaskRow key={task.id}>
+              {days.map((day, dayIndex) => {
+                const isInDuration = isDayWithinTaskDuration(day, task);
+                return (
+                  <TaskDayCell
+                    key={dayIndex}
+                    $isWeekend={isWeekend(day)}
+                    $hasTask={isInDuration}
+                    style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                  />
+                );
+              })}
+            </TaskRow>
+          ))}
         </div>
       </div>
     </>

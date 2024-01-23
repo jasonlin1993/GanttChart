@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const DayCell = styled.div`
   padding: 10px 0;
   border-top: 1px solid #002f7b;
+  border-left: none;
 `;
 
 export const DayGrid = styled.div`
@@ -12,6 +13,7 @@ export const DayGrid = styled.div`
   justify-content: right;
   border: 1px solid #002f7b;
   border-top: none;
+  border-left: none;
 `;
 
 export const DayWrapper = styled.div`
@@ -19,6 +21,7 @@ export const DayWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   border-right: 1px solid #002f7b;
+  border-left: none;
   width: 1600px;
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
   color: #002f7b;
@@ -45,6 +48,7 @@ export const MonthLabelStyle = styled.div`
 export const TaskDayCell = styled.div`
   display: flex;
   border-right: 1px solid #002f7b;
+
   height: 50px;
   width: 1600px;
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
@@ -57,7 +61,7 @@ export const TaskDayCell = styled.div`
 export const TaskRow = styled.div`
   display: flex;
   border-bottom: 1px solid #002f7b;
-  border-left: 1px solid #002f7b;
+  border-left: none;
   width: 1600px;
   min-height: 20px;
   padding: 0;
@@ -79,11 +83,11 @@ export const WeekdayCell = styled.div`
 `;
 
 export const YellowDiv = styled.div`
-  width: 100%;
-  max-width: 390px;
-  min-width: 253px;
+  width: 320px;
+
   height: 72px;
   border-bottom: 1px solid #002f7b;
+  border-right: 1px solid #002f7b;
   background-color: yellow;
   box-sizing: border-box;
 `;
