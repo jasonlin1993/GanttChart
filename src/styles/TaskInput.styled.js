@@ -4,8 +4,9 @@ export const StyledTaskInputContainer = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #002f7b;
-  width: 100%;
-  min-width: 200px;
+  max-width: 100%;
+  min-width: 205px;
+  width: 320px;
   justify-content: center;
   height: 51px;
 `;

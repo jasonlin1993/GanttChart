@@ -9,6 +9,7 @@ import {
   TaskDayCell,
   TaskRow,
   WeekdayCell,
+  YellowDiv,
 } from "@/styles/Calendar.styled";
 
 import TaskInput from "@/components/TaskInput";
@@ -51,16 +52,16 @@ const Calendar = () => {
     <>
       <MonthLabelStyle>{`${year} 年 ${month} 月 `}</MonthLabelStyle>
 
-      <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
-        <div
-          style={{
-            width: "390px",
-            height: "72px",
-            minWidth: "205px",
-            borderBottom: "1px solid #002f7b",
-          }}
-        />
-        <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "initial" }}>
+        <div>
+          <YellowDiv />
+          {tasks.map((task) => (
+            <React.Fragment key={task.id}>
+              <TaskInput key={task.id} task={task} />
+            </React.Fragment>
+          ))}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", overflowX: "auto" }}>
           <DayGrid>
             {days.map((day, index) => (
               <DayWrapper key={index} $isWeekend={isWeekend(day)}>
@@ -69,29 +70,26 @@ const Calendar = () => {
               </DayWrapper>
             ))}
           </DayGrid>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {tasks.map((task) => (
+              <TaskRow key={task.id}>
+                {days.map((day, dayIndex) => {
+                  const isInDuration = isDayWithinTaskDuration(day, task);
+                  return (
+                    <TaskDayCell
+                      key={dayIndex}
+                      $isWeekend={isWeekend(day)}
+                      $hasTask={isInDuration}
+                      style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                    />
+                  );
+                })}
+              </TaskRow>
+            ))}
+          </div>
         </div>
       </div>
-
-      {tasks.map((task, index) => (
-        <React.Fragment key={task.id}>
-          <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
-            <TaskInput task={task} />
-            <TaskRow key={task.id}>
-              {days.map((day, dayIndex) => {
-                const isInDuration = isDayWithinTaskDuration(day, task);
-                return (
-                  <TaskDayCell
-                    key={dayIndex}
-                    $isWeekend={isWeekend(day)}
-                    $hasTask={isInDuration}
-                    style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
-                  />
-                );
-              })}
-            </TaskRow>
-          </div>
-        </React.Fragment>
-      ))}
     </>
   );
 };
