@@ -28,7 +28,10 @@ const SignupForm = () => {
   const [submitMessage, setSubmitMessage] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputState);
+    if (!email || !password) {
+      setSubmitMessage("請輸入信箱或密碼");
+      return;
+    }
 
     firebase
       .auth()
@@ -78,7 +81,7 @@ const SignupForm = () => {
             <label htmlFor="email">Email</label>
           </TextFormStyled>
           <FormInputStyled
-            type="text"
+            type="email"
             id="email"
             name="email"
             placeholder="test@test.com"

@@ -17,10 +17,15 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { GoogleAuthButtonStyled } from "@/styles/Button.styled";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import useForm from "@/hooks/useForm";
 
-function SigninForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function SignInForm() {
+  const [inputState, setFormState] = useForm({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = inputState;
   const [user, setUser] = useState(null);
   const router = useRouter();
 
@@ -99,7 +104,7 @@ function SigninForm() {
             id="email"
             name="email"
             placeholder="test@test.com"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setFormState(e)}
           />
 
           <TextFormStyled>
@@ -110,7 +115,7 @@ function SigninForm() {
             id="password"
             name="password"
             placeholder="至少六位數"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setFormState(e)}
           />
 
           <FormSubmitInputStyled type="submit" value="登入" />
@@ -128,4 +133,4 @@ function SigninForm() {
   );
 }
 
-export default SigninForm;
+export default SignInForm;
