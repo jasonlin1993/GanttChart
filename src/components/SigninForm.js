@@ -74,7 +74,7 @@ function SigninForm() {
       });
   }
 
-  function handleSignupClick() {
+  function handleSignUpClick() {
     router.push("/signup");
   }
 
@@ -107,8 +107,8 @@ function SigninForm() {
           </TextFormStyled>
           <FormInputStyled
             type="password"
-            id="pwd"
-            name="pwd"
+            id="password"
+            name="password"
             placeholder="至少六位數"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -121,7 +121,7 @@ function SigninForm() {
             <FontAwesomeIcon icon={faGoogle} style={{ margin: "0px 40px 0px 0px" }} />
             Google 快速登入
           </GoogleAuthButtonStyled>
-          <HaveMemberTextStyled onClick={handleSignupClick}>尚未註冊會員?</HaveMemberTextStyled>
+          <HaveMemberTextStyled onClick={handleSignUpClick}>尚未註冊會員?</HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
     </>
