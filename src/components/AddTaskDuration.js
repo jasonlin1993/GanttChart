@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTaskDuration } from "../redux/action/taskAction";
 import { ButtonStyled } from "@/styles/Button.styled";
@@ -12,12 +12,11 @@ const AddTaskDuration = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const handleTaskNameChange = (name) => {
-    setTaskName(name);
-    const foundTask = tasks.find((task) => task.name === name);
+  const handleTaskSelectionChange = (e) => {
+    const selectedTaskName = e.target.value;
+    const foundTask = tasks.find((task) => task.name === selectedTaskName);
     setSelectedTaskId(foundTask ? foundTask.id : null);
   };
-
   const handleAddTaskDuration = () => {
     if (!selectedTaskId) {
       console.error("Error: Please enter a valid task name to update the duration for");
@@ -35,12 +34,16 @@ const AddTaskDuration = () => {
     <>
       <div style={{ display: "flex", flexDirection: "column", margin: "0 20px" }}>
         <h3>任務名稱</h3>
-        <input
-          type="text"
-          value={taskName}
-          onChange={(e) => handleTaskNameChange(e.target.value)}
-          placeholder="Enter task name"
-        />
+        <select onChange={handleTaskSelectionChange} defaultValue="">
+          <option value="" disabled>
+            選擇任務
+          </option>
+          {tasks.map((task) => (
+            <option key={task.id} value={task.name}>
+              {task.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div style={{ display: "flex", flexDirection: "column", margin: "0 10px" }}>
         <h3>開始時間</h3>
