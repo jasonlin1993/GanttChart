@@ -6,31 +6,41 @@ import FeatureBox from "@/components/FeatureBox";
 import { ButtonStyled, LogoutButtonStyled } from "@/styles/Button.styled";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function GanttChart() {
+const GanttChart = () => {
   const router = useRouter();
-
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         router.push("/");
+      } else {
+        if (localStorage.getItem("registrationSuccess") === "true") {
+          toast.success(" 註冊成功", { autoClose: 1500 });
+          localStorage.removeItem("registrationSuccess");
+        }
+
+        if (localStorage.getItem("LoginSuccess") === "true") {
+          toast.success("登入成功", { autoClose: 1500 });
+          localStorage.removeItem("LoginSuccess");
+        }
       }
     });
 
     return () => unsubscribe();
   }, [router]);
 
-  function handleLogout() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        router.push("/");
-      })
-      .catch((error) => {
-        console.log("Logout Error:", error);
-      });
-  }
+  const handleLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+      localStorage.setItem("LogOutSuccess", "true");
+      router.push("/");
+    } catch (error) {
+      console.log("Logout Error:", error);
+    }
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -41,8 +51,9 @@ function GanttChart() {
       </Header>
       <FeatureBox />
       <Calendar />
+      <ToastContainer />
     </>
   );
-}
+};
 
 export default GanttChart;

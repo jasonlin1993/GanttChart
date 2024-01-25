@@ -13,7 +13,6 @@ import {
 
 import { useRouter } from "next/router";
 import firebase from "../lib/firebase";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import useForm from "@/hooks/useForm";
@@ -26,10 +25,11 @@ const SignupForm = () => {
   const { email, password } = inputState;
   const router = useRouter();
   const [submitMessage, setSubmitMessage] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      setSubmitMessage("請輸入信箱或密碼");
+      setSubmitMessage("輸入內容不可為空");
       return;
     }
 
@@ -37,17 +37,8 @@ const SignupForm = () => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        firebase
-          .auth()
-          .signOut()
-          .then(() => {
-            setFormState({
-              email: "",
-              password: "",
-            });
-            setSubmitMessage("註冊成功，請登入會員");
-            router.push("/signup");
-          });
+        localStorage.setItem("registrationSuccess", "true");
+        router.push("/ganttchart");
       })
       .catch((error) => {
         console.error("註冊失敗", error);
@@ -102,7 +93,7 @@ const SignupForm = () => {
           <FormSubmitInputStyled type="submit" value="註冊" />
 
           {submitMessage && <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>}
-          <FormLineStyled />
+          <FormLineStyled position="top-center" />
 
           <HaveMemberTextStyled onClick={handleSignInClick}>已經有帳號了?</HaveMemberTextStyled>
         </FormContainerStyled>

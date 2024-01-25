@@ -59,6 +59,8 @@ function SignInForm() {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
+        localStorage.setItem("LoginSuccess", "true");
+        localStorage.setItem("MemberLoginSuccess", "true");
         router.push("/ganttchart");
       })
       .catch((error) => {
@@ -72,6 +74,7 @@ function SignInForm() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(() => {
+        localStorage.setItem("LoginSuccess", "true");
         router.push("/ganttchart");
       })
       .catch((error) => {

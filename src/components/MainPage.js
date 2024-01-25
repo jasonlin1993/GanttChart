@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { MainPageSectionStyled, MainPageText, DescribeText } from "@/styles/MainPage.styled";
 import firebase from "../lib/firebase";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainPage = () => {
   const router = useRouter();
@@ -17,6 +19,17 @@ const MainPage = () => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       setIsUserLoggedIn(!!user);
     });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (!user && localStorage.getItem("LogOutSuccess") === "true") {
+        toast.success("登出成功", { autoClose: 1500 });
+        localStorage.removeItem("LogOutSuccess");
+      }
+    });
+
     return () => unsubscribe();
   }, []);
 
@@ -50,6 +63,7 @@ const MainPage = () => {
       <MainPageSectionStyled>
         <MainPageButtonStyled onClick={handleSignupClick}>點此註冊，開始您的專案</MainPageButtonStyled>
       </MainPageSectionStyled>
+      <ToastContainer />
     </>
   );
 };
