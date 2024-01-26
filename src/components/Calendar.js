@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { StyledFontAwesomeIcon } from "@/styles/Calendar.styled";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { setDate } from "../redux/action/dateAction";
 
 import {
   DayCell,
@@ -15,6 +19,7 @@ import {
 import TaskInput from "@/components/TaskInput";
 
 const Calendar = () => {
+  const dispatch = useDispatch();
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
 
@@ -26,7 +31,19 @@ const Calendar = () => {
     const daysInMonth = new Date(year, month, 0).getDate();
     // 更新 days 狀態
     setDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
-  }, [year, month, tasks]); // 添加 year 和 month 到依賴陣列，當它們變化時重新執行此 effect
+  }, [year, month, tasks]);
+
+  const handlePrevMonth = () => {
+    const newMonth = month === 1 ? 12 : month - 1;
+    const newYear = month === 1 ? year - 1 : year;
+    dispatch(setDate({ year: newYear, month: newMonth }));
+  };
+
+  const handleNextMonth = () => {
+    const newMonth = month === 12 ? 1 : month + 1;
+    const newYear = month === 12 ? year + 1 : year;
+    dispatch(setDate({ year: newYear, month: newMonth }));
+  };
 
   const getWeekdayLabel = (day) => {
     const date = new Date(year, month - 1, day);
@@ -50,11 +67,16 @@ const Calendar = () => {
 
   return (
     <>
-      <MonthLabelStyle>{`${year} 年 ${month} 月 `}</MonthLabelStyle>
+      <MonthLabelStyle>
+        <StyledFontAwesomeIcon icon={faCaretLeft} onClick={handlePrevMonth} direction="left" />
+        {`${year} 年 ${month} 月 `}
+
+        <StyledFontAwesomeIcon icon={faCaretRight} onClick={handleNextMonth} direction="right" />
+      </MonthLabelStyle>
 
       <div style={{ display: "flex", flexDirection: "initial" }}>
         <div>
-          <YellowDiv />
+          <YellowDiv></YellowDiv>
           {tasks.map((task) => (
             <React.Fragment key={task.id}>
               <TaskInput key={task.id} task={task} />

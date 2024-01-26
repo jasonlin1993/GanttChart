@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+
 export const DayCell = styled.div`
   padding: 10px 0;
   border-top: 1px solid #002f7b;
@@ -48,7 +51,6 @@ export const MonthLabelStyle = styled.div`
 export const TaskDayCell = styled.div`
   display: flex;
   border-right: 1px solid #002f7b;
-
   height: 50px;
   width: 1600px;
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
@@ -90,4 +92,19 @@ export const YellowDiv = styled.div`
   border-right: 1px solid #002f7b;
   background-color: yellow;
   box-sizing: border-box;
+`;
+
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  margin: ${(props) => (props.direction === "left" ? "3px 40px 0px 0px" : "3px 0px 0px 30px")};
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    background-color: #ccc;
+  }
 `;
