@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+
 
 export const DayCell = styled.div`
   padding: 10px 0;

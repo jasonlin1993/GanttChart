@@ -13,7 +13,6 @@ import {
   TaskDayCell,
   TaskRow,
   WeekdayCell,
-  YellowDiv,
 } from "@/styles/Calendar.styled";
 
 import TaskInput from "@/components/TaskInput";
@@ -27,10 +26,7 @@ const Calendar = () => {
   const [days, setDays] = useState([]);
 
   useEffect(() => {
-    // 計算當月天數，請注意 month 需要減 1
-
     const daysInMonth = new Date(year, month, 0).getDate();
-    // 更新 days 狀態
     setDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
   }, [year, month, tasks]);
 

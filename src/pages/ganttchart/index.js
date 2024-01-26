@@ -6,10 +6,13 @@ import FeatureBox from "@/components/FeatureBox";
 import { ButtonStyled, LogoutButtonStyled } from "@/styles/Button.styled";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
+import useAuth from "@/hooks/useAuth";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const GanttChart = () => {
+  useAuth();
   const router = useRouter();
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
