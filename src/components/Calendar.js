@@ -17,6 +17,7 @@ import {
 } from "@/styles/Calendar.styled";
 
 import TaskInput from "@/components/TaskInput";
+import AddTask from "./AddTask";
 
 const Calendar = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const Calendar = () => {
 
       <div style={{ display: "flex", flexDirection: "initial" }}>
         <div>
-          <YellowDiv></YellowDiv>
+          <AddTask />
           {tasks.map((task) => (
             <React.Fragment key={task.id}>
               <TaskInput key={task.id} task={task} />

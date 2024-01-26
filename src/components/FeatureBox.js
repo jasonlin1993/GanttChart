@@ -6,7 +6,6 @@ export default function FeatureBox() {
   return (
     <>
       <FeatureBoxStyled>
-        <AddTask />
         <AddTaskDuration />
       </FeatureBoxStyled>
     </>

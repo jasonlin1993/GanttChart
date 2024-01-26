@@ -84,14 +84,25 @@ export const WeekdayCell = styled.div`
   width: 100%;
 `;
 
-export const YellowDiv = styled.div`
+export const AddTaskButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-content: center;
   width: 320px;
-
   height: 72px;
   border-bottom: 1px solid #002f7b;
   border-right: 1px solid #002f7b;
-  background-color: yellow;
+  border-top: none;
+  border-left: none;
+  background-color: #eef0f2;
   box-sizing: border-box;
+  color: #002f7b;
+  font-size: 30px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ccc;
+  }
 `;
 
 export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
