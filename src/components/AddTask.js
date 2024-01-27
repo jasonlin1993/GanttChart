@@ -7,10 +7,9 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { AddTaskButton } from "@/styles/Calendar.styled";
 
 const AddTask = () => {
-  const { year, month, taskCount } = useSelector((state) => ({
-    ...state.date,
-    taskCount: state.tasks.taskCount,
-  }));
+  const year = useSelector((state) => state.date.year);
+  const month = useSelector((state) => state.date.month);
+  const taskCount = useSelector((state) => state.tasks.taskCount);
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
