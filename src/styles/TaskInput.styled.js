@@ -17,7 +17,7 @@ export const StyledInput = styled.input`
   padding: 0 0 0 10px;
   border: none;
   outline: none;
-  width: 100%;
+  width: 90%;
   margin-left: 15px;
   color: #002f7b;
   font-size: 18px;
@@ -39,6 +39,27 @@ export const StyledDeleteButton = styled.button`
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  color: red;
+
+  &:hover {
+    background-color: #ccc;
+  }
+`;
+
+export const StyledEditTaskInputButton = styled.button`
+  border: 0;
+  background-color: transparent;
+  padding: 0 5px;
+  cursor: pointer;
+  color: red;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: #002f7b;
+
   &:hover {
     background-color: #ccc;
   }
