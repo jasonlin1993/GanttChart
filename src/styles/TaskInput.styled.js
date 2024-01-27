@@ -21,6 +21,7 @@ export const StyledInput = styled.input`
   margin-left: 15px;
   color: #002f7b;
   font-size: 18px;
+  border-radius: 5px;
 
   &:hover {
     border: 1px solid red;
