@@ -90,7 +90,7 @@ const SignupForm = () => {
             onChange={(e) => setFormState(e)}
           />
 
-          <FormSubmitInputStyled type="submit" value="註冊" />
+          <FormSubmitInputStyled type="submit" value="會員註冊" />
 
           {submitMessage && <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>}
           <FormLineStyled position="top-center" />

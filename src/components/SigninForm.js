@@ -121,7 +121,7 @@ function SignInForm() {
             onChange={(e) => setFormState(e)}
           />
 
-          <FormSubmitInputStyled type="submit" value="登入" />
+          <FormSubmitInputStyled type="submit" value="會員登入" />
 
           {errorMessage && <ErrorMessageStyled>{errorMessage}</ErrorMessageStyled>}
           <FormLineStyled />

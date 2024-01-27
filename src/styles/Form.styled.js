@@ -111,19 +111,25 @@ export const FormInputStyled = styled.input`
 `;
 
 export const FormSubmitInputStyled = styled.input`
-  height: 50px;
-  background-color: #004ecc;
-  color: #eef0f2;
-  font-family: "微軟正黑體";
-  font-size: 25px;
-  font-weight: 700;
-  border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  background-image: linear-gradient(92.88deg, #455eb5 9.16%, #5643cc 43.89%, #673fd7 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
   cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 26px;
+  height: 50px;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  touch-action: manipulation;
+
   &:hover {
-    background-color: #00378f;
+    box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+    transition-duration: 0.1s;
   }
 `;
 

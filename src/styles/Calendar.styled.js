@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 export const DayCell = styled.div`
   padding: 10px 0;
   border-top: 1px solid #002f7b;
@@ -97,7 +96,7 @@ export const AddTaskButton = styled.button`
   background-color: #eef0f2;
   box-sizing: border-box;
   color: #002f7b;
-  font-size: 30px;
+  font-size: 25px;
   cursor: pointer;
 
   &:hover {

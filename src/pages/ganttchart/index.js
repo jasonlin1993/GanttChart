@@ -15,10 +15,8 @@ const GanttChart = () => {
   useAuth();
   const router = useRouter();
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        router.push("/");
-      } else {
+    const unsubscribe = firebase.auth().onAuthStateChanged(() => {
+      {
         if (localStorage.getItem("registrationSuccess") === "true") {
           toast.success(" 註冊成功", { autoClose: 1500 });
           localStorage.removeItem("registrationSuccess");
@@ -52,7 +50,7 @@ const GanttChart = () => {
           <ButtonStyled onClick={handleLogout}>登出</ButtonStyled>
         </LogoutButtonStyled>
       </Header>
-      <FeatureBox />
+      {/* <FeatureBox /> */}
       <Calendar />
       <ToastContainer />
     </>
