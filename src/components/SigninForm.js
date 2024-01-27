@@ -15,9 +15,10 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { GoogleAuthButtonStyled } from "@/styles/Button.styled";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import useForm from "@/hooks/useForm";
+import { FcGoogle } from "react-icons/fc";
 
 function SignInForm() {
   const [inputState, setFormState] = useForm({
@@ -126,7 +127,7 @@ function SignInForm() {
           {errorMessage && <ErrorMessageStyled>{errorMessage}</ErrorMessageStyled>}
           <FormLineStyled />
           <GoogleAuthButtonStyled onClick={handleGoogleClick}>
-            <FontAwesomeIcon icon={faGoogle} style={{ margin: "0px 40px 0px 0px" }} />
+            <FcGoogle style={{ margin: "0px 30px -6px 0px" }} size="32px" />
             Google 快速登入
           </GoogleAuthButtonStyled>
           <HaveMemberTextStyled onClick={handleSignUpClick}>尚未註冊會員?</HaveMemberTextStyled>
