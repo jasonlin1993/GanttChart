@@ -32,5 +32,14 @@ export const StyledDeleteButton = styled.button`
   background-color: transparent;
   padding: 0 5px;
   cursor: pointer;
-  color: #ef5350;
+  color: red;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  &:hover {
+    background-color: #ccc;
+  }
 `;

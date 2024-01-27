@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeTask, updateTaskName } from "../redux/action/taskAction";
 import { StyledTaskInputContainer, StyledInput, StyledDeleteButton } from "../styles/TaskInput.styled";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskInput = ({ task }) => {
   const dispatch = useDispatch();
@@ -28,7 +30,9 @@ const TaskInput = ({ task }) => {
           handleNameUpdate();
         }}
       />
-      <StyledDeleteButton onClick={handleDelete}>X</StyledDeleteButton>
+      <StyledDeleteButton onClick={handleDelete}>
+        <FontAwesomeIcon icon={faXmark} />
+      </StyledDeleteButton>
     </StyledTaskInputContainer>
   );
 };
