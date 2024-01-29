@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import Calendar from "@/components/Calendar";
-import { GlobalStyle } from "@/styles/Global";
-import Header from "@/components/Header";
-import FeatureBox from "@/components/FeatureBox";
-import { ButtonStyled, LogoutButtonStyled } from "@/styles/Button.styled";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
+import { GlobalStyle } from "@/styles/Global";
+import { ButtonStyled, LogoutButtonStyled } from "@/styles/Button.styled";
+import Calendar from "@/components/Calendar";
+import Header from "@/components/Header";
+import FeatureBox from "@/components/FeatureBox";
 import useAuth from "@/hooks/useAuth";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

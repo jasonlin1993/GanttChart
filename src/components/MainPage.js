@@ -22,6 +22,13 @@ const MainPage = () => {
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      setIsUserLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (!user && localStorage.getItem("LogOutSuccess") === "true") {
         toast.success("登出成功", { autoClose: 1500 });
         localStorage.removeItem("LogOutSuccess");
@@ -54,7 +61,7 @@ const MainPage = () => {
         <HeaderMemberLoginStyled onClick={handleHeaderClick}>{headerButtonText}</HeaderMemberLoginStyled>
       </Header>
       <MainPageSectionStyled>
-        <Image src="/images/logo.png" width={300} height={300} alt="Icon" />
+        <Image src="/images/logo.png" width={150} height={150} style={{ borderRadius: "50%" }} alt="Icon" />
         <MainPageText>Gantt Chart</MainPageText>
       </MainPageSectionStyled>
       <DescribeText>將您的工程專案視覺化，用我們的線上甘特圖工具輕鬆規劃和追蹤進度</DescribeText>
