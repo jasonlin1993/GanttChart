@@ -38,20 +38,19 @@ const MainPage = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleSignupClick = () => {
-    router.push("/signup");
-  };
-
-  const handleSigninClick = () => {
-    router.push("/signin");
+  const handleRegisterClick = () => {
+    router.push("/register");
   };
 
   const handleProjectClick = () => {
     router.push("/ganttchart");
   };
 
-  const handleHeaderClick = isUserLoggedIn ? handleProjectClick : handleSigninClick;
+  const handleHeaderClick = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
   const headerButtonText = isUserLoggedIn ? "開始新專案" : "會員登入";
+
+  const buttonAction = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
+  const buttonText = isUserLoggedIn ? "開始新專案" : "點此註冊，開始您的專案";
 
   return (
     <>
@@ -66,7 +65,9 @@ const MainPage = () => {
       </MainPageSectionStyled>
       <DescribeText>將您的工程專案視覺化，用我們的線上甘特圖工具輕鬆規劃和追蹤進度</DescribeText>
       <MainPageSectionStyled>
-        <MainPageButtonStyled onClick={handleSignupClick}>點此註冊，開始您的專案</MainPageButtonStyled>
+        <MainPageButtonStyled onClick={buttonAction} isLoggedIn={isUserLoggedIn}>
+          {buttonText}
+        </MainPageButtonStyled>
       </MainPageSectionStyled>
       <ToastContainer />
     </>

@@ -8,5 +8,5 @@ export const ErrorPageSectionStyled = styled.section`
   font-size: 60px;
   color: white;
   top: 45%;
-  left: 27%;
+  left: 28%;
 `;

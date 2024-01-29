@@ -18,7 +18,7 @@ import { GoogleAuthButtonStyled } from "@/styles/Button.styled";
 import useForm from "@/hooks/useForm";
 import useFirebasesSignInAuth from "@/hooks/useFirebaseSigninAuth";
 
-function SignInForm() {
+function SignInForm({ onSignUpClick }) {
   const [inputState, setFormState] = useForm({
     email: "",
     password: "",
@@ -44,10 +44,6 @@ function SignInForm() {
   const handleGoogleClick = async (e) => {
     e.preventDefault();
     await signInWithGoogle();
-  };
-
-  const handleSignUpClick = () => {
-    router.push("/signup");
   };
 
   const handleMainPageClick = () => {
@@ -93,7 +89,7 @@ function SignInForm() {
             <FcGoogle style={{ margin: "0px 30px -6px 0px" }} size="32px" />
             Google 快速登入
           </GoogleAuthButtonStyled>
-          <HaveMemberTextStyled onClick={handleSignUpClick}>尚未註冊會員?</HaveMemberTextStyled>
+          <HaveMemberTextStyled onClick={onSignUpClick}>尚未註冊會員?</HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
     </>

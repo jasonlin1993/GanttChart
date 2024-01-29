@@ -17,7 +17,7 @@ import {
   StyledSignUpFontAwesomeIcon,
 } from "@/styles/Form.styled";
 
-function SignupForm() {
+function SignupForm({ onSignInClick }) {
   const [inputState, setFormState] = useForm({
     email: "",
     password: "",
@@ -34,10 +34,6 @@ function SignupForm() {
     if (registrationSuccess) {
       router.push("/ganttchart");
     }
-  };
-
-  const handleSignInClick = () => {
-    router.push("/signin");
   };
 
   const handleMainPageClick = () => {
@@ -91,7 +87,7 @@ function SignupForm() {
           {submitMessage && <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>}
           <FormLineStyled position="top-center" />
 
-          <HaveMemberTextStyled onClick={handleSignInClick}>已經有帳號了?</HaveMemberTextStyled>
+          <HaveMemberTextStyled onClick={onSignInClick}>已經有帳號了?</HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
     </>
