@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 
 import Image from "next/image";
 import { useRouter } from "next/router";
-import useAuth from "@/hooks/useAuth";
 
 import Header from "@/components/Header";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
@@ -16,7 +15,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MainPage = () => {
-  useAuth();
   const router = useRouter();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
@@ -39,10 +37,12 @@ const MainPage = () => {
   }, []);
 
   const handleRegisterClick = () => {
+    console.log("Redirecting to /register");
     router.push("/register");
   };
 
   const handleProjectClick = () => {
+    console.log("Redirecting to /ganttchart");
     router.push("/ganttchart");
   };
 
@@ -65,7 +65,7 @@ const MainPage = () => {
       </MainPageSectionStyled>
       <DescribeText>將您的工程專案視覺化，用我們的線上甘特圖工具輕鬆規劃和追蹤進度</DescribeText>
       <MainPageSectionStyled>
-        <MainPageButtonStyled onClick={buttonAction} isLoggedIn={isUserLoggedIn}>
+        <MainPageButtonStyled onClick={buttonAction} $isLoggedIn={isUserLoggedIn}>
           {buttonText}
         </MainPageButtonStyled>
       </MainPageSectionStyled>
