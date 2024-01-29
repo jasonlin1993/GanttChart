@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateTaskDuration } from "../redux/action/taskAction";
 import { ButtonStyled } from "@/styles/Button.styled";
 
-const AddTaskDuration = () => {
+function AddTaskDuration() {
   const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
   const [selectedTaskId, setSelectedTaskId] = useState("");
@@ -54,6 +54,6 @@ const AddTaskDuration = () => {
       <ButtonStyled onClick={handleAddTaskDuration}>新增任務時間</ButtonStyled>
     </>
   );
-};
+}
 
 export default AddTaskDuration;

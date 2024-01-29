@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import firebase from "../lib/firebase";
 
-const useFirebaseSignInAuth = () => {
+function useFirebaseSignInAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
 
@@ -55,6 +55,6 @@ const useFirebaseSignInAuth = () => {
   };
 
   return { user, error, signInWithEmail, signInWithGoogle };
-};
+}
 
 export default useFirebaseSignInAuth;

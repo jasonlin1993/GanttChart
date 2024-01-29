@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
-import useFirebaseSignUpAuth from "@/hooks/useFirebaseSignupAuth";
-import firebase from "../lib/firebase";
 import "firebase/compat/firestore";
 import useForm from "@/hooks/useForm";
+import useFirebaseSignUpAuth from "@/hooks/useFirebaseSignupAuth";
 import {
   FormStyled,
   HeaderSignUpTextFormStyled,

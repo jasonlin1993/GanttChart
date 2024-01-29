@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { AddTaskButton } from "@/styles/Calendar.styled";
 
-const AddTask = () => {
+function AddTask() {
   const year = useSelector((state) => state.date.year);
   const month = useSelector((state) => state.date.month);
   const taskCount = useSelector((state) => state.tasks.taskCount);
@@ -33,6 +33,6 @@ const AddTask = () => {
       </AddTaskButton>
     </>
   );
-};
+}
 
 export default AddTask;

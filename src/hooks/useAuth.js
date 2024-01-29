@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import firebase from "../lib/firebase";
 import { useRouter } from "next/router";
 
-const useAuth = () => {
+function useAuth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
@@ -20,6 +20,6 @@ const useAuth = () => {
   }, [router]);
 
   return isLoggedIn;
-};
+}
 
 export default useAuth;

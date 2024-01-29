@@ -11,7 +11,7 @@ import {
 import { faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const TaskInput = ({ task }) => {
+function TaskInput({ task }) {
   const dispatch = useDispatch();
   const [taskName, setTaskName] = useState(task.name);
 
@@ -72,6 +72,6 @@ const TaskInput = ({ task }) => {
       </StyledDeleteButton>
     </StyledTaskInputContainer>
   );
-};
+}
 
 export default TaskInput;

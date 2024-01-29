@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useForm = (initValue) => {
+function useForm(initValue) {
   const [values, setValues] = useState(initValue);
   const setFormState = (e) => {
     if (e.target && e.target.name) {
@@ -12,6 +12,6 @@ const useForm = (initValue) => {
   };
 
   return [values, setFormState];
-};
+}
 
 export default useForm;

@@ -3,7 +3,7 @@ import firebase from "../lib/firebase";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
-const useFirebaseSignUpAuth = () => {
+function useFirebaseSignUpAuth() {
   const [submitMessage, setSubmitMessage] = useState("");
 
   const registerUser = (email, password, memberName) => {
@@ -38,6 +38,6 @@ const useFirebaseSignUpAuth = () => {
   };
 
   return { registerUser, submitMessage, setSubmitMessage };
-};
+}
 
 export default useFirebaseSignUpAuth;

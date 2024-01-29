@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setDate } from "../redux/action/dateAction";
 
-const ChooseMonthAndYear = () => {
+function ChooseMonthAndYear() {
   const dispatch = useDispatch();
 
   const handleDateChange = (e) => {
@@ -22,6 +22,6 @@ const ChooseMonthAndYear = () => {
       <input type="month" id="ChooseDate" onChange={handleDateChange} />
     </div>
   );
-};
+}
 
 export default ChooseMonthAndYear;

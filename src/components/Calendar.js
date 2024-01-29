@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { StyledFontAwesomeIcon } from "@/styles/Calendar.styled";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { setDate } from "../redux/action/dateAction";
+
+import { StyledFontAwesomeIcon } from "@/styles/Calendar.styled";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 import {
   DayCell,
@@ -18,7 +19,7 @@ import {
 import TaskInput from "@/components/TaskInput";
 import AddTask from "./AddTask";
 
-const Calendar = () => {
+function Calendar() {
   const dispatch = useDispatch();
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -108,6 +109,6 @@ const Calendar = () => {
       </div>
     </>
   );
-};
+}
 
 export default Calendar;
