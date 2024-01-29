@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import firebase from "../lib/firebase";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   FormStyled,
   HeaderSignInTextFormStyled,
@@ -10,15 +10,13 @@ import {
   HaveMemberTextStyled,
   FormLineStyled,
   ErrorMessageStyled,
+  StyledSignInFontAwesomeIcon,
 } from "@/styles/Form.styled";
-import { useRouter } from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FcGoogle } from "react-icons/fc";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { GoogleAuthButtonStyled } from "@/styles/Button.styled";
-
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import useForm from "@/hooks/useForm";
-import { FcGoogle } from "react-icons/fc";
+import useFirebasesSignInAuth from "@/hooks/useFirebaseSigninAuth";
 
 function SignInForm() {
   const [inputState, setFormState] = useForm({
@@ -26,76 +24,41 @@ function SignInForm() {
     password: "",
   });
 
-  const { email, password } = inputState;
-  const [user, setUser] = useState(null);
   const router = useRouter();
+  const { email, password } = inputState;
+  const { user, error, signInWithEmail, signInWithGoogle } = useFirebasesSignInAuth();
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const [errorMessage, setErrorMessage] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!email || !password) {
-      setErrorMessage("請輸入電子郵件或密碼");
-      return;
+    if (user) {
+      localStorage.setItem("LoginSuccess", "true");
+      localStorage.setItem("MemberLoginSuccess", "true");
+      router.push("/ganttchart");
     }
+  }, [user, router]);
 
-    if (!email.includes("@")) {
-      setErrorMessage("請輸入有效的電子郵件地址");
-      return;
-    }
-
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        localStorage.setItem("LoginSuccess", "true");
-        localStorage.setItem("MemberLoginSuccess", "true");
-        router.push("/ganttchart");
-      })
-      .catch((error) => {
-        setErrorMessage("帳號或密碼輸入錯誤", error);
-      });
-  }
-
-  function handleGoogleClick(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(() => {
-        localStorage.setItem("LoginSuccess", "true");
-        router.push("/ganttchart");
-      })
-      .catch((error) => {
-        console.error("Google 第三方登入錯誤訊息: ", error);
-      });
-  }
+    await signInWithEmail(email, password);
+  };
 
-  function handleSignUpClick() {
+  const handleGoogleClick = async (e) => {
+    e.preventDefault();
+    await signInWithGoogle();
+  };
+
+  const handleSignUpClick = () => {
     router.push("/signup");
-  }
+  };
 
-  function handleMainPageClick() {
+  const handleMainPageClick = () => {
     router.push("/");
-  }
+  };
 
   return (
     <>
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignInTextFormStyled>
-          <FontAwesomeIcon className="SignInIcon" icon={faXmark} onClick={handleMainPageClick} />
+          <StyledSignInFontAwesomeIcon position="absolute" icon={faXmark} onClick={handleMainPageClick} />
           <h2> 🔐 會員登入</h2>
         </HeaderSignInTextFormStyled>
 
@@ -124,7 +87,7 @@ function SignInForm() {
 
           <FormSubmitInputStyled type="submit" value="會員登入" />
 
-          {errorMessage && <ErrorMessageStyled>{errorMessage}</ErrorMessageStyled>}
+          {error && <ErrorMessageStyled>{error}</ErrorMessageStyled>}
           <FormLineStyled />
           <GoogleAuthButtonStyled onClick={handleGoogleClick}>
             <FcGoogle style={{ margin: "0px 30px -6px 0px" }} size="32px" />

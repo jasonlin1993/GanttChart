@@ -1,26 +1,24 @@
 // src/pages/index.js
 import React, { useState, useEffect } from "react";
+
+import Image from "next/image";
+import { useRouter } from "next/router";
+import useAuth from "@/hooks/useAuth";
+
 import Header from "@/components/Header";
+import { MainPageButtonStyled } from "@/styles/Button.styled";
 import { HeaderMemberLoginStyled } from "@/styles/Header.styled";
 import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
-import { MainPageButtonStyled } from "@/styles/Button.styled";
-import { useRouter } from "next/router";
-import Image from "next/image";
 import { MainPageSectionStyled, MainPageText, DescribeText } from "@/styles/MainPage.styled";
+
 import firebase from "../lib/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MainPage = () => {
+  useAuth();
   const router = useRouter();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      setIsUserLoggedIn(!!user);
-    });
-    return () => unsubscribe();
-  }, []);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {

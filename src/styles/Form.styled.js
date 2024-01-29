@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const FormContainer = styled.div`
   display: flex;
@@ -24,34 +25,59 @@ export const FormStyled = styled.div`
   position: relative;
 `;
 
+const FilteredFontAwesomeIcon = ({ position, ...props }) => <FontAwesomeIcon {...props} />;
+
+export const StyledSignInFontAwesomeIcon = styled(FilteredFontAwesomeIcon)`
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  transition: background-color 1s;
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 600px) {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+  }
+`;
+
+export const StyledSignUpFontAwesomeIcon = styled(FilteredFontAwesomeIcon)`
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  transition: background-color 1s;
+
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 600px) {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+  }
+`;
+
 export const HeaderSignInTextFormStyled = styled.header`
   width: 100%;
   text-align: center;
   position: absolute;
   top: 60px;
-
-  .SignInIcon {
-    position: absolute;
-    bottom: 40px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    transition: background-color 1s;
-
-    &:hover {
-      background-color: rgba(128, 128, 128, 0.5);
-      width: 28px;
-      height: 28px;
-      font-size: 28px;
-      border-radius: 50%;
-    }
-
-    @media (max-width: 600px) {
-      position: absolute;
-      bottom: 40px;
-      right: 20px;
-    }
-  }
 `;
 
 export const HeaderSignUpTextFormStyled = styled.header`
@@ -59,29 +85,6 @@ export const HeaderSignUpTextFormStyled = styled.header`
   text-align: center;
   position: absolute;
   top: 50px;
-
-  .SignUpIcon {
-    position: absolute;
-    bottom: 30px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    transition: background-color 1s;
-
-    &:hover {
-      background-color: rgba(128, 128, 128, 0.5);
-      width: 28px;
-      height: 28px;
-      font-size: 28px;
-      border-radius: 50%;
-    }
-
-    @media (max-width: 600px) {
-      position: absolute;
-      bottom: 40px;
-      right: 20px;
-    }
-  }
 `;
 
 export const TextFormStyled = styled.h2`

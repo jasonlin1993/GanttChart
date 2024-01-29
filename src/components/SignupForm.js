@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+import useFirebaseSignUpAuth from "@/hooks/useFirebaseSignupAuth";
+import firebase from "../lib/firebase";
+import "firebase/compat/firestore";
+import useForm from "@/hooks/useForm";
 import {
   FormStyled,
   HeaderSignUpTextFormStyled,
@@ -9,41 +15,26 @@ import {
   HaveMemberTextStyled,
   SubmitMessageStyled,
   FormLineStyled,
+  StyledSignUpFontAwesomeIcon,
 } from "@/styles/Form.styled";
 
-import { useRouter } from "next/router";
-import firebase from "../lib/firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import useForm from "@/hooks/useForm";
-
-const SignupForm = () => {
+function SignupForm() {
   const [inputState, setFormState] = useForm({
     email: "",
     password: "",
+    memberName: "",
   });
-  const { email, password } = inputState;
+  const { email, password, memberName } = inputState;
+  const { registerUser, submitMessage } = useFirebaseSignUpAuth();
   const router = useRouter();
-  const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) {
-      setSubmitMessage("輸入內容不可為空");
-      return;
-    }
 
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        localStorage.setItem("registrationSuccess", "true");
-        router.push("/ganttchart");
-      })
-      .catch((error) => {
-        console.error("註冊失敗", error);
-        setSubmitMessage("註冊失敗");
-      });
+    const registrationSuccess = await registerUser(email, password, memberName);
+    if (registrationSuccess) {
+      router.push("/ganttchart");
+    }
   };
 
   const handleSignInClick = () => {
@@ -58,7 +49,7 @@ const SignupForm = () => {
     <>
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignUpTextFormStyled>
-          <FontAwesomeIcon className="SignUpIcon" icon={faXmark} onClick={handleMainPageClick} />
+          <StyledSignUpFontAwesomeIcon position="absolute" icon={faXmark} onClick={handleMainPageClick} />
           <h2> 🔐 會員註冊</h2>
         </HeaderSignUpTextFormStyled>
 
@@ -66,7 +57,13 @@ const SignupForm = () => {
           <TextFormStyled>
             <label htmlFor="memberName">廠商名稱</label>
           </TextFormStyled>
-          <FormInputStyled type="name" id="memberName" name="memberName" placeholder="XX建設股份有限公司" />
+          <FormInputStyled
+            type="text"
+            id="memberName"
+            name="memberName"
+            placeholder="XX建設股份有限公司"
+            onChange={(e) => setFormState(e)}
+          />
 
           <TextFormStyled>
             <label htmlFor="email">Email</label>
@@ -100,6 +97,6 @@ const SignupForm = () => {
       </FormStyled>
     </>
   );
-};
+}
 
 export default SignupForm;
