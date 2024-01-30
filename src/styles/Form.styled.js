@@ -136,6 +136,30 @@ export const FormSubmitInputStyled = styled.input`
   }
 `;
 
+export const OneClickMemberLoginStyled = styled.input`
+  margin-top: 15px;
+  margin-bottom: 5px;
+  height: 50px;
+  border: 0;
+  border-radius: 8px;
+  background: #ffeb3b;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 26px;
+  color: #004d40;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
+  transition: background 250ms, box-shadow 250ms;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  &:hover {
+    color: #004d40;
+    background: #fdd835;
+    box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+  }
+`;
+
 export const HaveMemberTextStyled = styled.p`
   display: flex;
   justify-content: center;

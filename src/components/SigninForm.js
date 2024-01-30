@@ -11,6 +11,7 @@ import {
   FormLineStyled,
   ErrorMessageStyled,
   StyledSignInFontAwesomeIcon,
+  OneClickMemberLoginStyled,
 } from "@/styles/Form.styled";
 import { FcGoogle } from "react-icons/fc";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -39,6 +40,13 @@ function SignInForm({ onSignUpClick }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signInWithEmail(email, password);
+  };
+
+  const handleQuickLoginClick = async (e) => {
+    e.preventDefault();
+    const testEmail = "test@test.com";
+    const testPassword = "123456";
+    await signInWithEmail(testEmail, testPassword);
   };
 
   const handleGoogleClick = async (e) => {
@@ -82,6 +90,8 @@ function SignInForm({ onSignUpClick }) {
           />
 
           <FormSubmitInputStyled type="submit" value="會員登入" />
+
+          <OneClickMemberLoginStyled type="submit" onClick={handleQuickLoginClick} value="一鍵快速會員登入" />
 
           {error && <ErrorMessageStyled>{error}</ErrorMessageStyled>}
           <FormLineStyled />

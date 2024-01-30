@@ -37,12 +37,10 @@ const MainPage = () => {
   }, []);
 
   const handleRegisterClick = () => {
-    console.log("Redirecting to /register");
     router.push("/register");
   };
 
   const handleProjectClick = () => {
-    console.log("Redirecting to /ganttchart");
     router.push("/ganttchart");
   };
 

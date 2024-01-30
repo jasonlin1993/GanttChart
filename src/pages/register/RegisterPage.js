@@ -5,7 +5,7 @@ import SignInForm from "@/components/SigninForm";
 import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 import { FormContainer } from "@/styles/Form.styled";
 
-const Register = () => {
+const RegisterPage = () => {
   const [showSignUp, setShowSignUp] = useState(false);
 
   const toggleForm = () => setShowSignUp(!showSignUp);
@@ -21,4 +21,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;
