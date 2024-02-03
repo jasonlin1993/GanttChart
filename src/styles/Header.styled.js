@@ -38,6 +38,22 @@ export const HeaderFeatureStyled = styled.nav`
       width: 100%;
     }
   }
+
+  @media (max-width: 510px) {
+    display: none;
+  }
+`;
+
+export const HeaderSideBarStyled = styled.nav`
+  display: none;
+  @media (max-width: 510px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    width: 100px;
+    cursor: pointer;
+  }
 `;
 
 export const FlexHeaderStyled = styled.div`
@@ -54,4 +70,8 @@ export const HeaderWebTitleTextStyled = styled.h1`
   justify-content: center;
   align-content: center;
   width: 250px;
+
+  @media (max-width: 510px) {
+    font-size: 30px;
+  }
 `;

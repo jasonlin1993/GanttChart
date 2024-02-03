@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import Header from "@/components/Header";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
-import { HeaderFeatureStyled } from "@/styles/Header.styled";
+import { HeaderFeatureStyled, HeaderSideBarStyled } from "@/styles/Header.styled";
 import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
 import {
   MainPageSectionStyled,
@@ -19,7 +19,8 @@ import {
   SmallText,
   Hr,
 } from "@/styles/MainPage.styled";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import firebase from "../lib/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -65,6 +66,9 @@ const MainPage = () => {
       <GlobalStyle />
       <GlobalMainPageBackGroundColor />
       <Header>
+        <HeaderSideBarStyled>
+          <FontAwesomeIcon icon={faBars} />
+        </HeaderSideBarStyled>
         <HeaderFeatureStyled onClick={handleHeaderClick}>{headerButtonText}</HeaderFeatureStyled>
       </Header>
       <MainPageContainer>
