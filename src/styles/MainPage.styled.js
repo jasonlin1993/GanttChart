@@ -48,7 +48,7 @@ export const MainPageText = styled.div`
     margin: 0px;
     font-size: 60px;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 510px) {
     font-size: 40px;
   }
 `;
@@ -62,7 +62,7 @@ export const DescribeText = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  @media (max-width: 500px) {
+  @media (max-width: 510px) {
     font-size: 20px;
   }
 `;

@@ -16,7 +16,7 @@ export const HeaderFeatureStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 250px;
   cursor: pointer;
   font-size: 25px;
   position: relative;
@@ -35,7 +35,7 @@ export const HeaderFeatureStyled = styled.div`
   &:hover {
     background-image: linear-gradient(to bottom, #002f7a, #00378f);
     &::after {
-      width: 100%; // 滑鼠懸停時底線滿寬度顯示
+      width: 100%;
     }
   }
 `;
@@ -44,7 +44,7 @@ export const FlexHeaderStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 50%;
   margin: 30px;
 `;
 

@@ -59,7 +59,7 @@ export const MainPageButtonStyled = styled.button`
     transition: 0s;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 510px) {
     font-size: 20px;
   }
 `;
