@@ -11,7 +11,7 @@ export const StyledHeader = styled.header`
   align-content: center;
 `;
 
-export const HeaderFeatureStyled = styled.div`
+export const HeaderFeatureStyled = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
