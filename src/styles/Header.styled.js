@@ -14,16 +14,24 @@ export const StyledHeader = styled.header`
   align-content: center;
 `;
 
-export const HeaderMemberLoginStyled = styled.div`
+export const HeaderFeatureStyled = styled.div`
   display: flex;
   flex-direction: center;
   align-items: center;
   justify-content: center;
-  padding: 25px 30px;
-  margin: 0px 10px;
   width: 250px;
   cursor: pointer;
   font-size: 25px;
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: #ff3c78;
+    width: 0;
+    height: 1px;
+    left: 0;
+    top: 35px;
+    transition: 0.4s ease-out;
+  }
 `;
 
 export const FlexHeaderStyled = styled.div`

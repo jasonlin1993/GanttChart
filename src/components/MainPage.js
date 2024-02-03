@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import Header from "@/components/Header";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
-import { HeaderMemberLoginStyled } from "@/styles/Header.styled";
+import { HeaderFeatureStyled } from "@/styles/Header.styled";
 import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
 import {
   MainPageSectionStyled,
@@ -65,7 +65,7 @@ const MainPage = () => {
       <GlobalStyle />
       <GlobalMainPageBackGroundColor />
       <Header>
-        <HeaderMemberLoginStyled onClick={handleHeaderClick}>{headerButtonText}</HeaderMemberLoginStyled>
+        <HeaderFeatureStyled onClick={handleHeaderClick}>{headerButtonText}</HeaderFeatureStyled>
       </Header>
       <MainPageContainer>
         <MainPageFirstSectionStyled>
@@ -97,7 +97,7 @@ const MainPage = () => {
             {buttonText}
           </MainPageButtonStyled>
         </MainPageSectionStyled>
-
+        <Hr />
         {/* <MainPageSectionStyled>
           <Image src="/images/test.gif" width={500} height={245} alt="test" />
           <MainPageTextContainer>

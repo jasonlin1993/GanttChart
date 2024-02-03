@@ -26,7 +26,7 @@ export const MainPageFirstSectionStyled = styled.section`
   display: flex;
   justify-content: center;
   align-content: center;
-  margin: 40px 0px;
+
   color: white;
   @media (max-width: 1100px) {
     display: flex;
@@ -37,10 +37,13 @@ export const MainPageFirstSectionStyled = styled.section`
 `;
 
 export const MainPageText = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   font-size: 80px;
   font-weight: 700;
-  margin: 120px 50px;
+  margin: 0px 30px;
   @media (max-width: 1100px) {
     margin: 0px;
     font-size: 60px;
@@ -98,5 +101,5 @@ export const Hr = styled.hr`
   width: 270px;
   height: 4px;
   background-color: white;
-  margin: 100px 0px;
+  margin: 10px 0px;
 `;
