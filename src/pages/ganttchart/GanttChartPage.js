@@ -74,7 +74,7 @@ const GanttChartPage = () => {
           會員登出
         </HeaderFeatureStyled>
       </Header>
-      <FeatureBox />
+      {/* <FeatureBox /> */}
       <Calendar />
       <ToastContainer />
     </>

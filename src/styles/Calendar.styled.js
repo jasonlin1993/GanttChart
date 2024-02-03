@@ -26,6 +26,7 @@ export const DayWrapper = styled.div`
   border-right: 1px solid #002f7b;
   border-left: none;
   width: 100%;
+  height: 71px;
 
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
   color: #002f7b;
@@ -65,8 +66,8 @@ export const TaskRow = styled.div`
   border-bottom: 1px solid #002f7b;
   border-left: none;
   width: 100vw;
+  height: 51px;
   min-width: 1600px;
-  min-height: 20px;
   padding: 0;
 
   &:after {
