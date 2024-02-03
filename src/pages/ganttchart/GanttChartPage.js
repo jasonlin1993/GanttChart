@@ -66,7 +66,7 @@ const GanttChartPage = () => {
           </ButtonStyled>
         </FeatureButtonStyled>
       </Header>
-      {/* <FeatureBox /> */}
+      <FeatureBox />
       <Calendar />
       <ToastContainer />
     </>
