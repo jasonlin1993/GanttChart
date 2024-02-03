@@ -58,6 +58,10 @@ export const MainPageButtonStyled = styled.button`
     opacity: 1;
     transition: 0s;
   }
+
+  @media (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 export const GoogleAuthButtonStyled = styled.button`
