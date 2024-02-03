@@ -83,7 +83,7 @@ const MainPage = () => {
           {buttonText}
         </MainPageButtonStyled>
       </MainPageSectionStyled>
-      <Hr />
+
       <MainPageSectionStyled>
         <MainPageContainer>
           <Image src="/images/test.gif" width={500} height={245} alt="test" />
@@ -99,8 +99,8 @@ const MainPage = () => {
       <MainPageSectionStyled>
         <MainPageContainer>
           <MainPageTextContainer>
-            <Title>輸出檔案為 pdf 檔</Title>
-            <SmallText>一鍵將你的甘特圖轉化為PDF格式</SmallText>
+            <Title>輸出檔案為 PDF 檔</Title>
+            <SmallText>一鍵將你的甘特圖轉化為 PDF 格式</SmallText>
             <SmallText>這個功能使得報告溝通更加便捷</SmallText>
             <SmallText>團隊協作還是客戶匯報都輕鬆應對</SmallText>
           </MainPageTextContainer>
@@ -122,10 +122,8 @@ const MainPage = () => {
       </MainPageSectionStyled>
       <Hr />
       <MainPageSectionStyled>
-        <MainPageTextContainer>
-          <Title>將您的項目視覺化 </Title>
-          <Title>掌握每一刻的可能 </Title>
-        </MainPageTextContainer>
+        <Title>將您的項目視覺化 </Title>
+        <Title>掌握每一刻的可能 </Title>
       </MainPageSectionStyled>
       <ToastContainer />
     </>

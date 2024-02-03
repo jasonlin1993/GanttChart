@@ -5,6 +5,7 @@ export const MainPageSectionStyled = styled.section`
   justify-content: center;
   align-content: center;
   margin: 40px 0px;
+  color: white;
 `;
 
 export const MainPageText = styled.div`
@@ -67,9 +68,9 @@ export const SmallText = styled.p`
 export const Hr = styled.hr`
   display: flex;
   position: relative;
-  width: 200px;
+  width: 270px;
   height: 4px;
   background-color: white;
-  left: 45%;
+  left: 43%;
   margin: 100px 0px;
 `;
