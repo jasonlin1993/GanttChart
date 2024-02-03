@@ -12,7 +12,7 @@ function useAuth() {
         setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
-        router.push("/register");
+        router.push("/");
       }
     });
 

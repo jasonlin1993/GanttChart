@@ -13,7 +13,6 @@ export default function Header({ children }) {
         <FlexHeaderStyled onClick={handleMainPageClick}>
           <HeaderH1TextStyled> Gantt Chart</HeaderH1TextStyled>
         </FlexHeaderStyled>
-
         {children}
       </StyledHeader>
     </>
