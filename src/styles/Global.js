@@ -22,7 +22,7 @@ body {
 export const GlobalMainPageBackGroundColor = createGlobalStyle`
   body {
       height:100%;
-      background: linear-gradient(#002f7a, #002F7B,#0046b8);
+      background: linear-gradient(#002f7a, #002F7B,#0046b8, #3381ff);
       margin:0;
       background-repeat: no-repeat; 
       background-attachment: fixed; 

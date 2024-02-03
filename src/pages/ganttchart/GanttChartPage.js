@@ -49,7 +49,7 @@ const GanttChartPage = () => {
           <ButtonStyled onClick={handleLogout}>登出</ButtonStyled>
         </LogoutButtonStyled>
       </Header>
-      <FeatureBox />
+      {/* <FeatureBox /> */}
       <Calendar />
       <ToastContainer />
     </>
