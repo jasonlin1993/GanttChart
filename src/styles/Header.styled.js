@@ -16,7 +16,7 @@ export const HeaderFeatureStyled = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 250px;
+  width: 300px;
   cursor: pointer;
   font-size: 25px;
   position: relative;
@@ -26,7 +26,7 @@ export const HeaderFeatureStyled = styled.div`
     position: absolute;
     background-color: #ff3c78;
     width: 0;
-    height: 3px;
+    height: 4px;
     left: 0;
     bottom: 0;
     transition: width 0.4s ease-out;

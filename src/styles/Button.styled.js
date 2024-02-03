@@ -80,11 +80,3 @@ export const GoogleAuthButtonStyled = styled.button`
     background-color: #dce0e4;
   }
 `;
-
-export const FeatureButtonStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin: 30px 0px 30px 0px;
-  width: 1500px;
-`;

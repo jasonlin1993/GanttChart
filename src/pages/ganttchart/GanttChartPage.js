@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 import { GlobalStyle } from "@/styles/Global";
-import { ButtonStyled, FeatureButtonStyled } from "@/styles/Button.styled";
+import { HeaderFeatureStyled } from "@/styles/Header.styled";
 import Calendar from "@/components/Calendar";
 import Header from "@/components/Header";
 import FeatureBox from "@/components/FeatureBox";
@@ -47,24 +47,22 @@ const GanttChartPage = () => {
     <>
       <GlobalStyle />
       <Header>
-        <FeatureButtonStyled>
-          <ButtonStyled>
-            <FontAwesomeIcon icon={faFloppyDisk} style={{ margin: "0px 10px 0px 0px" }} />
-            檔案儲存
-          </ButtonStyled>
-          <ButtonStyled>
-            <FontAwesomeIcon icon={faFolder} style={{ margin: "0px 10px 0px 0px" }} />
-            歷史紀錄
-          </ButtonStyled>
-          <ButtonStyled>
-            <FontAwesomeIcon icon={faFilePdf} style={{ margin: "0px 10px 0px 0px" }} />
-            輸出檔案
-          </ButtonStyled>
-          <ButtonStyled onClick={handleLogout}>
-            <FontAwesomeIcon icon={faRightFromBracket} style={{ margin: "0px 10px 0px 0px" }} />
-            登出
-          </ButtonStyled>
-        </FeatureButtonStyled>
+        <HeaderFeatureStyled>
+          <FontAwesomeIcon icon={faFloppyDisk} style={{ margin: "0px 10px 0px 0px" }} />
+          檔案儲存
+        </HeaderFeatureStyled>
+        <HeaderFeatureStyled>
+          <FontAwesomeIcon icon={faFolder} style={{ margin: "0px 10px 0px 0px" }} />
+          歷史紀錄
+        </HeaderFeatureStyled>
+        <HeaderFeatureStyled>
+          <FontAwesomeIcon icon={faFilePdf} style={{ margin: "0px 10px 0px 0px" }} />
+          輸出檔案
+        </HeaderFeatureStyled>
+        <HeaderFeatureStyled onClick={handleLogout}>
+          <FontAwesomeIcon icon={faRightFromBracket} style={{ margin: "0px 10px 0px 0px" }} />
+          會員登出
+        </HeaderFeatureStyled>
       </Header>
       <FeatureBox />
       <Calendar />
