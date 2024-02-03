@@ -8,7 +8,13 @@ import Header from "@/components/Header";
 import FeatureBox from "@/components/FeatureBox";
 import useAuth from "@/hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk, faFilePdf, faFolder, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFloppyDisk,
+  faFilePdf,
+  faFolder,
+  faRightFromBracket,
+  faShareFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -48,6 +54,10 @@ const GanttChartPage = () => {
       <GlobalStyle />
       <Header>
         <HeaderFeatureStyled>
+          <FontAwesomeIcon icon={faShareFromSquare} style={{ margin: "0px 10px 0px 0px" }} />
+          另存新檔
+        </HeaderFeatureStyled>
+        <HeaderFeatureStyled>
           <FontAwesomeIcon icon={faFloppyDisk} style={{ margin: "0px 10px 0px 0px" }} />
           檔案儲存
         </HeaderFeatureStyled>
@@ -64,7 +74,7 @@ const GanttChartPage = () => {
           會員登出
         </HeaderFeatureStyled>
       </Header>
-      <FeatureBox />
+      {/* <FeatureBox /> */}
       <Calendar />
       <ToastContainer />
     </>
