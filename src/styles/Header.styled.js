@@ -39,14 +39,14 @@ export const HeaderFeatureStyled = styled.nav`
     }
   }
 
-  @media (max-width: 510px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 `;
 
 export const HeaderSideBarStyled = styled.nav`
   display: none;
-  @media (max-width: 510px) {
+  @media (max-width: 1100px) {
     display: flex;
     justify-content: center;
     align-items: center;

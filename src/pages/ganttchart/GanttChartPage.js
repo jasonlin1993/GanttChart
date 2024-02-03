@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 import { GlobalStyle } from "@/styles/Global";
-import { HeaderFeatureStyled } from "@/styles/Header.styled";
+import { HeaderFeatureStyled, HeaderSideBarStyled } from "@/styles/Header.styled";
 import Calendar from "@/components/Calendar";
 import Header from "@/components/Header";
 import FeatureBox from "@/components/FeatureBox";
@@ -14,6 +14,7 @@ import {
   faFolder,
   faRightFromBracket,
   faShareFromSquare,
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,6 +54,9 @@ const GanttChartPage = () => {
     <>
       <GlobalStyle />
       <Header>
+        <HeaderSideBarStyled>
+          <FontAwesomeIcon icon={faBars} />
+        </HeaderSideBarStyled>
         <HeaderFeatureStyled>
           <FontAwesomeIcon icon={faShareFromSquare} style={{ margin: "0px 10px 0px 0px" }} />
           另存新檔
@@ -74,7 +78,7 @@ const GanttChartPage = () => {
           會員登出
         </HeaderFeatureStyled>
       </Header>
-      <FeatureBox />
+      {/* <FeatureBox /> */}
       <Calendar />
       <ToastContainer />
     </>
