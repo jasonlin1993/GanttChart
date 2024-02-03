@@ -1,4 +1,4 @@
-import { StyledHeader, FlexHeaderStyled, HeaderH1TextStyled } from "@/styles/Header.styled";
+import { StyledHeader, FlexHeaderStyled, HeaderWebTitleTextStyled } from "@/styles/Header.styled";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ export default function Header({ children }) {
     <>
       <StyledHeader>
         <FlexHeaderStyled onClick={handleMainPageClick}>
-          <HeaderH1TextStyled> Gantt Chart</HeaderH1TextStyled>
+          <HeaderWebTitleTextStyled> Gantt Chart</HeaderWebTitleTextStyled>
         </FlexHeaderStyled>
         {children}
       </StyledHeader>

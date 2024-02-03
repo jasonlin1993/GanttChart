@@ -48,6 +48,10 @@ export const FlexHeaderStyled = styled.div`
   margin: 30px;
 `;
 
-export const HeaderH1TextStyled = styled.h1`
+export const HeaderWebTitleTextStyled = styled.h1`
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 250px;
 `;
