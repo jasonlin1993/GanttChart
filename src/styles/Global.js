@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Viga", sans-serif;
+    font-family: "微軟正黑體", sans-serif;
     font-weight:700;
   }
 

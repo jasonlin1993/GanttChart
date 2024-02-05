@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 import { GlobalStyle } from "@/styles/Global";
-import { HeaderGanttChartPageFeatureStyled, HeaderGanttChartPageSideBarStyled } from "@/styles/Header.styled";
 import {
   StyledNav,
   StyledUl,

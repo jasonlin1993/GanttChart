@@ -1,10 +1,8 @@
 // src/pages/index.js
 import React, { useState, useEffect } from "react";
-
 import Image from "next/image";
-import { useRouter } from "next/router";
-
 import Header from "@/components/Header";
+import { useRouter } from "next/router";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
 import {
   StyledNav,
@@ -158,7 +156,7 @@ const MainPage = () => {
         <Hr />
         <MainPageColumnSectionStyled>
           <Title>將您的項目視覺化，</Title>
-          <Title>掌握每一刻的可能 </Title>
+          <Title>掌握每一刻的可能性 </Title>
         </MainPageColumnSectionStyled>
       </MainPageContainer>
       <ToastContainer />
