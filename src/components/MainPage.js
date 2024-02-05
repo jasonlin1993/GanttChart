@@ -6,7 +6,14 @@ import { useRouter } from "next/router";
 
 import Header from "@/components/Header";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
-import { StyledNav, StyledUl, StyledLi, StyledLink, MobileIconWrapper } from "@/styles/NavigationBar.styled";
+import {
+  StyledNav,
+  StyledUl,
+  StyledLi,
+  StyledLink,
+  MobileIconWrapper,
+  NavBarContainer,
+} from "@/styles/NavigationBar.styled";
 import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
 import {
   MainPageSectionStyled,
@@ -28,6 +35,22 @@ import "react-toastify/dist/ReactToastify.css";
 const MainPage = () => {
   const router = useRouter();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const handleRegisterClick = () => {
+    router.push("/register");
+  };
+
+  const handleProjectClick = () => {
+    router.push("/ganttchart");
+  };
+
+  const handleHeaderClick = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
+  const headerButtonText = isUserLoggedIn ? "開始新專案" : "會員登入";
+  const buttonAction = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
+  const buttonText = isUserLoggedIn ? "開始新專案" : "點此註冊";
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -47,20 +70,6 @@ const MainPage = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleRegisterClick = () => {
-    router.push("/register");
-  };
-
-  const handleProjectClick = () => {
-    router.push("/ganttchart");
-  };
-
-  const handleHeaderClick = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
-  const headerButtonText = isUserLoggedIn ? "開始新專案" : "會員登入";
-
-  const buttonAction = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
-  const buttonText = isUserLoggedIn ? "開始新專案" : "點此註冊";
-
   return (
     <>
       <GlobalStyle />
@@ -69,15 +78,17 @@ const MainPage = () => {
         <StyledNav>
           <StyledUl>
             <StyledLi>
-              <MobileIconWrapper>
+              <MobileIconWrapper onClick={toggleSidebar} displayAt="510px">
                 <FontAwesomeIcon icon={faBars} />
               </MobileIconWrapper>
             </StyledLi>
-            <StyledLi>
-              <StyledLink onClick={handleHeaderClick} hideAt="510px">
-                {headerButtonText}
-              </StyledLink>
-            </StyledLi>
+            <NavBarContainer style={{ left: isSidebarVisible ? "0" : "-100%" }} NavBarAt="510px">
+              <StyledLi>
+                <StyledLink onClick={handleHeaderClick} showAt="510px">
+                  {headerButtonText}
+                </StyledLink>
+              </StyledLi>
+            </NavBarContainer>
           </StyledUl>
         </StyledNav>
       </Header>

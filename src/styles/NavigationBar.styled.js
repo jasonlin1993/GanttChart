@@ -1,13 +1,24 @@
 import styled from "styled-components";
 
-export const MobileIconWrapper = styled.div`
+export const MobileIconWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => !["displayAt"].includes(prop),
+})`
   display: none;
 
-  @media (max-width: ${(props) => props.hideAt || "510"}) {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
+  ${({ displayAt }) =>
+    displayAt &&
+    `
+    @media (max-width: ${displayAt}) {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      font-size:30px;
+      width:50px;
+      cursor:pointer;
+      margin:29px 15px 25px 0px;
+      
+    }
+  `}
 `;
 
 export const StyledNav = styled.nav``;
@@ -20,10 +31,14 @@ export const StyledLi = styled.li`
   display: flex;
   justify-content: center;
   align-content: center;
+
+  @media (max-width: 1200px) {
+    display: block;
+  }
 `;
 
 export const StyledLink = styled.a.withConfig({
-  shouldForwardProp: (prop) => !["hideAt"].includes(prop),
+  shouldForwardProp: (prop) => !["showAt"].includes(prop),
 })`
   text-decoration: none;
   display: flex;
@@ -54,11 +69,37 @@ export const StyledLink = styled.a.withConfig({
     }
   }
 
-  ${({ hideAt }) =>
-    hideAt &&
+  ${({ showAt }) =>
+    showAt &&
     `
-    @media (max-width: ${hideAt}) {
-      display: none;
+    @media (max-width: ${showAt}) {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 100%;
+    }
+  `}
+`;
+
+export const NavBarContainer = styled.nav.withConfig({
+  shouldForwardProp: (prop) => !["NavBarAt"].includes(prop),
+})`
+  ${({ NavBarAt }) =>
+    NavBarAt &&
+    `
+    @media (max-width: ${NavBarAt}) {
+      display: block;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 90px;
+      z-index: 2;
+      background-color: #002f7b;
+      left: 0;
+      flex-direction: column;
+      left: -100%;
+      transition: 0.5s;
     }
   `}
 `;
