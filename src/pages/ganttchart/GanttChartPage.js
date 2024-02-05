@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 import { GlobalStyle } from "@/styles/Global";
-import { HeaderFeatureStyled, HeaderSideBarStyled } from "@/styles/Header.styled";
+import { HeaderGanttChartPageFeatureStyled, HeaderGanttChartPageSideBarStyled } from "@/styles/Header.styled";
+import { StyledNav, StyledUl, StyledLi, StyledLink } from "@/styles/NavigationBar.styled";
 import Calendar from "@/components/Calendar";
 import Header from "@/components/Header";
 import FeatureBox from "@/components/FeatureBox";
@@ -54,29 +55,32 @@ const GanttChartPage = () => {
     <>
       <GlobalStyle />
       <Header>
-        <HeaderSideBarStyled>
-          <FontAwesomeIcon icon={faBars} />
-        </HeaderSideBarStyled>
-        <HeaderFeatureStyled>
-          <FontAwesomeIcon icon={faShareFromSquare} style={{ margin: "0px 10px 0px 0px" }} />
-          另存新檔
-        </HeaderFeatureStyled>
-        <HeaderFeatureStyled>
-          <FontAwesomeIcon icon={faFloppyDisk} style={{ margin: "0px 10px 0px 0px" }} />
-          檔案儲存
-        </HeaderFeatureStyled>
-        <HeaderFeatureStyled>
-          <FontAwesomeIcon icon={faFolder} style={{ margin: "0px 10px 0px 0px" }} />
-          歷史紀錄
-        </HeaderFeatureStyled>
-        <HeaderFeatureStyled>
-          <FontAwesomeIcon icon={faFilePdf} style={{ margin: "0px 10px 0px 0px" }} />
-          輸出檔案
-        </HeaderFeatureStyled>
-        <HeaderFeatureStyled onClick={handleLogout}>
-          <FontAwesomeIcon icon={faRightFromBracket} style={{ margin: "0px 10px 0px 0px" }} />
-          會員登出
-        </HeaderFeatureStyled>
+        <StyledNav>
+          <StyledUl>
+            <StyledLi>
+              <StyledLink hideAt="1200px">
+                <FontAwesomeIcon icon={faShareFromSquare} style={{ margin: "0px 10px 0px 0px" }} />
+                另存新檔
+              </StyledLink>
+              <StyledLink hideAt="1200px">
+                <FontAwesomeIcon icon={faFloppyDisk} style={{ margin: "0px 10px 0px 0px" }} />
+                檔案儲存
+              </StyledLink>
+              <StyledLink hideAt="1200px">
+                <FontAwesomeIcon icon={faFolder} style={{ margin: "0px 10px 0px 0px" }} />
+                歷史紀錄
+              </StyledLink>
+              <StyledLink hideAt="1200px">
+                <FontAwesomeIcon icon={faFilePdf} style={{ margin: "0px 10px 0px 0px" }} />
+                輸出檔案
+              </StyledLink>
+              <StyledLink onClick={handleLogout} hideAt="1200px">
+                <FontAwesomeIcon icon={faRightFromBracket} style={{ margin: "0px 10px 0px 0px" }} />
+                會員登出
+              </StyledLink>
+            </StyledLi>
+          </StyledUl>
+        </StyledNav>
       </Header>
       {/* <FeatureBox /> */}
       <Calendar />

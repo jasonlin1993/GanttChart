@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 import Header from "@/components/Header";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
-import { HeaderFeatureStyled, HeaderSideBarStyled } from "@/styles/Header.styled";
+import { StyledNav, StyledUl, StyledLi, StyledLink, MobileIconWrapper } from "@/styles/NavigationBar.styled";
 import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
 import {
   MainPageSectionStyled,
@@ -59,17 +59,27 @@ const MainPage = () => {
   const headerButtonText = isUserLoggedIn ? "開始新專案" : "會員登入";
 
   const buttonAction = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
-  const buttonText = isUserLoggedIn ? "開始新專案" : "點此註冊，開始您的專案";
+  const buttonText = isUserLoggedIn ? "開始新專案" : "點此註冊";
 
   return (
     <>
       <GlobalStyle />
       <GlobalMainPageBackGroundColor />
       <Header>
-        <HeaderSideBarStyled>
-          <FontAwesomeIcon icon={faBars} />
-        </HeaderSideBarStyled>
-        <HeaderFeatureStyled onClick={handleHeaderClick}>{headerButtonText}</HeaderFeatureStyled>
+        <StyledNav>
+          <StyledUl>
+            <StyledLi>
+              <MobileIconWrapper>
+                <FontAwesomeIcon icon={faBars} />
+              </MobileIconWrapper>
+            </StyledLi>
+            <StyledLi>
+              <StyledLink onClick={handleHeaderClick} hideAt="510px">
+                {headerButtonText}
+              </StyledLink>
+            </StyledLi>
+          </StyledUl>
+        </StyledNav>
       </Header>
       <MainPageContainer>
         <MainPageFirstSectionStyled>

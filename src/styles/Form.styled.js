@@ -144,7 +144,7 @@ export const OneClickMemberLoginStyled = styled.input`
   border-radius: 8px;
   background: #ffeb3b;
   font-family: "Noto Sans TC", sans-serif;
-  font-size: 26px;
+  font-size: 20px;
   color: #004d40;
   font-weight: bold;
   text-align: center;

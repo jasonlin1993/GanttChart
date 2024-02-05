@@ -91,7 +91,7 @@ function SignInForm({ onSignUpClick }) {
 
           <FormSubmitInputStyled type="submit" value="會員登入" />
 
-          <OneClickMemberLoginStyled type="submit" onClick={handleQuickLoginClick} value="一鍵快速會員登入" />
+          <OneClickMemberLoginStyled type="submit" onClick={handleQuickLoginClick} value="使用測試帳號一鍵登入" />
 
           {error && <ErrorMessageStyled>{error}</ErrorMessageStyled>}
           <FormLineStyled />
