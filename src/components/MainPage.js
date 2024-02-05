@@ -20,11 +20,13 @@ import {
   MainPageText,
   DescribeText,
   MainPageContainer,
-  MainPageFirstSectionStyled,
+  MainPageColumnSectionStyled,
+  MainPageReverseColumnSectionStyled,
   MainPageTextContainer,
   Title,
   SmallText,
   Hr,
+  ImageContainer,
 } from "@/styles/MainPage.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -93,7 +95,7 @@ const MainPage = () => {
         </StyledNav>
       </Header>
       <MainPageContainer>
-        <MainPageFirstSectionStyled>
+        <MainPageColumnSectionStyled>
           <div
             style={{
               display: "flex",
@@ -114,7 +116,7 @@ const MainPage = () => {
             />
           </div>
           <MainPageText>Gantt Chart</MainPageText>
-        </MainPageFirstSectionStyled>
+        </MainPageColumnSectionStyled>
         <DescribeText>將您的工程專案視覺化</DescribeText>
         <DescribeText>線上甘特圖工具輕鬆規劃進度</DescribeText>
         <MainPageSectionStyled>
@@ -123,28 +125,28 @@ const MainPage = () => {
           </MainPageButtonStyled>
         </MainPageSectionStyled>
         <Hr />
-        {/* <MainPageSectionStyled>
-          <Image src="/images/test.gif" width={500} height={245} alt="test" />
+        <MainPageColumnSectionStyled>
+          <ImageContainer />
           <MainPageTextContainer>
             <Title>動態刪除或新增任務</Title>
             <SmallText>隨時根據專案需求增加或移除任務</SmallText>
             <SmallText>動態調整保證甘特圖的即時更新</SmallText>
             <SmallText>確保計劃的靈活性與實時性</SmallText>
           </MainPageTextContainer>
-        </MainPageSectionStyled>
+        </MainPageColumnSectionStyled>
         <Hr />
-        <MainPageSectionStyled>
+        <MainPageReverseColumnSectionStyled>
           <MainPageTextContainer>
             <Title>輸出檔案為 PDF 檔</Title>
             <SmallText>一鍵將你的甘特圖轉化為 PDF 格式</SmallText>
             <SmallText>這個功能使得報告溝通更加便捷</SmallText>
             <SmallText>團隊協作還是客戶匯報都輕鬆應對</SmallText>
           </MainPageTextContainer>
-          <Image src="/images/test.gif" width={500} height={245} alt="test" />
-        </MainPageSectionStyled>
+          <ImageContainer />
+        </MainPageReverseColumnSectionStyled>
         <Hr />
-        <MainPageSectionStyled>
-          <Image src="/images/test.gif" width={500} height={245} alt="test" />
+        <MainPageColumnSectionStyled>
+          <ImageContainer />
           <MainPageTextContainer>
             <Title>Drag & Drop </Title>
             <SmallText>以直觀的拖放操作</SmallText>
@@ -152,11 +154,11 @@ const MainPage = () => {
             <SmallText>此功能讓計劃管理變得更加靈活</SmallText>
             <SmallText>可迅速更新專案時間表</SmallText>
           </MainPageTextContainer>
-        </MainPageSectionStyled>
+        </MainPageColumnSectionStyled>
         <Hr />
-        <MainPageSectionStyled>
+        <MainPageColumnSectionStyled>
           <Title>將您的項目視覺化，掌握每一刻的可能 </Title>
-        </MainPageSectionStyled> */}
+        </MainPageColumnSectionStyled>
       </MainPageContainer>
       <ToastContainer />
     </>

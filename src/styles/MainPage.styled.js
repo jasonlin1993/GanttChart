@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import Image from "../../public/images/test.gif";
+
+export const ImageContainer = styled.div`
+  background-image: url(${Image.src});
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  @media (max-width: 1100px) {
+    width: 80vw;
+    height: 40vw;
+    margin: 20px auto;
+  }
+`;
 
 export const MainPageContainer = styled.div`
   display: flex;
@@ -20,19 +34,35 @@ export const MainPageSectionStyled = styled.section`
   align-content: center;
   margin: 40px 0px;
   color: white;
+  @media (max-width: 1200px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
 `;
 
-export const MainPageFirstSectionStyled = styled.section`
+export const MainPageColumnSectionStyled = styled.section`
   display: flex;
   justify-content: center;
   align-content: center;
-
+  margin: 40px 0px;
   color: white;
-  @media (max-width: 1100px) {
-    display: flex;
+  @media (max-width: 1200px) {
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    align-items: center;
+  }
+`;
+
+export const MainPageReverseColumnSectionStyled = styled.section`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 40px 0px;
+  color: white;
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+    align-items: center;
   }
 `;
 
@@ -44,12 +74,9 @@ export const MainPageText = styled.div`
   font-size: 80px;
   font-weight: 700;
   margin: 0px 30px;
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     margin: 0px;
-    font-size: 60px;
-  }
-  @media (max-width: 510px) {
-    font-size: 40px;
+    font-size: 50px;
   }
 `;
 
@@ -62,8 +89,8 @@ export const DescribeText = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  @media (max-width: 510px) {
-    font-size: 20px;
+  @media (max-width: 1200px) {
+    font-size: 25px;
   }
 `;
 
@@ -73,8 +100,11 @@ export const MainPageTextContainer = styled.div`
   justify-content: center;
   align-content: center;
   color: white;
-  width: 500px;
-  margin: 20px 0px 20px 200px;
+  width: 700px;
+  margin: 20px 0px 20px 60px;
+  @media (max-width: 1200px) {
+    margin: 50px 0 0 0;
+  }
 `;
 
 export const Title = styled.h1`
@@ -84,6 +114,13 @@ export const Title = styled.h1`
   font-weight: 600;
   margin-bottom: 10px;
   align-items: start;
+  @media (max-width: 1200px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+  }
 `;
 
 export const SmallText = styled.p`
@@ -93,6 +130,13 @@ export const SmallText = styled.p`
   font-weight: 600;
   margin: 2px 0px;
   align-items: start;
+  @media (max-width: 1200px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+  }
 `;
 
 export const Hr = styled.hr`
