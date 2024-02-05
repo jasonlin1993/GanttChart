@@ -157,7 +157,8 @@ const MainPage = () => {
         </MainPageColumnSectionStyled>
         <Hr />
         <MainPageColumnSectionStyled>
-          <Title>將您的項目視覺化，掌握每一刻的可能 </Title>
+          <Title>將您的項目視覺化，</Title>
+          <Title>掌握每一刻的可能 </Title>
         </MainPageColumnSectionStyled>
       </MainPageContainer>
       <ToastContainer />
