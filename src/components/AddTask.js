@@ -26,7 +26,7 @@ function AddTask() {
   return (
     <>
       <AddTaskButton onClick={handleAddTask}>
-        <div style={{ margin: "15px 30px 0px 0px" }}>
+        <div style={{ margin: "20px 30px 0px 0px" }}>
           <FontAwesomeIcon icon={faPlus} style={{ margin: "10px 10px 0px 0px" }} />
           新增任務
         </div>

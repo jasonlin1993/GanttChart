@@ -57,7 +57,7 @@ export const MainPageButtonStyled = styled.button`
     transition: 0s;
   }
 
-  @media (max-width: 510px) {
+  @media (max-width: 500px) {
     font-size: 20px;
   }
 `;
@@ -66,6 +66,7 @@ export const GoogleAuthButtonStyled = styled.button`
   height: 50px;
   background-color: #eef0f2;
   color: black;
+
   font-size: 25px;
   font-weight: 700;
   border-radius: 5px;

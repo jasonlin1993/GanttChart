@@ -26,8 +26,7 @@ export const DayWrapper = styled.div`
   border-right: 1px solid #002f7b;
   border-left: none;
   width: 100%;
-  height: 71px;
-
+  height: 80px;
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
   color: #002f7b;
 
@@ -54,6 +53,7 @@ export const TaskDayCell = styled.div`
   border-right: 1px solid #002f7b;
   height: 50px;
   width: 100%;
+
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
 
   &:first-child {
@@ -68,6 +68,7 @@ export const TaskRow = styled.div`
   width: 100vw;
   height: 51px;
   min-width: 1600px;
+
   padding: 0;
 
   &:after {
@@ -91,7 +92,7 @@ export const AddTaskButton = styled.button`
   justify-content: center;
   align-content: center;
   width: 320px;
-  height: 72px;
+  height: 81px;
   border-bottom: 1px solid #002f7b;
   border-right: 1px solid #002f7b;
   border-top: none;
