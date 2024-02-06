@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTaskDuration } from "../redux/action/taskAction";
 import { removeTask, updateTaskName } from "../redux/action/taskAction";
 import {
   StyledTaskInputContainer,
@@ -7,12 +8,22 @@ import {
   StyledDeleteButton,
   StyledEditTaskInputButton,
   StyledEditTaskInputPopUp,
+  StyledEditTaskContent,
+  StyledEditTaskTextContainer,
+  StyledEditTaskDurationContainer,
+  StyledEditTaskDurationInputDate,
+  StyledEditTaskButtonContainer,
+  StyledEditTaskCancelButton,
+  StyledEditTaskSaveButton,
 } from "../styles/TaskInput.styled";
 import { faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function TaskInput({ task }) {
   const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const [selectedTaskId, setSelectedTaskId] = useState("");
+  const [startDate, setStartDate] = useState("");
   const [taskName, setTaskName] = useState(task.name);
 
   const handleDelete = () => {
@@ -62,8 +73,20 @@ function TaskInput({ task }) {
 
       {isEditPopupVisible && (
         <StyledEditTaskInputPopUp ref={dialogRef}>
-          測試測試
-          <div onClick={handleCloseTaskInputPopup}>x</div>
+          <StyledEditTaskContent>
+            <StyledEditTaskTextContainer>任務內容</StyledEditTaskTextContainer>
+          </StyledEditTaskContent>
+          <StyledEditTaskDurationContainer>
+            任務開始時間: <StyledEditTaskDurationInputDate type="date" />
+          </StyledEditTaskDurationContainer>
+          <StyledEditTaskDurationContainer>
+            任務結束時間: <StyledEditTaskDurationInputDate type="date" />
+          </StyledEditTaskDurationContainer>
+          <StyledEditTaskButtonContainer>
+            {" "}
+            <StyledEditTaskSaveButton>儲存</StyledEditTaskSaveButton>
+            <StyledEditTaskCancelButton onClick={handleCloseTaskInputPopup}>取消</StyledEditTaskCancelButton>
+          </StyledEditTaskButtonContainer>
         </StyledEditTaskInputPopUp>
       )}
 

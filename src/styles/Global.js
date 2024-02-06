@@ -28,6 +28,4 @@ export const GlobalMainPageBackGroundColor = createGlobalStyle`
       background-attachment: fixed; 
       background-size: cover;
     }
-
-
 `;
