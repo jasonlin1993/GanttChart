@@ -129,7 +129,7 @@ export const FormSubmitInputStyled = styled.input`
   text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
   transition: all 0.5s;
   touch-action: manipulation;
-
+  font-family: "微軟正黑體";
   &:hover {
     box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
     transition-duration: 0.1s;
@@ -143,7 +143,7 @@ export const OneClickMemberLoginStyled = styled.input`
   border: 0;
   border-radius: 8px;
   background: #ffeb3b;
-  font-family: "Noto Sans TC", sans-serif;
+
   font-size: 20px;
   color: #004d40;
   font-weight: bold;
@@ -152,7 +152,7 @@ export const OneClickMemberLoginStyled = styled.input`
   transition: background 250ms, box-shadow 250ms;
   padding: 10px 20px;
   cursor: pointer;
-
+  font-family: "微軟正黑體";
   &:hover {
     color: #004d40;
     background: #fdd835;

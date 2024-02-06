@@ -20,6 +20,7 @@ export const ButtonStyled = styled.button`
 `;
 
 export const MainPageButtonStyled = styled.button`
+  font-family: "微軟正黑體";
   min-width: 200px;
   border: none;
   border-radius: 4px;
@@ -48,6 +49,7 @@ export const MainPageButtonStyled = styled.button`
     background: #1abc9c;
     opacity: 0;
     transition: all 0.8s;
+    font-family: "微軟正黑體";
   }
 
   &:active:after {
@@ -66,7 +68,7 @@ export const GoogleAuthButtonStyled = styled.button`
   height: 50px;
   background-color: #eef0f2;
   color: black;
-
+  font-family: "微軟正黑體";
   font-size: 25px;
   font-weight: 700;
   border-radius: 5px;
@@ -77,4 +79,12 @@ export const GoogleAuthButtonStyled = styled.button`
   &:hover {
     background-color: #dce0e4;
   }
+`;
+
+export const FeatureButtonStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 30px 0px 30px 0px;
+  width: 1500px;
 `;

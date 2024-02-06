@@ -7,10 +7,10 @@ export const ImageContainer = styled.div`
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 80vw;
     height: 40vw;
-    margin: 20px auto;
+    margin: 0px;
   }
 `;
 
@@ -22,7 +22,7 @@ export const MainPageContainer = styled.div`
   justify-content: center;
   width: 1200px;
   margin-top: 0px;
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     display: flex;
     width: 90vw;
   }
@@ -39,6 +39,7 @@ export const MainPageSectionStyled = styled.section`
     align-items: center;
     justify-content: center;
     align-content: center;
+    width: 100%;
   }
 `;
 
@@ -51,6 +52,8 @@ export const MainPageColumnSectionStyled = styled.section`
   @media (max-width: 1200px) {
     flex-direction: column;
     align-items: center;
+
+    margin: 0;
   }
 `;
 
@@ -63,6 +66,7 @@ export const MainPageReverseColumnSectionStyled = styled.section`
   @media (max-width: 1200px) {
     flex-direction: column-reverse;
     align-items: center;
+    margin: 0px;
   }
 `;
 
@@ -103,7 +107,8 @@ export const MainPageTextContainer = styled.div`
   width: 700px;
   margin: 20px 0px 20px 60px;
   @media (max-width: 1200px) {
-    margin: 50px 0 0 0;
+    margin: 10px 0 0 0;
+    width: 100%;
   }
 `;
 
@@ -119,7 +124,6 @@ export const Title = styled.h1`
     align-items: center;
     justify-content: center;
     align-content: center;
-    width: 100%;
   }
 `;
 
@@ -135,7 +139,6 @@ export const SmallText = styled.p`
     align-items: center;
     justify-content: center;
     align-content: center;
-    width: 100%;
   }
 `;
 
@@ -145,5 +148,5 @@ export const Hr = styled.hr`
   width: 270px;
   height: 4px;
   background-color: white;
-  margin: 10px 0px;
+  margin: 30px 0px 30px 0px;
 `;
