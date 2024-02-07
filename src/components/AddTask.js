@@ -13,7 +13,7 @@ function AddTask() {
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
-    const daysInMonth = new Date(year, month - 1, 0).getDate();
+    const daysInMonth = new Date(year, month, 0).getDate();
     const daysArray = Array.from({ length: daysInMonth });
     const newTask = {
       id: Date.now(),

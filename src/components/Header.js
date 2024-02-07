@@ -1,6 +1,5 @@
 import { StyledHeader, FlexHeaderStyled, HeaderWebTitleTextStyled } from "@/styles/Header.styled";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 export default function Header({ children }) {
   const router = useRouter();

@@ -23,7 +23,6 @@ function Calendar() {
   const dispatch = useDispatch();
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
-
   const [days, setDays] = useState([]);
 
   useEffect(() => {
@@ -83,8 +82,8 @@ function Calendar() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", overflowX: "auto" }}>
           <DayGrid>
-            {days.map((day, index) => (
-              <DayWrapper key={index} $isWeekend={isWeekend(day)}>
+            {days.map((day) => (
+              <DayWrapper key={day} $isWeekend={isWeekend(day)}>
                 <WeekdayCell>{getWeekdayLabel(day)}</WeekdayCell>
                 <DayCell>{day}</DayCell>
               </DayWrapper>
@@ -94,12 +93,15 @@ function Calendar() {
             <TaskRow key={task.id}>
               {days.map((day, dayIndex) => {
                 const isInDuration = isDayWithinTaskDuration(day, task);
+                const weekendColor = "#eef0f2";
                 return (
                   <TaskDayCell
                     key={dayIndex}
                     $isWeekend={isWeekend(day)}
                     $hasTask={isInDuration}
-                    style={{ backgroundColor: isInDuration ? "lightblue" : "none" }}
+                    style={{
+                      backgroundColor: isInDuration ? "lightblue" : isWeekend(day) ? weekendColor : "white",
+                    }}
                   />
                 );
               })}

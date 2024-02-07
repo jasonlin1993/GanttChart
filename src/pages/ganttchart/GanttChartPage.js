@@ -12,7 +12,6 @@ import {
 } from "@/styles/NavigationBar.styled";
 import Calendar from "@/components/Calendar";
 import Header from "@/components/Header";
-import FeatureBox from "@/components/FeatureBox";
 import useAuth from "@/hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -98,7 +97,6 @@ const GanttChartPage = () => {
           </StyledUl>
         </StyledNav>
       </Header>
-      {/* <FeatureBox /> */}
       <Calendar />
       <ToastContainer />
     </>
