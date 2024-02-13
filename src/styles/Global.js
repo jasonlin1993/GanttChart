@@ -1,5 +1,6 @@
 // styles/Global.js
 import { createGlobalStyle } from "styled-components";
+import backgroundImage from "../../public/images/backgroundImage.jpg";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -13,10 +14,13 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const GlobalBackGroundColor = createGlobalStyle`
-body {
-      background: linear-gradient(to right, #002F7B, #3381ff, #002F7B);
-    }
-
+  body {
+      background-image: url(${backgroundImage.src});
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100vw;
+      height: 100vh;
+  }
 `;
 
 export const GlobalMainPageBackGroundColor = createGlobalStyle`
