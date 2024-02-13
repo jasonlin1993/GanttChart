@@ -58,17 +58,26 @@ function Calendar() {
     const currentDate = new Date(year, month - 1, day).setHours(0, 0, 0, 0);
     const start = new Date(task.startDate).setHours(0, 0, 0, 0);
     const end = new Date(task.endDate).setHours(0, 0, 0, 0);
-    const isInDuration = start && end && currentDate >= start && currentDate <= end;
+    const isInDuration =
+      start && end && currentDate >= start && currentDate <= end;
     return isInDuration;
   };
 
   return (
     <>
       <MonthLabelStyle>
-        <StyledFontAwesomeIcon icon={faCaretLeft} onClick={handlePrevMonth} direction="left" />
+        <StyledFontAwesomeIcon
+          icon={faCaretLeft}
+          onClick={handlePrevMonth}
+          direction="left"
+        />
         {`${year} 年 ${month} 月 `}
 
-        <StyledFontAwesomeIcon icon={faCaretRight} onClick={handleNextMonth} direction="right" />
+        <StyledFontAwesomeIcon
+          icon={faCaretRight}
+          onClick={handleNextMonth}
+          direction="right"
+        />
       </MonthLabelStyle>
 
       <div style={{ display: "flex", flexDirection: "initial" }}>
@@ -80,7 +89,13 @@ function Calendar() {
             </React.Fragment>
           ))}
         </div>
-        <div style={{ display: "flex", flexDirection: "column", overflowX: "auto" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            overflowX: "auto",
+          }}
+        >
           <DayGrid>
             {days.map((day) => (
               <DayWrapper key={day} $isWeekend={isWeekend(day)}>
@@ -100,7 +115,11 @@ function Calendar() {
                     $isWeekend={isWeekend(day)}
                     $hasTask={isInDuration}
                     style={{
-                      backgroundColor: isInDuration ? "lightblue" : isWeekend(day) ? weekendColor : "white",
+                      backgroundColor: isInDuration
+                        ? "lightblue"
+                        : isWeekend(day)
+                        ? weekendColor
+                        : "white",
                     }}
                   />
                 );

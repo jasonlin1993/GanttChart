@@ -11,7 +11,10 @@ export default function Custom404() {
       <GlobalMainPageBackGroundColor />
       <Header />
       <ErrorPageSectionStyled>
-        <FontAwesomeIcon icon={faTriangleExclamation} style={{ margin: " 10px 30px 10px 0px" }} />
+        <FontAwesomeIcon
+          icon={faTriangleExclamation}
+          style={{ margin: " 10px 30px 10px 0px" }}
+        />
         404 找不到此頁面
       </ErrorPageSectionStyled>
     </>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import SignupForm from "@/components/SignupForm";
 import SignInForm from "@/components/SigninForm";
-import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
+import { GlobalStyle, GlobalBackGroundImage } from "@/styles/Global";
 import { FormContainer } from "@/styles/Form.styled";
 
 const RegisterPage = () => {
@@ -12,10 +12,14 @@ const RegisterPage = () => {
 
   return (
     <>
-      <GlobalBackGroundColor />
+      <GlobalBackGroundImage />
       <GlobalStyle />
       <FormContainer>
-        {showSignUp ? <SignupForm onSignInClick={toggleForm} /> : <SignInForm onSignUpClick={toggleForm} />}
+        {showSignUp ? (
+          <SignupForm onSignInClick={toggleForm} />
+        ) : (
+          <SignInForm onSignUpClick={toggleForm} />
+        )}
       </FormContainer>
     </>
   );

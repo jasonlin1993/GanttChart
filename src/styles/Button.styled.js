@@ -13,7 +13,8 @@ export const ButtonStyled = styled.button`
   margin: 0 15px;
   color: #002f7b;
   font-size: 20px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   &:hover {
     background-color: #d1d6dc;
   }
@@ -74,7 +75,8 @@ export const GoogleAuthButtonStyled = styled.button`
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   cursor: pointer;
   &:hover {
     background-color: #dce0e4;

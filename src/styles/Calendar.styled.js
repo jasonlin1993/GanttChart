@@ -109,7 +109,8 @@ export const AddTaskButton = styled.button`
 `;
 
 export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  margin: ${(props) => (props.direction === "left" ? "3px 40px 0px 0px" : "3px 0px 0px 30px")};
+  margin: ${(props) =>
+    props.direction === "left" ? "3px 40px 0px 0px" : "3px 0px 0px 30px"};
   cursor: pointer;
   display: inline-flex;
   align-items: center;

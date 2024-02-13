@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
 `;
 
-export const GlobalBackGroundColor = createGlobalStyle`
+export const GlobalBackGroundImage = createGlobalStyle`
   body {
       background-image: url(${backgroundImage.src});
       background-repeat: no-repeat;

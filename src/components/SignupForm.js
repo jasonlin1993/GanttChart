@@ -44,7 +44,11 @@ function SignupForm({ onSignInClick }) {
     <>
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignUpTextFormStyled>
-          <StyledSignUpFontAwesomeIcon position="absolute" icon={faXmark} onClick={handleMainPageClick} />
+          <StyledSignUpFontAwesomeIcon
+            position="absolute"
+            icon={faXmark}
+            onClick={handleMainPageClick}
+          />
           <h2> 🔐 會員註冊</h2>
         </HeaderSignUpTextFormStyled>
 
@@ -84,10 +88,14 @@ function SignupForm({ onSignInClick }) {
 
           <FormSubmitInputStyled type="submit" value="會員註冊" />
 
-          {submitMessage && <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>}
+          {submitMessage && (
+            <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>
+          )}
           <FormLineStyled position="top-center" />
 
-          <HaveMemberTextStyled onClick={onSignInClick}>已經有帳號了?</HaveMemberTextStyled>
+          <HaveMemberTextStyled onClick={onSignInClick}>
+            已經有帳號了?
+          </HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
     </>

@@ -62,11 +62,18 @@ function TaskInput({ task }) {
 
   const handleAddTaskDuration = () => {
     if (!selectedTaskId) {
-      console.error("Error: Please enter a valid task name to update the duration for");
+      console.error(
+        "Error: Please enter a valid task name to update the duration for"
+      );
       return;
     }
     if (startDate && endDate) {
-      console.log("Updating task duration with:", selectedTaskId, startDate, endDate); // 確認這些值是否正確
+      console.log(
+        "Updating task duration with:",
+        selectedTaskId,
+        startDate,
+        endDate
+      ); // 確認這些值是否正確
       dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
       handleCloseTaskInputPopup();
     } else {
@@ -102,11 +109,19 @@ function TaskInput({ task }) {
           </StyledEditTaskDurationContainer>
           <StyledEditTaskDurationContainer>
             任務結束時間:
-            <StyledEditTaskDurationInputDate type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            <StyledEditTaskDurationInputDate
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
           </StyledEditTaskDurationContainer>
           <StyledEditTaskButtonContainer>
-            <StyledEditTaskSaveButton onClick={handleAddTaskDuration}>儲存</StyledEditTaskSaveButton>
-            <StyledEditTaskCancelButton onClick={handleCloseTaskInputPopup}>取消</StyledEditTaskCancelButton>
+            <StyledEditTaskSaveButton onClick={handleAddTaskDuration}>
+              儲存
+            </StyledEditTaskSaveButton>
+            <StyledEditTaskCancelButton onClick={handleCloseTaskInputPopup}>
+              取消
+            </StyledEditTaskCancelButton>
           </StyledEditTaskButtonContainer>
         </StyledEditTaskInputPopUp>
       )}

@@ -21,11 +21,14 @@ export const FormStyled = styled.div`
   background-color: #eef0f2;
   border-radius: 15px;
   font-family: "Viga", sans-serif;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   position: relative;
 `;
 
-const FilteredFontAwesomeIcon = ({ position, ...props }) => <FontAwesomeIcon {...props} />;
+const FilteredFontAwesomeIcon = ({ position, ...props }) => (
+  <FontAwesomeIcon {...props} />
+);
 
 export const StyledSignInFontAwesomeIcon = styled(FilteredFontAwesomeIcon)`
   position: absolute;
@@ -114,7 +117,12 @@ export const FormInputStyled = styled.input`
 `;
 
 export const FormSubmitInputStyled = styled.input`
-  background-image: linear-gradient(92.88deg, #455eb5 9.16%, #5643cc 43.89%, #673fd7 64.72%);
+  background-image: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;

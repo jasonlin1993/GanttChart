@@ -1,4 +1,8 @@
-import { StyledHeader, FlexHeaderStyled, HeaderWebTitleTextStyled } from "@/styles/Header.styled";
+import {
+  StyledHeader,
+  FlexHeaderStyled,
+  HeaderWebTitleTextStyled,
+} from "@/styles/Header.styled";
 import { useRouter } from "next/router";
 
 export default function Header({ children }) {

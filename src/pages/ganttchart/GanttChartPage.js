@@ -70,26 +70,44 @@ const GanttChartPage = () => {
             <MobileIconWrapper onClick={toggleSidebar} displayAt="1200px">
               <FontAwesomeIcon icon={faBars} />
             </MobileIconWrapper>
-            <NavBarContainer style={{ left: isSidebarVisible ? "0" : "-100%" }} NavBarAt="1200px">
+            <NavBarContainer
+              style={{ left: isSidebarVisible ? "0" : "-100%" }}
+              NavBarAt="1200px"
+            >
               <StyledLi>
                 <StyledLink showAt="1200px">
-                  <FontAwesomeIcon icon={faShareFromSquare} style={{ margin: "0px 10px 0px 0px" }} />
+                  <FontAwesomeIcon
+                    icon={faShareFromSquare}
+                    style={{ margin: "0px 10px 0px 0px" }}
+                  />
                   另存新檔
                 </StyledLink>
                 <StyledLink showAt="1200px">
-                  <FontAwesomeIcon icon={faFloppyDisk} style={{ margin: "0px 10px 0px 0px" }} />
+                  <FontAwesomeIcon
+                    icon={faFloppyDisk}
+                    style={{ margin: "0px 10px 0px 0px" }}
+                  />
                   檔案儲存
                 </StyledLink>
                 <StyledLink showAt="1200px">
-                  <FontAwesomeIcon icon={faFolder} style={{ margin: "0px 10px 0px 0px" }} />
+                  <FontAwesomeIcon
+                    icon={faFolder}
+                    style={{ margin: "0px 10px 0px 0px" }}
+                  />
                   歷史紀錄
                 </StyledLink>
                 <StyledLink showAt="1200px">
-                  <FontAwesomeIcon icon={faFilePdf} style={{ margin: "0px 10px 0px 0px" }} />
+                  <FontAwesomeIcon
+                    icon={faFilePdf}
+                    style={{ margin: "0px 10px 0px 0px" }}
+                  />
                   輸出檔案
                 </StyledLink>
                 <StyledLink onClick={handleLogout} showAt="1200px">
-                  <FontAwesomeIcon icon={faRightFromBracket} style={{ margin: "0px 10px 0px 0px" }} />
+                  <FontAwesomeIcon
+                    icon={faRightFromBracket}
+                    style={{ margin: "0px 10px 0px 0px" }}
+                  />
                   會員登出
                 </StyledLink>
               </StyledLi>

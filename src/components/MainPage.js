@@ -44,9 +44,13 @@ const MainPage = () => {
     router.push("/ganttchart");
   };
 
-  const handleHeaderClick = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
+  const handleHeaderClick = isUserLoggedIn
+    ? handleProjectClick
+    : handleRegisterClick;
   const headerButtonText = isUserLoggedIn ? "開始新專案" : "會員登入";
-  const buttonAction = isUserLoggedIn ? handleProjectClick : handleRegisterClick;
+  const buttonAction = isUserLoggedIn
+    ? handleProjectClick
+    : handleRegisterClick;
   const buttonText = isUserLoggedIn ? "開始新專案" : "點此註冊";
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -82,7 +86,10 @@ const MainPage = () => {
                 <FontAwesomeIcon icon={faBars} />
               </MobileIconWrapper>
             </StyledLi>
-            <NavBarContainer style={{ left: isSidebarVisible ? "0" : "-100%" }} NavBarAt="510px">
+            <NavBarContainer
+              style={{ left: isSidebarVisible ? "0" : "-100%" }}
+              NavBarAt="510px"
+            >
               <StyledLi>
                 <StyledLink onClick={handleHeaderClick} showAt="510px">
                   {headerButtonText}
@@ -118,7 +125,10 @@ const MainPage = () => {
         <DescribeText>將您的工程專案視覺化</DescribeText>
         <DescribeText>線上甘特圖工具輕鬆規劃進度</DescribeText>
         <MainPageSectionStyled>
-          <MainPageButtonStyled onClick={buttonAction} $isLoggedIn={isUserLoggedIn}>
+          <MainPageButtonStyled
+            onClick={buttonAction}
+            $isLoggedIn={isUserLoggedIn}
+          >
             {buttonText}
           </MainPageButtonStyled>
         </MainPageSectionStyled>

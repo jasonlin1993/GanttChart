@@ -27,7 +27,8 @@ function SignInForm({ onSignUpClick }) {
 
   const router = useRouter();
   const { email, password } = inputState;
-  const { user, error, signInWithEmail, signInWithGoogle } = useFirebasesSignInAuth();
+  const { user, error, signInWithEmail, signInWithGoogle } =
+    useFirebasesSignInAuth();
 
   useEffect(() => {
     if (user) {
@@ -62,7 +63,11 @@ function SignInForm({ onSignUpClick }) {
     <>
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignInTextFormStyled>
-          <StyledSignInFontAwesomeIcon position="absolute" icon={faXmark} onClick={handleMainPageClick} />
+          <StyledSignInFontAwesomeIcon
+            position="absolute"
+            icon={faXmark}
+            onClick={handleMainPageClick}
+          />
           <h2> 🔐 會員登入</h2>
         </HeaderSignInTextFormStyled>
 
@@ -91,7 +96,11 @@ function SignInForm({ onSignUpClick }) {
 
           <FormSubmitInputStyled type="submit" value="會員登入" />
 
-          <OneClickMemberLoginStyled type="submit" onClick={handleQuickLoginClick} value="使用測試帳號一鍵登入" />
+          <OneClickMemberLoginStyled
+            type="submit"
+            onClick={handleQuickLoginClick}
+            value="使用測試帳號一鍵登入"
+          />
 
           {error && <ErrorMessageStyled>{error}</ErrorMessageStyled>}
           <FormLineStyled />
@@ -99,7 +108,9 @@ function SignInForm({ onSignUpClick }) {
             <FcGoogle style={{ margin: "0px 30px -6px 0px" }} size="32px" />
             Google 快速登入
           </GoogleAuthButtonStyled>
-          <HaveMemberTextStyled onClick={onSignUpClick}>尚未註冊會員?</HaveMemberTextStyled>
+          <HaveMemberTextStyled onClick={onSignUpClick}>
+            尚未註冊會員?
+          </HaveMemberTextStyled>
         </FormContainerStyled>
       </FormStyled>
     </>
