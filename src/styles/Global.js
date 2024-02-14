@@ -18,8 +18,7 @@ export const GlobalBackGroundImage = createGlobalStyle`
       background-image: url(${backgroundImage.src});
       background-repeat: no-repeat;
       background-size: cover;
-      width: 100vw;
-      height: 100vh;
+
   }
 `;
 
