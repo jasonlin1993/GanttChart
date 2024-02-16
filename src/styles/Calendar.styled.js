@@ -53,9 +53,7 @@ export const TaskDayCell = styled.div`
   border-right: 1px solid #002f7b;
   height: 50px;
   width: 100%;
-
   background-color: ${(props) => (props.$isWeekend ? "#eef0f2" : "none")};
-
   &:first-child {
     border-left: none;
   }
@@ -68,9 +66,8 @@ export const TaskRow = styled.div`
   width: 100vw;
   height: 51px;
   min-width: 1600px;
-
   padding: 0;
-
+  position: relative;
   &:after {
     content: "";
     position: absolute;

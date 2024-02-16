@@ -15,7 +15,7 @@ import {
   TaskRow,
   WeekdayCell,
 } from "@/styles/Calendar.styled";
-
+import TaskDurationComponent from "./TaskDurationComponent";
 import TaskInput from "@/components/TaskInput";
 import AddTask from "./AddTask";
 
@@ -52,15 +52,6 @@ function Calendar() {
     const date = new Date(year, month - 1, day);
     const dayOfWeek = date.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
-  };
-
-  const isDayWithinTaskDuration = (day, task) => {
-    const currentDate = new Date(year, month - 1, day).setHours(0, 0, 0, 0);
-    const start = new Date(task.startDate).setHours(0, 0, 0, 0);
-    const end = new Date(task.endDate).setHours(0, 0, 0, 0);
-    const isInDuration =
-      start && end && currentDate >= start && currentDate <= end;
-    return isInDuration;
   };
 
   return (
@@ -104,28 +95,28 @@ function Calendar() {
               </DayWrapper>
             ))}
           </DayGrid>
-          {tasks.map((task) => (
-            <TaskRow key={task.id}>
-              {days.map((day, dayIndex) => {
-                const isInDuration = isDayWithinTaskDuration(day, task);
-                const weekendColor = "#eef0f2";
-                return (
-                  <TaskDayCell
-                    key={dayIndex}
-                    $isWeekend={isWeekend(day)}
-                    $hasTask={isInDuration}
-                    style={{
-                      backgroundColor: isInDuration
-                        ? "lightblue"
-                        : isWeekend(day)
-                        ? weekendColor
-                        : "white",
-                    }}
+          {tasks.map((task) => {
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const taskStartMonth = new Date(task.startDate).getMonth() + 1;
+            const taskEndMonth = new Date(task.endDate).getMonth() + 1;
+            const isInCurrentMonth =
+              taskStartMonth === month || taskEndMonth === month;
+
+            return (
+              <TaskRow key={task.id}>
+                {isInCurrentMonth && (
+                  <TaskDurationComponent
+                    startDate={task.startDate}
+                    endDate={task.endDate}
+                    daysInMonth={daysInMonth}
                   />
-                );
-              })}
-            </TaskRow>
-          ))}
+                )}
+                {days.map((day, dayIndex) => (
+                  <TaskDayCell key={dayIndex} $isWeekend={isWeekend(day)} />
+                ))}
+              </TaskRow>
+            );
+          })}
         </div>
       </div>
     </>

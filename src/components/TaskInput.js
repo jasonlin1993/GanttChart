@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateTaskDuration } from "../redux/action/taskAction";
 import { removeTask, updateTaskName } from "../redux/action/taskAction";
 import {
@@ -25,6 +25,20 @@ function TaskInput({ task }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [taskName, setTaskName] = useState(task.name);
+  const { year, month } = useSelector((state) => state.date); // 從 Redux 獲取當前年份和月份
+  const [minDate, setMinDate] = useState("");
+  const [maxDate, setMaxDate] = useState("");
+
+  useEffect(() => {
+    // 計算當月的第一天和最後一天
+    const firstDayOfMonth = new Date(year, month - 1, 1)
+      .toISOString()
+      .split("T")[0];
+    const lastDayOfMonth = new Date(year, month, 0).toISOString().split("T")[0];
+
+    setMinDate(firstDayOfMonth);
+    setMaxDate(lastDayOfMonth);
+  }, [year, month]);
 
   const handleDelete = () => {
     dispatch(removeTask(task.id));
@@ -73,7 +87,7 @@ function TaskInput({ task }) {
         selectedTaskId,
         startDate,
         endDate
-      ); // 確認這些值是否正確
+      );
       dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
       handleCloseTaskInputPopup();
     } else {
@@ -104,6 +118,8 @@ function TaskInput({ task }) {
             <StyledEditTaskDurationInputDate
               type="date"
               value={startDate}
+              min={minDate}
+              max={maxDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
           </StyledEditTaskDurationContainer>
@@ -112,6 +128,8 @@ function TaskInput({ task }) {
             <StyledEditTaskDurationInputDate
               type="date"
               value={endDate}
+              min={minDate}
+              max={maxDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
           </StyledEditTaskDurationContainer>
