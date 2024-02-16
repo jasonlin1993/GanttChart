@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTaskDuration } from "../redux/action/taskAction";
+import {
+  updateTaskDuration,
+  updateTaskColor,
+} from "../redux/action/taskAction";
 import { removeTask, updateTaskName } from "../redux/action/taskAction";
 import {
   StyledTaskInputContainer,
@@ -46,6 +49,12 @@ function TaskInput({ task }) {
 
   const handleNameUpdate = () => {
     dispatch(updateTaskName(task.id, taskName));
+  };
+
+  const handleColorSelect = (color) => {
+    // 假设 selectedTaskId 是当前任务的 ID
+    dispatch(updateTaskColor(selectedTaskId, color));
+    setSelectedColor(color); // 更新本地状态以显示选中的颜色
   };
 
   const [isEditPopupVisible, setIsEditPopupVisible] = useState(false);
@@ -103,6 +112,7 @@ function TaskInput({ task }) {
 
   const ColorBlock = ({ color, isSelected, onClick, ...props }) => {
     const [showCircleIcon, setShowCircleIcon] = useState(false);
+
     return (
       <StyledEditTaskDurationColorBlock
         color={color}
@@ -168,25 +178,25 @@ function TaskInput({ task }) {
                 color="yellow"
                 hoverColor="#e0e000"
                 borderRadius="5px 0 0 5px"
-                onClick={() => setSelectedColor("yellow")}
+                onClick={() => handleColorSelect("yellow")}
                 isSelected={selectedColor === "yellow"}
               />
               <ColorBlock
                 color="blue"
                 hoverColor="#0000e0"
-                onClick={() => setSelectedColor("blue")}
+                onClick={() => handleColorSelect("blue")}
                 isSelected={selectedColor === "blue"}
               />
               <ColorBlock
                 color="green"
                 hoverColor="#00e000"
-                onClick={() => setSelectedColor("green")}
+                onClick={() => handleColorSelect("green")}
                 isSelected={selectedColor === "green"}
               />
               <ColorBlock
                 color="gray"
                 hoverColor="#707070"
-                onClick={() => setSelectedColor("gray")}
+                onClick={() => handleColorSelect("gray")}
                 isSelected={selectedColor === "gray"}
               />
               <ColorBlock
@@ -194,7 +204,7 @@ function TaskInput({ task }) {
                 color="red"
                 hoverColor="#e00000"
                 borderRadius="0 5px 5px 0"
-                onClick={() => setSelectedColor("red")}
+                onClick={() => handleColorSelect("red")}
                 isSelected={selectedColor === "red"}
               />
             </StyledEditTaskDurationColorPickContainer>

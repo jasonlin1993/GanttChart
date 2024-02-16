@@ -109,6 +109,7 @@ function Calendar() {
                     startDate={task.startDate}
                     endDate={task.endDate}
                     daysInMonth={daysInMonth}
+                    color={task.color}
                   />
                 )}
                 {days.map((day, dayIndex) => (

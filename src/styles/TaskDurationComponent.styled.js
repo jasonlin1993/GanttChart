@@ -14,4 +14,5 @@ export const StyledDragTaskDurationComponent = styled.div`
     `${(startDayIndex / totalDays) * 100}%`};
 
   cursor: move;
+  background-color: ${(props) => props.backgroundColor || "defaultBackground"};
 `;

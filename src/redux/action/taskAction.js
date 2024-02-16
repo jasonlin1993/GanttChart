@@ -18,3 +18,8 @@ export const updateTaskDuration = (taskId, startDate, endDate) => ({
   type: "UPDATE_TASK_DURATION",
   payload: { taskId, startDate, endDate },
 });
+
+export const updateTaskColor = (taskId, color) => ({
+  type: "UPDATE_TASK_COLOR",
+  payload: { taskId, color },
+});

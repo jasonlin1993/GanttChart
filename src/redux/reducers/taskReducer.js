@@ -43,6 +43,16 @@ const taskReducer = (state = initialState, action) => {
             : task
         ),
       };
+
+    case "UPDATE_TASK_COLOR":
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.taskId
+            ? { ...task, color: action.payload.color }
+            : task
+        ),
+      };
     default:
       return state;
   }

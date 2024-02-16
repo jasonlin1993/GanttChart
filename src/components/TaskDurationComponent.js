@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledDragTaskDurationComponent } from "@/styles/TaskDurationComponent.styled";
 
-const TaskDurationComponent = ({ startDate, endDate, daysInMonth }) => {
+const TaskDurationComponent = ({ startDate, endDate, daysInMonth, color }) => {
   // 將傳入的開始和結束日期從字符串轉換成 Date 物件。
   const start = new Date(startDate);
   const end = new Date(endDate);
@@ -16,6 +16,7 @@ const TaskDurationComponent = ({ startDate, endDate, daysInMonth }) => {
       durationDays={durationInDays}
       totalDays={daysInMonth}
       startDayIndex={startDayIndex}
+      backgroundColor={color}
     />
   );
 };
