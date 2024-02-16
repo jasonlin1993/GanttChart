@@ -12,4 +12,6 @@ export const StyledDragTaskDurationComponent = styled.div`
   position: absolute;
   left: ${({ startDayIndex, totalDays }) =>
     `${(startDayIndex / totalDays) * 100}%`};
+
+  cursor: move;
 `;

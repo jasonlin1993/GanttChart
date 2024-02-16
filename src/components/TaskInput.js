@@ -15,8 +15,15 @@ import {
   StyledEditTaskButtonContainer,
   StyledEditTaskCancelButton,
   StyledEditTaskSaveButton,
+  StyledEditTaskDurationColorPickContainer,
+  StyledEditTaskDurationColorBlock,
 } from "../styles/TaskInput.styled";
-import { faXmark, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faPencil,
+  faCircle,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function TaskInput({ task }) {
@@ -28,18 +35,7 @@ function TaskInput({ task }) {
   const { year, month } = useSelector((state) => state.date); // 從 Redux 獲取當前年份和月份
   const [minDate, setMinDate] = useState("");
   const [maxDate, setMaxDate] = useState("");
-
-  useEffect(() => {
-    // 計算當月的第一天和最後一天
-    const firstDayOfMonth = new Date(year, month - 1, 1)
-      .toISOString()
-      .split("T")[0];
-    const lastDayOfMonth = new Date(year, month, 0).toISOString().split("T")[0];
-
-    setMinDate(firstDayOfMonth);
-    setMaxDate(lastDayOfMonth);
-  }, [year, month]);
-
+  const [selectedColor, setSelectedColor] = useState(null);
   const handleDelete = () => {
     dispatch(removeTask(task.id));
   };
@@ -55,6 +51,16 @@ function TaskInput({ task }) {
   const [isEditPopupVisible, setIsEditPopupVisible] = useState(false);
 
   const dialogRef = useRef(null);
+
+  useEffect(() => {
+    const firstDayOfMonth = new Date(year, month - 1, 1)
+      .toISOString()
+      .split("T")[0];
+    const lastDayOfMonth = new Date(year, month, 0).toISOString().split("T")[0];
+
+    setMinDate(firstDayOfMonth);
+    setMaxDate(lastDayOfMonth);
+  }, [year, month]);
 
   useEffect(() => {
     if (isEditPopupVisible && dialogRef.current) {
@@ -95,6 +101,27 @@ function TaskInput({ task }) {
     }
   };
 
+  const ColorBlock = ({ color, isSelected, onClick, ...props }) => {
+    const [showCircleIcon, setShowCircleIcon] = useState(false);
+    return (
+      <StyledEditTaskDurationColorBlock
+        color={color}
+        onClick={onClick}
+        onMouseEnter={() => setShowCircleIcon(true)}
+        onMouseLeave={() => setShowCircleIcon(false)}
+        {...props}
+      >
+        {isSelected ? (
+          <FontAwesomeIcon icon={faCheck} fontSize="1rem" color="black" />
+        ) : (
+          showCircleIcon && (
+            <FontAwesomeIcon icon={faCircle} fontSize="0.5rem" color="white" />
+          )
+        )}
+      </StyledEditTaskDurationColorBlock>
+    );
+  };
+
   return (
     <StyledTaskInputContainer>
       <StyledInput
@@ -105,7 +132,7 @@ function TaskInput({ task }) {
         }}
       />
       <StyledEditTaskInputButton onClick={handleTaskInputPopup}>
-        <FontAwesomeIcon icon={faPenToSquare} />
+        <FontAwesomeIcon icon={faPencil} />
       </StyledEditTaskInputButton>
 
       {isEditPopupVisible && (
@@ -132,6 +159,45 @@ function TaskInput({ task }) {
               max={maxDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
+          </StyledEditTaskDurationContainer>
+          <StyledEditTaskDurationContainer>
+            任務顏色選擇:
+            <StyledEditTaskDurationColorPickContainer>
+              <ColorBlock
+                width="34px"
+                color="yellow"
+                hoverColor="#e0e000"
+                borderRadius="5px 0 0 5px"
+                onClick={() => setSelectedColor("yellow")}
+                isSelected={selectedColor === "yellow"}
+              />
+              <ColorBlock
+                color="blue"
+                hoverColor="#0000e0"
+                onClick={() => setSelectedColor("blue")}
+                isSelected={selectedColor === "blue"}
+              />
+              <ColorBlock
+                color="green"
+                hoverColor="#00e000"
+                onClick={() => setSelectedColor("green")}
+                isSelected={selectedColor === "green"}
+              />
+              <ColorBlock
+                color="gray"
+                hoverColor="#707070"
+                onClick={() => setSelectedColor("gray")}
+                isSelected={selectedColor === "gray"}
+              />
+              <ColorBlock
+                width="33px"
+                color="red"
+                hoverColor="#e00000"
+                borderRadius="0 5px 5px 0"
+                onClick={() => setSelectedColor("red")}
+                isSelected={selectedColor === "red"}
+              />
+            </StyledEditTaskDurationColorPickContainer>
           </StyledEditTaskDurationContainer>
           <StyledEditTaskButtonContainer>
             <StyledEditTaskSaveButton onClick={handleAddTaskDuration}>

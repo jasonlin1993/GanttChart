@@ -101,13 +101,13 @@ export const StyledEditTaskTextContainer = styled.div`
 `;
 
 export const StyledEditTaskDurationContainer = styled.div`
+  top: 5%;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   height: 40px;
   font-size: 20px;
-  bottom: 5%;
   color: #002f7a;
   margin-bottom: 10px;
 `;
@@ -121,17 +121,41 @@ export const StyledEditTaskDurationInputDate = styled.input`
   padding: 10px;
 `;
 
+export const StyledEditTaskDurationColorPickContainer = styled.div`
+  display: flex;
+  width: 165px;
+  height: 36px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+`;
+
+export const StyledEditTaskDurationColorBlock = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${(props) => props.width || "32px"};
+  height: 34px;
+  border-right: 1px solid black;
+  background-color: ${(props) => props.color || "yellow"};
+  border-radius: ${(props) => props.borderRadius || "0px 0px 0px 0px"};
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.hoverColor || "#e0e000"};
+  }
+`;
+
 export const StyledEditTaskButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-content: center;
   position: relative;
-  top: 15%;
+  top: 6%;
 `;
 
 export const StyledEditTaskCancelButton = styled.button`
   position: relative;
-
   background: linear-gradient(to right, #dd2525, #e34f4f);
   border-style: none;
   box-sizing: border-box;
