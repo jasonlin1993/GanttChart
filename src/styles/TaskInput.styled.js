@@ -197,3 +197,16 @@ export const StyledEditTaskSaveButton = styled.button`
   font-weight: bold;
   border-radius: 5px;
 `;
+
+export const StyledErrorMessage = styled.div`
+  margin: 28px 0px -35px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 15px;
+  color: red;
+  bottom: 5px;
+  font-size: 15px;
+  font-weight: bold;
+`;

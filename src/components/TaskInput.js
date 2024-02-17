@@ -20,6 +20,7 @@ import {
   StyledEditTaskSaveButton,
   StyledEditTaskDurationColorPickContainer,
   StyledEditTaskDurationColorBlock,
+  StyledErrorMessage,
 } from "../styles/TaskInput.styled";
 import {
   faXmark,
@@ -39,6 +40,7 @@ function TaskInput({ task }) {
   const [minDate, setMinDate] = useState("");
   const [maxDate, setMaxDate] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
   const handleDelete = () => {
     dispatch(removeTask(task.id));
   };
@@ -52,9 +54,8 @@ function TaskInput({ task }) {
   };
 
   const handleColorSelect = (color) => {
-    // 假设 selectedTaskId 是当前任务的 ID
     dispatch(updateTaskColor(selectedTaskId, color));
-    setSelectedColor(color); // 更新本地状态以显示选中的颜色
+    setSelectedColor(color);
   };
 
   const [isEditPopupVisible, setIsEditPopupVisible] = useState(false);
@@ -90,23 +91,39 @@ function TaskInput({ task }) {
   };
 
   const handleAddTaskDuration = () => {
-    if (!selectedTaskId) {
-      console.error(
-        "Error: Please enter a valid task name to update the duration for"
-      );
-      return;
-    }
-    if (startDate && endDate) {
-      console.log(
-        "Updating task duration with:",
-        selectedTaskId,
-        startDate,
-        endDate
-      );
-      dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
-      handleCloseTaskInputPopup();
-    } else {
-      console.error("Error: Missing values for task duration update");
+    const errorType = (() => {
+      if (!startDate || !endDate) return "noDates";
+      if (new Date(startDate) > new Date(endDate)) return "invalidDates";
+      if (!selectedColor) return "noColor";
+      return "valid";
+    })();
+
+    switch (errorType) {
+      case "noDates":
+        setErrorMessage("請選擇任務時間");
+        console.error("Error: Missing values for task duration update");
+        break;
+      case "invalidDates":
+        setErrorMessage("任務日期錯誤");
+        console.error("Error: Task start date is greater than end date");
+        break;
+      case "noColor":
+        setErrorMessage("請選擇任務顏色");
+        console.error("Error: No task color selected");
+        break;
+      case "valid":
+        console.log(
+          "Updating task duration with:",
+          selectedTaskId,
+          startDate,
+          endDate
+        );
+        dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
+        setErrorMessage(""); // 清除任何錯誤訊息
+        handleCloseTaskInputPopup();
+        break;
+      default:
+        console.error("Unknown error");
     }
   };
 
@@ -217,6 +234,9 @@ function TaskInput({ task }) {
               取消
             </StyledEditTaskCancelButton>
           </StyledEditTaskButtonContainer>
+          {errorMessage && (
+            <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
+          )}
         </StyledEditTaskInputPopUp>
       )}
 
