@@ -36,7 +36,7 @@ function TaskInput({ task }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [taskName, setTaskName] = useState(task.name);
-  const { year, month } = useSelector((state) => state.date); // 從 Redux 獲取當前年份和月份
+  const { year, month } = useSelector((state) => state.date);
   const [minDate, setMinDate] = useState("");
   const [maxDate, setMaxDate] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
@@ -63,13 +63,18 @@ function TaskInput({ task }) {
   const dialogRef = useRef(null);
 
   useEffect(() => {
-    const firstDayOfMonth = new Date(year, month - 1, 1)
-      .toISOString()
-      .split("T")[0];
-    const lastDayOfMonth = new Date(year, month, 0).toISOString().split("T")[0];
-
-    setMinDate(firstDayOfMonth);
-    setMaxDate(lastDayOfMonth);
+    const firstDayOfMonth = new Date(year, month - 1, 1);
+    const lastDayOfMonth = new Date(year, month, 0);
+    const formatToDateInputValue = (date) => {
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      month = month < 10 ? `0${month}` : month;
+      day = day < 10 ? `0${day}` : day;
+      return `${year}-${month}-${day}`;
+    };
+    setMinDate(formatToDateInputValue(firstDayOfMonth));
+    setMaxDate(formatToDateInputValue(lastDayOfMonth));
   }, [year, month]);
 
   useEffect(() => {
@@ -119,7 +124,7 @@ function TaskInput({ task }) {
           endDate
         );
         dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
-        setErrorMessage(""); // 清除任何錯誤訊息
+        setErrorMessage("");
         handleCloseTaskInputPopup();
         break;
       default:

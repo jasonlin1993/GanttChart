@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import { GlobalStyle } from "@/styles/Global";
 import {
   StyledNav,
@@ -32,6 +33,58 @@ const GanttChartPage = () => {
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const date = useSelector((state) => state.date);
+
+  const cleanObject = (obj) => {
+    const result = Array.isArray(obj) ? [] : {};
+    Object.keys(obj).forEach((key) => {
+      const value = obj[key];
+      if (value && typeof value === "object") {
+        result[key] = cleanObject(value);
+      } else if (value !== undefined) {
+        result[key] = value;
+      }
+    });
+    return result;
+  };
+
+  const cleanedTasks = tasks.map((task) => cleanObject(task));
+  const cleanedDate = cleanObject(date);
+
+  const saveDataToFirestore = async () => {
+    const db = firebase.firestore();
+    const userId = firebase.auth().currentUser?.uid;
+    if (!userId) {
+      console.log("用戶未登入");
+      return;
+    }
+
+    if (
+      !tasks.every(
+        (task) =>
+          task && Object.values(task).every((value) => value !== undefined)
+      )
+    ) {
+      console.error("任務列表中存在未定義的值");
+      return;
+    }
+
+    if (!date || Object.values(date).some((value) => value === undefined)) {
+      console.error("日期對象中存在未定義的值");
+      return;
+    }
+
+    try {
+      await db.collection("ganttData").doc(userId).set({
+        tasks: cleanedTasks,
+        date: cleanedDate,
+      });
+      console.log("數據已儲存到 Firestore");
+    } catch (error) {
+      console.error("儲存失敗:", error);
+    }
+  };
 
   const handleLogout = async () => {
     try {
@@ -41,6 +94,10 @@ const GanttChartPage = () => {
     } catch (error) {
       console.log("Logout Error:", error);
     }
+  };
+
+  const handleHistoryPage = () => {
+    router.push("/history");
   };
 
   useEffect(() => {
@@ -82,14 +139,14 @@ const GanttChartPage = () => {
                   />
                   另存新檔
                 </StyledLink>
-                <StyledLink showAt="1200px">
+                <StyledLink showAt="1200px" onClick={saveDataToFirestore}>
                   <FontAwesomeIcon
                     icon={faFloppyDisk}
                     style={{ margin: "0px 10px 0px 0px" }}
                   />
                   檔案儲存
                 </StyledLink>
-                <StyledLink showAt="1200px">
+                <StyledLink showAt="1200px" onClick={handleHistoryPage}>
                   <FontAwesomeIcon
                     icon={faFolder}
                     style={{ margin: "0px 10px 0px 0px" }}

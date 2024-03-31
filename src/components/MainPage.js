@@ -12,7 +12,7 @@ import {
   MobileIconWrapper,
   NavBarContainer,
 } from "@/styles/NavigationBar.styled";
-import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
+import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 import {
   MainPageSectionStyled,
   MainPageText,
@@ -77,7 +77,7 @@ const MainPage = () => {
   return (
     <>
       <GlobalStyle />
-      <GlobalMainPageBackGroundColor />
+      <GlobalBackGroundColor />
       <Header>
         <StyledNav>
           <StyledUl>

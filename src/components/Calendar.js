@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setDate } from "../redux/action/dateAction";
-
 import { StyledFontAwesomeIcon } from "@/styles/Calendar.styled";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,7 +18,7 @@ import TaskDurationComponent from "./TaskDurationComponent";
 import TaskInput from "@/components/TaskInput";
 import AddTask from "./AddTask";
 
-function Calendar() {
+function Calendar(taskId, startDate, endDate) {
   const dispatch = useDispatch();
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);
@@ -53,7 +52,6 @@ function Calendar() {
     const dayOfWeek = date.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
-
   return (
     <>
       <MonthLabelStyle>

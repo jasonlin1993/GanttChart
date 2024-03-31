@@ -15,7 +15,7 @@ export const StyledDragTaskDurationComponent = styled.div`
   position: absolute;
   left: ${({ startDayIndex, totalDays }) =>
     `${(startDayIndex / totalDays) * 100}%`};
-  cursor: move;
+
   &:hover {
     border: 1px solid black;
     & > div {
@@ -29,7 +29,7 @@ export const StyledLeftDragAndDropContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0px 4px;
-  width: 12px;
+  width: 15px;
   height: 25px;
   padding: 0px 1px;
   cursor: ew-resize;
@@ -46,7 +46,7 @@ export const StyledRightDragAndDropContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0px 4px;
-  width: 12px;
+  width: 15px;
   height: 25px;
   padding: 0px 1px;
   cursor: ew-resize;
