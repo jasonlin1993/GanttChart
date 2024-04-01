@@ -3,6 +3,8 @@ import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { GlobalStyle } from "@/styles/Global";
+import { setTasks, setTasksModified } from "../../redux/action/taskAction";
+import { setDate } from "../../redux/action/dateAction";
 import {
   StyledNav,
   StyledUl,
@@ -22,13 +24,14 @@ import {
   faRightFromBracket,
   faShareFromSquare,
   faBars,
+  faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const GanttChartPage = () => {
   const dispatch = useDispatch();
-
+  const isTasksModified = useSelector((state) => state.tasks.isTasksModified);
   useAuth();
   const router = useRouter();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
@@ -46,10 +49,9 @@ const GanttChartPage = () => {
           if (doc.exists) {
             const data = doc.data();
             if (data && data.ganttCharts) {
-              // 假设您有 action creators 来更新任务和日期
-              // 例如: setTasks(data.ganttCharts.tasks) 和 setDate(data.ganttCharts.date)
-              dispatch(setTasks(data.ganttCharts.tasks)); // 该函数需您根据实际情况定义
-              dispatch(setDate(data.ganttCharts.date)); // 同上
+              dispatch(setTasks(data.ganttCharts.tasks));
+              dispatch(setDate(data.ganttCharts.date));
+              dispatch(setTasksModified(false)); // 将修改标志重置为 false
             }
           }
         } catch (error) {
@@ -83,7 +85,7 @@ const GanttChartPage = () => {
     const db = firebase.firestore();
     const userId = firebase.auth().currentUser?.uid;
     if (!userId) {
-      console.log("用戶未登入");
+      console.error("用戶未登入");
       return;
     }
 
@@ -103,21 +105,20 @@ const GanttChartPage = () => {
     }
 
     try {
-      // 这里我们修改了路径，将数据保存在 users 集合的当前用户文档中
       await db
         .collection("users")
         .doc(userId)
         .set(
           {
-            // 假设我们在用户文档中有一个名为 ganttCharts 的字段，用于存储相关数据
             ganttCharts: {
               tasks: cleanedTasks,
               date: cleanedDate,
             },
           },
           { merge: true }
-        ); // 使用 merge 选项来不覆盖已有的用户数据
+        );
       console.log("數據已儲存到 Firestore");
+      dispatch(setTasksModified(false)); // 这里重置修改标志
     } catch (error) {
       console.error("儲存失敗:", error);
     }
@@ -176,9 +177,13 @@ const GanttChartPage = () => {
                   />
                   另存新檔
                 </StyledLink>
-                <StyledLink showAt="1200px" onClick={saveDataToFirestore}>
+                <StyledLink
+                  showAt="1200px"
+                  style={{ color: isTasksModified ? "red" : "white" }}
+                  onClick={saveDataToFirestore}
+                >
                   <FontAwesomeIcon
-                    icon={faFloppyDisk}
+                    icon={isTasksModified ? faCircleExclamation : faFloppyDisk}
                     style={{ margin: "0px 10px 0px 0px" }}
                   />
                   檔案儲存

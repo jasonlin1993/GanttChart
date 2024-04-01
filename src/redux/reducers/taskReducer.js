@@ -2,6 +2,7 @@
 const initialState = {
   tasks: [],
   taskCount: 0,
+  isTaskModified: false,
 };
 
 const taskReducer = (state = initialState, action) => {
@@ -11,6 +12,7 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         tasks: [...state.tasks, { ...action.payload }],
         taskCount: state.taskCount + 1,
+        isTasksModified: true,
       };
 
     case "REMOVE_TASK":
@@ -18,7 +20,8 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
-        taskCount: isLastTask ? 0 : state.taskCount, // 如果刪除後沒有任務則重置
+        taskCount: isLastTask ? 0 : state.taskCount,
+        isTasksModified: true,
       };
 
     case "UPDATE_TASK_NAME":
@@ -29,6 +32,7 @@ const taskReducer = (state = initialState, action) => {
             ? { ...task, name: action.payload.newName }
             : task
         ),
+        isTasksModified: true,
       };
     case "UPDATE_TASK_DURATION":
       return {
@@ -42,6 +46,7 @@ const taskReducer = (state = initialState, action) => {
               }
             : task
         ),
+        isTasksModified: true,
       };
 
     case "UPDATE_TASK_COLOR":
@@ -52,7 +57,22 @@ const taskReducer = (state = initialState, action) => {
             ? { ...task, color: action.payload.color }
             : task
         ),
+        isTasksModified: true,
       };
+
+    case "SET_TASKS":
+      return {
+        ...state,
+        tasks: action.payload,
+        isTasksModified: true,
+      };
+
+    case "SET_TASKS_MODIFIED":
+      return {
+        ...state,
+        isTasksModified: action.payload,
+      };
+
     default:
       return state;
   }
