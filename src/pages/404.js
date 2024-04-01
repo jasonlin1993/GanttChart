@@ -1,4 +1,4 @@
-import { GlobalStyle, GlobalMainPageBackGroundColor } from "@/styles/Global";
+import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 import { ErrorPageSectionStyled } from "@/styles/ErrorPage.styled";
 import Header from "@/components/Header";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ export default function Custom404() {
   return (
     <>
       <GlobalStyle />
-      <GlobalMainPageBackGroundColor />
+      <GlobalBackGroundColor />
       <Header />
       <ErrorPageSectionStyled>
         <FontAwesomeIcon

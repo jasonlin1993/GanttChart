@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GlobalStyle } from "@/styles/Global";
 import {
   StyledNav,
@@ -27,12 +27,39 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const GanttChartPage = () => {
+  const dispatch = useDispatch();
+
   useAuth();
   const router = useRouter();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const db = firebase.firestore();
+      const userId = firebase.auth().currentUser?.uid;
+      if (userId) {
+        try {
+          const doc = await db.collection("users").doc(userId).get();
+          if (doc.exists) {
+            const data = doc.data();
+            if (data && data.ganttCharts) {
+              // 假设您有 action creators 来更新任务和日期
+              // 例如: setTasks(data.ganttCharts.tasks) 和 setDate(data.ganttCharts.date)
+              dispatch(setTasks(data.ganttCharts.tasks)); // 该函数需您根据实际情况定义
+              dispatch(setDate(data.ganttCharts.date)); // 同上
+            }
+          }
+        } catch (error) {
+          console.error("獲取數據失敗:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
   const tasks = useSelector((state) => state.tasks.tasks);
   const date = useSelector((state) => state.date);
 
@@ -76,10 +103,20 @@ const GanttChartPage = () => {
     }
 
     try {
-      await db.collection("ganttData").doc(userId).set({
-        tasks: cleanedTasks,
-        date: cleanedDate,
-      });
+      // 这里我们修改了路径，将数据保存在 users 集合的当前用户文档中
+      await db
+        .collection("users")
+        .doc(userId)
+        .set(
+          {
+            // 假设我们在用户文档中有一个名为 ganttCharts 的字段，用于存储相关数据
+            ganttCharts: {
+              tasks: cleanedTasks,
+              date: cleanedDate,
+            },
+          },
+          { merge: true }
+        ); // 使用 merge 选项来不覆盖已有的用户数据
       console.log("數據已儲存到 Firestore");
     } catch (error) {
       console.error("儲存失敗:", error);
