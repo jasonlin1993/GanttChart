@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export const MobileIconWrapper = styled.div.withConfig({
   shouldForwardProp: (prop) => !["displayAt"].includes(prop),
 })`
@@ -79,6 +81,10 @@ export const StyledLink = styled.a.withConfig({
       width: 100%;
     }
   `}
+`;
+
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  margin: 0px 10px 0px 0px;
 `;
 
 export const NavBarContainer = styled.nav.withConfig({

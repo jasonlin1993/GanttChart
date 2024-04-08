@@ -41,6 +41,8 @@ function TaskInput({ task }) {
   const [maxDate, setMaxDate] = useState("");
   const [selectedColor, setSelectedColor] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isEditPopupVisible, setIsEditPopupVisible] = useState(false);
+  const dialogRef = useRef(null);
   const handleDelete = () => {
     dispatch(removeTask(task.id));
   };
@@ -57,10 +59,6 @@ function TaskInput({ task }) {
     dispatch(updateTaskColor(selectedTaskId, color));
     setSelectedColor(color);
   };
-
-  const [isEditPopupVisible, setIsEditPopupVisible] = useState(false);
-
-  const dialogRef = useRef(null);
 
   useEffect(() => {
     const firstDayOfMonth = new Date(year, month - 1, 1);

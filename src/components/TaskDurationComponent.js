@@ -22,42 +22,42 @@ const TaskDurationComponent = ({
   const widthPercentage = `${(durationInDays / daysInMonth) * 100}%`;
   const startDay = new Date(startDate).getDate();
   const startDayIndex = startDay - 1;
-  const dispatch = useDispatch();
-  const [size, setSize] = useState({
-    width: widthPercentage,
-  });
+  // const dispatch = useDispatch();
+  // const [size, setSize] = useState({
+  //   width: widthPercentage,
+  // });
 
-  const handleResize = (side) => (mouseDownEvent) => {
-    const startWidthPercentage = parseFloat(size.width);
-    const startPosition = { x: mouseDownEvent.pageX, y: mouseDownEvent.pageY };
+  // const handleResize = (side) => (mouseDownEvent) => {
+  //   const startWidthPercentage = parseFloat(size.width);
+  //   const startPosition = { x: mouseDownEvent.pageX, y: mouseDownEvent.pageY };
 
-    function onMouseMove(mouseMoveEvent) {
-      const deltaX =
-        ((mouseMoveEvent.pageX - startPosition.x) / window.innerWidth) * 100;
-      let newWidthPercentage =
-        startWidthPercentage + (side === "right" ? deltaX : -deltaX);
-      setSize({ width: `${newWidthPercentage}%` });
-    }
+  //   function onMouseMove(mouseMoveEvent) {
+  //     const deltaX =
+  //       ((mouseMoveEvent.pageX - startPosition.x) / window.innerWidth) * 100;
+  //     let newWidthPercentage =
+  //       startWidthPercentage + (side === "right" ? deltaX : -deltaX);
+  //     setSize({ width: `${newWidthPercentage}%` });
+  //   }
 
-    function onMouseUp() {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
-    }
+  //   function onMouseUp() {
+  //     document.removeEventListener("mousemove", onMouseMove);
+  //     document.removeEventListener("mouseup", onMouseUp);
+  //   }
 
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp, { once: true });
-  };
+  //   document.addEventListener("mousemove", onMouseMove);
+  //   document.addEventListener("mouseup", onMouseUp, { once: true });
+  // };
 
   return (
     <>
       <StyledDragTaskDurationComponent
-        style={{ width: size.width }}
+        style={{ width: widthPercentage }}
         durationDays={durationInDays}
         totalDays={daysInMonth}
         startDayIndex={startDayIndex}
         backgroundColor={color}
       >
-        <StyledLeftDragAndDropContainer onMouseDown={handleResize("left")}>
+        <StyledLeftDragAndDropContainer>
           <FontAwesomeIcon
             icon={faEllipsisVertical}
             size="lg"
@@ -65,7 +65,7 @@ const TaskDurationComponent = ({
           />
         </StyledLeftDragAndDropContainer>
         <StyledCenterDragAndDropContainer />
-        <StyledRightDragAndDropContainer onMouseDown={handleResize("right")}>
+        <StyledRightDragAndDropContainer>
           <FontAwesomeIcon
             icon={faEllipsisVertical}
             size="lg"

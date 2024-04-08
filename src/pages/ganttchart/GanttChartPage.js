@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import firebase from "../../lib/firebase";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +12,19 @@ import {
   StyledLink,
   MobileIconWrapper,
   NavBarContainer,
+  StyledFontAwesomeIcon,
 } from "@/styles/NavigationBar.styled";
+import {
+  StyledSaveDataToFireStorePopUp,
+  StyledContent,
+  StyledTextContainer,
+  StyledButtonContainer,
+  StyledCancelButton,
+  StyledSaveTaskNameContainer,
+  StyledSaveButton,
+  StyledTaskNameInputDate,
+  StyledErrorMessage,
+} from "@/styles/SaveDataToFirestorePopup.styled";
 import Calendar from "@/components/Calendar";
 import Header from "@/components/Header";
 import useAuth from "@/hooks/useAuth";
@@ -30,14 +42,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const GanttChartPage = () => {
+  useAuth();
   const dispatch = useDispatch();
   const isTasksModified = useSelector((state) => state.tasks.isTasksModified);
-  useAuth();
   const router = useRouter();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const dialogRef = useRef(null);
+  const [projectName, setProjectName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const date = useSelector((state) => state.date);
+  const handleHistoryPage = () => {
+    router.push("/history");
+  };
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
+  const [
+    isSaveDataToFireStorePopupVisible,
+    setIsSaveDataToFireStorePopupVisible,
+  ] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,25 +69,26 @@ const GanttChartPage = () => {
       const userId = firebase.auth().currentUser?.uid;
       if (userId) {
         try {
-          const doc = await db.collection("users").doc(userId).get();
+          const projectRef = db
+            .collection("users")
+            .doc(userId)
+            .collection("projects")
+            .doc("defaultProjectName");
+          const doc = await projectRef.get();
           if (doc.exists) {
             const data = doc.data();
-            if (data && data.ganttCharts) {
-              dispatch(setTasks(data.ganttCharts.tasks));
-              dispatch(setDate(data.ganttCharts.date));
-              dispatch(setTasksModified(false)); // 将修改标志重置为 false
-            }
+            dispatch(setTasks(data.tasks));
+            dispatch(setDate(data.date));
+            dispatch(setTasksModified(false));
           }
         } catch (error) {
-          console.error("獲取數據失敗:", error);
+          console.error("資料庫載入失敗:", error);
         }
       }
     };
 
     fetchData();
   }, [dispatch]);
-  const tasks = useSelector((state) => state.tasks.tasks);
-  const date = useSelector((state) => state.date);
 
   const cleanObject = (obj) => {
     const result = Array.isArray(obj) ? [] : {};
@@ -80,6 +105,24 @@ const GanttChartPage = () => {
 
   const cleanedTasks = tasks.map((task) => cleanObject(task));
   const cleanedDate = cleanObject(date);
+
+  const handleClosePopup = () => {
+    setIsSaveDataToFireStorePopupVisible(false);
+    if (dialogRef.current) {
+      dialogRef.current.close();
+    }
+  };
+
+  const handleSaveButton = async () => {
+    if (!projectName) {
+      setErrorMessage("專案名稱不可空白");
+      return;
+    }
+    await saveDataToFirestore();
+    handleClosePopup();
+    setProjectName("");
+    setErrorMessage("");
+  };
 
   const saveDataToFirestore = async () => {
     const db = firebase.firestore();
@@ -104,23 +147,25 @@ const GanttChartPage = () => {
       return;
     }
 
+    const projectNameToSave = projectName || "defaultProjectName";
+
     try {
       await db
         .collection("users")
         .doc(userId)
+        .collection("projects")
+        .doc(projectNameToSave)
         .set(
           {
-            ganttCharts: {
-              tasks: cleanedTasks,
-              date: cleanedDate,
-            },
+            tasks: cleanedTasks,
+            date: cleanedDate,
           },
           { merge: true }
         );
-      console.log("數據已儲存到 Firestore");
-      dispatch(setTasksModified(false)); // 这里重置修改标志
+      console.log("已成功儲存到 FireStore");
+      dispatch(setTasksModified(false));
     } catch (error) {
-      console.error("儲存失敗:", error);
+      console.error("存檔失敗:", error);
     }
   };
 
@@ -132,10 +177,6 @@ const GanttChartPage = () => {
     } catch (error) {
       console.log("Logout Error:", error);
     }
-  };
-
-  const handleHistoryPage = () => {
-    router.push("/history");
   };
 
   useEffect(() => {
@@ -156,6 +197,16 @@ const GanttChartPage = () => {
     return () => unsubscribe();
   }, [router]);
 
+  useEffect(() => {
+    if (isSaveDataToFireStorePopupVisible && dialogRef.current) {
+      dialogRef.current.showModal();
+    }
+  }, [isSaveDataToFireStorePopupVisible]);
+
+  const handleSaveDataToFireStorePopup = () => {
+    setIsSaveDataToFireStorePopupVisible(true);
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -170,11 +221,11 @@ const GanttChartPage = () => {
               NavBarAt="1200px"
             >
               <StyledLi>
-                <StyledLink showAt="1200px">
-                  <FontAwesomeIcon
-                    icon={faShareFromSquare}
-                    style={{ margin: "0px 10px 0px 0px" }}
-                  />
+                <StyledLink
+                  showAt="1200px"
+                  onClick={handleSaveDataToFireStorePopup}
+                >
+                  <StyledFontAwesomeIcon icon={faShareFromSquare} />
                   另存新檔
                 </StyledLink>
                 <StyledLink
@@ -182,31 +233,21 @@ const GanttChartPage = () => {
                   style={{ color: isTasksModified ? "red" : "white" }}
                   onClick={saveDataToFirestore}
                 >
-                  <FontAwesomeIcon
+                  <StyledFontAwesomeIcon
                     icon={isTasksModified ? faCircleExclamation : faFloppyDisk}
-                    style={{ margin: "0px 10px 0px 0px" }}
                   />
                   檔案儲存
                 </StyledLink>
                 <StyledLink showAt="1200px" onClick={handleHistoryPage}>
-                  <FontAwesomeIcon
-                    icon={faFolder}
-                    style={{ margin: "0px 10px 0px 0px" }}
-                  />
+                  <StyledFontAwesomeIcon icon={faFolder} />
                   歷史紀錄
                 </StyledLink>
                 <StyledLink showAt="1200px">
-                  <FontAwesomeIcon
-                    icon={faFilePdf}
-                    style={{ margin: "0px 10px 0px 0px" }}
-                  />
+                  <StyledFontAwesomeIcon icon={faFilePdf} />
                   輸出檔案
                 </StyledLink>
                 <StyledLink onClick={handleLogout} showAt="1200px">
-                  <FontAwesomeIcon
-                    icon={faRightFromBracket}
-                    style={{ margin: "0px 10px 0px 0px" }}
-                  />
+                  <StyledFontAwesomeIcon icon={faRightFromBracket} />
                   會員登出
                 </StyledLink>
               </StyledLi>
@@ -216,6 +257,30 @@ const GanttChartPage = () => {
       </Header>
       <Calendar />
       <ToastContainer />
+
+      {isSaveDataToFireStorePopupVisible && (
+        <StyledSaveDataToFireStorePopUp ref={dialogRef}>
+          <StyledContent>
+            <StyledTextContainer>另存新檔</StyledTextContainer>
+          </StyledContent>
+          <StyledSaveTaskNameContainer>
+            專案名稱:
+            <StyledTaskNameInputDate
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
+            />
+          </StyledSaveTaskNameContainer>
+          <StyledButtonContainer>
+            <StyledSaveButton onClick={handleSaveButton}>儲存</StyledSaveButton>
+            <StyledCancelButton onClick={handleClosePopup}>
+              取消
+            </StyledCancelButton>
+          </StyledButtonContainer>
+          {errorMessage && (
+            <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
+          )}
+        </StyledSaveDataToFireStorePopUp>
+      )}
     </>
   );
 };
