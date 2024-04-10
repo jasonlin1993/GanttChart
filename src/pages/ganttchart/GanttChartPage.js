@@ -116,6 +116,7 @@ const GanttChartPage = () => {
   const handleSaveButton = async () => {
     if (!projectName) {
       setErrorMessage("專案名稱不可空白");
+
       return;
     }
     await saveDataToFirestore();

@@ -196,34 +196,34 @@ function TaskInput({ task }) {
               <ColorBlock
                 width="34px"
                 color="yellow"
-                hoverColor="#e0e000"
-                borderRadius="5px 0 0 5px"
+                $hoverColor="#e0e000" // 注意使用$hoverColor
+                $borderRadius="5px 0 0 5px" // 注意使用$borderRadius
                 onClick={() => handleColorSelect("yellow")}
                 isSelected={selectedColor === "yellow"}
               />
               <ColorBlock
                 color="blue"
-                hoverColor="#0000e0"
+                $hoverColor="#0000e0"
                 onClick={() => handleColorSelect("blue")}
                 isSelected={selectedColor === "blue"}
               />
               <ColorBlock
                 color="green"
-                hoverColor="#00e000"
+                $hoverColor="#00e000"
                 onClick={() => handleColorSelect("green")}
                 isSelected={selectedColor === "green"}
               />
               <ColorBlock
                 color="gray"
-                hoverColor="#707070"
+                $hoverColor="#707070"
                 onClick={() => handleColorSelect("gray")}
                 isSelected={selectedColor === "gray"}
               />
               <ColorBlock
                 width="33px"
                 color="red"
-                hoverColor="#e00000"
-                borderRadius="0 5px 5px 0"
+                $hoverColor="#e00000"
+                $borderRadius="0 5px 5px 0"
                 onClick={() => handleColorSelect("red")}
                 isSelected={selectedColor === "red"}
               />

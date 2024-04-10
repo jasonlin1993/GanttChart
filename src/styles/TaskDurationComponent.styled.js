@@ -7,14 +7,12 @@ export const StyledDragTaskDurationComponent = styled.div`
   z-index: 1;
   height: 30px;
   border-radius: 10px;
-  background-color: ${(props) => props.backgroundColor || "defaultBackground"};
-  width: ${({ durationDays, totalDays }) =>
-    `${(durationDays / totalDays) * 100}%`};
+  background-color: ${(props) => props.$backgroundColor};
+  width: ${(props) => props.$widthPercentage};
   margin: 12px 0px 0px;
   border: 1px solid #ccc;
   position: absolute;
-  left: ${({ startDayIndex, totalDays }) =>
-    `${(startDayIndex / totalDays) * 100}%`};
+  left: ${(props) => props.$leftPercentage};
 
   &:hover {
     border: 1px solid black;

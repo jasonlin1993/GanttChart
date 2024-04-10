@@ -139,11 +139,11 @@ export const StyledEditTaskDurationColorBlock = styled.div`
   height: 34px;
   border-right: 1px solid black;
   background-color: ${(props) => props.color || "yellow"};
-  border-radius: ${(props) => props.borderRadius || "0px 0px 0px 0px"};
   cursor: pointer;
   &:hover {
-    background-color: ${(props) => props.hoverColor || "#e0e000"};
+    background-color: ${(props) => props.$hoverColor || "#e0e000"};
   }
+  border-radius: ${(props) => props.$borderRadius || "0px 0px 0px 0px"};
 `;
 
 export const StyledEditTaskButtonContainer = styled.div`
