@@ -42,7 +42,6 @@ const HistoryPage = () => {
     const userId = firebase.auth().currentUser?.uid;
 
     if (!userId) {
-      // 直接返回如果沒有用戶 ID
       console.error("用戶未登入");
       return;
     }
@@ -95,8 +94,10 @@ const HistoryPage = () => {
           const projectData = doc.data();
           dispatch(setTasks(projectData.tasks)); // 更新任務列表
           dispatch(setDate(projectData.date)); // 更新日期
-
-          router.push("/ganttchart"); // 導航到甘特圖頁面
+          router.push({
+            pathname: "/ganttchart",
+            query: { projectId: projectId },
+          });
         }
       } catch (error) {
         console.error("無法加載專案:", error);

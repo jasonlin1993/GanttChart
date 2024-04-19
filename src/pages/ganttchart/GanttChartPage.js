@@ -69,28 +69,33 @@ const GanttChartPage = () => {
     const fetchData = async () => {
       const db = firebase.firestore();
       const userId = firebase.auth().currentUser?.uid;
-      if (userId) {
-        try {
-          const projectRef = db
-            .collection("users")
-            .doc(userId)
-            .collection("projects")
-            .doc("defaultProjectName");
-          const doc = await projectRef.get();
-          if (doc.exists) {
-            const data = doc.data();
-            dispatch(setTasks(data.tasks));
-            dispatch(setDate(data.date));
-            dispatch(setTasksModified(false));
-          }
-        } catch (error) {
-          console.error("資料庫載入失敗:", error);
+      if (!userId) {
+        console.error("會員未登入");
+        return;
+      }
+
+      const projectId = router.query.projectId || "defaultProjectName";
+
+      try {
+        const projectRef = db
+          .collection("users")
+          .doc(userId)
+          .collection("projects")
+          .doc(projectId);
+        const doc = await projectRef.get();
+        if (doc.exists) {
+          const data = doc.data();
+          dispatch(setTasks(data.tasks));
+          dispatch(setDate(data.date));
+          dispatch(setTasksModified(false));
         }
+      } catch (error) {
+        console.error("資料庫連結失敗:", error);
       }
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, router.query.projectId]);
 
   const cleanObject = (obj) => {
     const result = Array.isArray(obj) ? [] : {};
