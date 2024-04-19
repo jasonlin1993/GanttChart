@@ -188,26 +188,44 @@ const GanttChartPage = () => {
 
   const exportPDF = () => {
     const input = document.getElementById("pdf-container");
-    html2canvas(input).then((canvas) => {
+    const originalStyle = input.style.cssText;
+    // 擴展元素以顯示所有內容
+    input.style.width = "auto";
+    input.style.minWidth = "2240px";
+    input.style.overflow = "visible";
+    input.style.height = "auto";
+
+    html2canvas(input, {
+      scale: 1.5,
+      useCORS: true,
+      onclone: (clonedDocument) => {
+        const clonedContainer = clonedDocument.getElementById("pdf-container");
+        clonedContainer.style.cssText = input.style.cssText;
+
+        const styledFontAwesomeIcons = clonedContainer.querySelectorAll("svg");
+        styledFontAwesomeIcons.forEach((icon) => {
+          icon.style.visibility = "hidden";
+        });
+      },
+    }).then((canvas) => {
+      input.style.cssText = originalStyle;
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
         orientation: "landscape",
       });
-      const imgWidth = 208;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const pdfWidth = 297;
+      const pdfHeight = 210;
+      const imgWidth = pdfWidth;
+      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
       let heightLeft = imgHeight;
-
       let position = 0;
 
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
       while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
         pdf.addPage();
         pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        heightLeft -= pdfHeight;
       }
       pdf.save("工程甘特圖.pdf");
     });

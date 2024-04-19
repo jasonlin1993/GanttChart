@@ -95,6 +95,7 @@ const HistoryPage = () => {
           const projectData = doc.data();
           dispatch(setTasks(projectData.tasks)); // 更新任務列表
           dispatch(setDate(projectData.date)); // 更新日期
+
           router.push("/ganttchart"); // 導航到甘特圖頁面
         }
       } catch (error) {
