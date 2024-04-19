@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { GlobalStyle } from "@/styles/Global";
 import { setTasks, setTasksModified } from "../../redux/action/taskAction";
 import { setDate } from "../../redux/action/dateAction";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import {
   StyledNav,
   StyledUl,
@@ -184,6 +186,33 @@ const GanttChartPage = () => {
     }
   };
 
+  const exportPDF = () => {
+    const input = document.getElementById("pdf-container");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "landscape",
+      });
+      const imgWidth = 208;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      pdf.save("工程甘特圖.pdf");
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(() => {
       {
@@ -247,7 +276,7 @@ const GanttChartPage = () => {
                   <StyledFontAwesomeIcon icon={faFolder} />
                   歷史紀錄
                 </StyledLink>
-                <StyledLink showAt="1200px">
+                <StyledLink showAt="1200px" onClick={exportPDF}>
                   <StyledFontAwesomeIcon icon={faFilePdf} />
                   輸出檔案
                 </StyledLink>

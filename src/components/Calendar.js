@@ -54,68 +54,70 @@ function Calendar(taskId, startDate, endDate) {
   };
   return (
     <>
-      <MonthLabelStyle>
-        <StyledFontAwesomeIcon
-          icon={faCaretLeft}
-          onClick={handlePrevMonth}
-          direction="left"
-        />
-        {`${year} 年 ${month} 月 `}
+      <div id="pdf-container">
+        <MonthLabelStyle>
+          <StyledFontAwesomeIcon
+            icon={faCaretLeft}
+            onClick={handlePrevMonth}
+            direction="left"
+          />
+          {`${year} 年 ${month} 月 `}
 
-        <StyledFontAwesomeIcon
-          icon={faCaretRight}
-          onClick={handleNextMonth}
-          direction="right"
-        />
-      </MonthLabelStyle>
+          <StyledFontAwesomeIcon
+            icon={faCaretRight}
+            onClick={handleNextMonth}
+            direction="right"
+          />
+        </MonthLabelStyle>
 
-      <div style={{ display: "flex", flexDirection: "initial" }}>
-        <div>
-          <AddTask />
-          {tasks.map((task) => (
-            <React.Fragment key={task.id}>
-              <TaskInput key={task.id} task={task} />
-            </React.Fragment>
-          ))}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            overflowX: "auto",
-          }}
-        >
-          <DayGrid>
-            {days.map((day) => (
-              <DayWrapper key={day} $isWeekend={isWeekend(day)}>
-                <WeekdayCell>{getWeekdayLabel(day)}</WeekdayCell>
-                <DayCell>{day}</DayCell>
-              </DayWrapper>
+        <div style={{ display: "flex", flexDirection: "initial" }}>
+          <div>
+            <AddTask />
+            {tasks.map((task) => (
+              <React.Fragment key={task.id}>
+                <TaskInput key={task.id} task={task} />
+              </React.Fragment>
             ))}
-          </DayGrid>
-          {tasks.map((task) => {
-            const daysInMonth = new Date(year, month, 0).getDate();
-            const taskStartMonth = new Date(task.startDate).getMonth() + 1;
-            const taskEndMonth = new Date(task.endDate).getMonth() + 1;
-            const isInCurrentMonth =
-              taskStartMonth === month || taskEndMonth === month;
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              overflowX: "auto",
+            }}
+          >
+            <DayGrid>
+              {days.map((day) => (
+                <DayWrapper key={day} $isWeekend={isWeekend(day)}>
+                  <WeekdayCell>{getWeekdayLabel(day)}</WeekdayCell>
+                  <DayCell>{day}</DayCell>
+                </DayWrapper>
+              ))}
+            </DayGrid>
+            {tasks.map((task) => {
+              const daysInMonth = new Date(year, month, 0).getDate();
+              const taskStartMonth = new Date(task.startDate).getMonth() + 1;
+              const taskEndMonth = new Date(task.endDate).getMonth() + 1;
+              const isInCurrentMonth =
+                taskStartMonth === month || taskEndMonth === month;
 
-            return (
-              <TaskRow key={task.id}>
-                {isInCurrentMonth && (
-                  <TaskDurationComponent
-                    startDate={task.startDate}
-                    endDate={task.endDate}
-                    daysInMonth={daysInMonth}
-                    color={task.color}
-                  />
-                )}
-                {days.map((day, dayIndex) => (
-                  <TaskDayCell key={dayIndex} $isWeekend={isWeekend(day)} />
-                ))}
-              </TaskRow>
-            );
-          })}
+              return (
+                <TaskRow key={task.id}>
+                  {isInCurrentMonth && (
+                    <TaskDurationComponent
+                      startDate={task.startDate}
+                      endDate={task.endDate}
+                      daysInMonth={daysInMonth}
+                      color={task.color}
+                    />
+                  )}
+                  {days.map((day, dayIndex) => (
+                    <TaskDayCell key={dayIndex} $isWeekend={isWeekend(day)} />
+                  ))}
+                </TaskRow>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
