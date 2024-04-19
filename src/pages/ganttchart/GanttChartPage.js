@@ -149,6 +149,8 @@ const GanttChartPage = () => {
     }
 
     const projectNameToSave = projectName || "defaultProjectName";
+    const currentDate = new Date();
+    const saveTime = currentDate.toISOString().split("T")[0];
 
     try {
       await db
@@ -158,6 +160,8 @@ const GanttChartPage = () => {
         .doc(projectNameToSave)
         .set(
           {
+            name: projectNameToSave,
+            saveTime: saveTime,
             tasks: cleanedTasks,
             date: cleanedDate,
           },

@@ -30,7 +30,7 @@ export const updateTaskColor = (taskId, color) => ({
 });
 
 export const setTasks = (tasks) => ({
-  type: "SET_TASKS", // Define a new action type
+  type: "SET_TASKS",
   payload: tasks,
 });
 
@@ -38,3 +38,10 @@ export const setTasksModified = (modified) => ({
   type: "SET_TASKS_MODIFIED",
   payload: modified,
 });
+
+export const setDate = (date) => {
+  return {
+    type: "SET_DATE",
+    payload: date,
+  };
+};
