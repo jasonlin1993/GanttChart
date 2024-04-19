@@ -122,3 +122,14 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
     background-color: #ccc;
   }
 `;
+
+export const FlexColumnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: initial;
+`;

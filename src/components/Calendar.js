@@ -13,6 +13,8 @@ import {
   TaskDayCell,
   TaskRow,
   WeekdayCell,
+  FlexColumnContainer,
+  FlexContainer,
 } from "@/styles/Calendar.styled";
 import TaskDurationComponent from "./TaskDurationComponent";
 import TaskInput from "@/components/TaskInput";
@@ -70,7 +72,7 @@ function Calendar(taskId, startDate, endDate) {
           />
         </MonthLabelStyle>
 
-        <div style={{ display: "flex", flexDirection: "initial" }}>
+        <FlexContainer>
           <div>
             <AddTask />
             {tasks.map((task) => (
@@ -79,13 +81,7 @@ function Calendar(taskId, startDate, endDate) {
               </React.Fragment>
             ))}
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              overflowX: "auto",
-            }}
-          >
+          <FlexColumnContainer>
             <DayGrid>
               {days.map((day) => (
                 <DayWrapper key={day} $isWeekend={isWeekend(day)}>
@@ -117,8 +113,8 @@ function Calendar(taskId, startDate, endDate) {
                 </TaskRow>
               );
             })}
-          </div>
-        </div>
+          </FlexColumnContainer>
+        </FlexContainer>
       </div>
     </>
   );
