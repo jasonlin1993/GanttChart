@@ -133,3 +133,11 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: initial;
 `;
+
+export const TaskIconContainer = styled.div`
+  margin: 20px 30px 0px 0px;
+`;
+
+export const TaskIcon = styled(FontAwesomeIcon)`
+  margin: 10px 10px 0px 0px;
+`;

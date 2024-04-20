@@ -2,9 +2,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../redux/action/taskAction";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { AddTaskButton } from "@/styles/Calendar.styled";
+import {
+  AddTaskButton,
+  TaskIconContainer,
+  TaskIcon,
+} from "@/styles/Calendar.styled";
 
 function AddTask() {
   const year = useSelector((state) => state.date.year);
@@ -26,13 +29,10 @@ function AddTask() {
   return (
     <>
       <AddTaskButton onClick={handleAddTask}>
-        <div style={{ margin: "20px 30px 0px 0px" }}>
-          <FontAwesomeIcon
-            icon={faPlus}
-            style={{ margin: "10px 10px 0px 0px" }}
-          />
+        <TaskIconContainer>
+          <TaskIcon icon={faPlus} />
           新增任務
-        </div>
+        </TaskIconContainer>
       </AddTaskButton>
     </>
   );
