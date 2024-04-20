@@ -69,11 +69,6 @@ const GanttChartPage = () => {
     const fetchData = async () => {
       const db = firebase.firestore();
       const userId = firebase.auth().currentUser?.uid;
-      if (!userId) {
-        console.error("會員未登入");
-        return;
-      }
-
       const projectId = router.query.projectId || "defaultProjectName";
 
       try {
