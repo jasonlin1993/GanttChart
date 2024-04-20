@@ -150,3 +150,9 @@ export const Hr = styled.hr`
   background-color: white;
   margin: 30px 0px 30px 0px;
 `;
+
+export const CenteredFlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;

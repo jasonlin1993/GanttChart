@@ -25,6 +25,7 @@ import {
   SmallText,
   Hr,
   ImageContainer,
+  CenteredFlexContainer,
 } from "@/styles/MainPage.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -101,13 +102,7 @@ const MainPage = () => {
       </Header>
       <MainPageContainer>
         <MainPageColumnSectionStyled>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
+          <CenteredFlexContainer>
             <Image
               src="/images/logo.png"
               style={{
@@ -119,7 +114,7 @@ const MainPage = () => {
               height={150}
               alt="Icon"
             />
-          </div>
+          </CenteredFlexContainer>
           <MainPageText>Gantt Chart</MainPageText>
         </MainPageColumnSectionStyled>
         <DescribeText>將您的工程專案視覺化</DescribeText>
