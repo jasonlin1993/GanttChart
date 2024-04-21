@@ -3,6 +3,8 @@ import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 import { useRouter } from "next/router";
 import { setTasks, setDate } from "../../redux/action/taskAction";
 import { useDispatch } from "react-redux";
+import useAuth from "@/hooks/useAuth";
+import useFirestoreData from "@/hooks/useFirestoreData";
 import Header from "@/components/Header";
 import {
   StyledNav,
@@ -28,55 +30,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import firebase from "../../lib/firebase";
 const HistoryPage = () => {
+  useAuth();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [projects, setProjects] = useState([]);
-  const [memberName, setMemberName] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
+  const userId = firebase.auth().currentUser?.uid;
+  const { memberName, projects } = useFirestoreData(userId);
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const db = firebase.firestore();
-    const userId = firebase.auth().currentUser?.uid;
-
-    if (!userId) {
-      console.error("用戶未登入");
-      return;
-    }
-
-    const fetchUserData = async () => {
-      try {
-        // 同時獲取用戶信息和專案信息
-        const userDoc = await db.collection("users").doc(userId).get();
-        if (userDoc.exists) {
-          setMemberName(userDoc.data().memberName); // 更新會員名稱
-        } else {
-          setMemberName("未找到會員名稱");
-        }
-
-        const projectsSnapshot = await db
-          .collection("users")
-          .doc(userId)
-          .collection("projects")
-          .get();
-
-        const projectsData = projectsSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          name: doc.data().name, // 從文檔中讀取專案名稱
-          saveTime: doc.data().saveTime, // 從文檔中讀取儲存時間
-        }));
-
-        setProjects(projectsData); // 更新專案列表
-      } catch (error) {
-        console.error("讀取用戶數據失敗:", error);
-        setMemberName("讀取失敗");
-      }
-    };
-
-    fetchUserData();
-  }, []);
 
   const handleProjectClick = async (projectId) => {
     const db = firebase.firestore();
