@@ -9,7 +9,7 @@ function useFirestoreData(userId) {
     const db = firebase.firestore();
 
     if (!userId) {
-      console.error("User not logged in");
+      console.error("會員尚未登入");
       return;
     }
 
@@ -19,7 +19,7 @@ function useFirestoreData(userId) {
         if (userDoc.exists) {
           setMemberName(userDoc.data().memberName);
         } else {
-          setMemberName("Member name not found");
+          setMemberName("找無此會員");
         }
 
         const projectsSnapshot = await db
@@ -36,8 +36,8 @@ function useFirestoreData(userId) {
 
         setProjects(projectsData);
       } catch (error) {
-        console.error("Failed to fetch user data:", error);
-        setMemberName("Fetch failed");
+        console.error("連結資料庫失敗:", error);
+        setMemberName("連結資料庫名稱失敗");
       }
     };
 
