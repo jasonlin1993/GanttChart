@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 import { useRouter } from "next/router";
 import { setTasks, setDate } from "../../redux/action/taskAction";
@@ -90,10 +90,7 @@ const HistoryPage = () => {
             <MobileIconWrapper onClick={toggleSidebar} displayAt="1200px">
               <FontAwesomeIcon icon={faBars} />
             </MobileIconWrapper>
-            <NavBarContainer
-              style={{ left: isSidebarVisible ? "0" : "-100%" }}
-              NavBarAt="1200px"
-            >
+            <NavBarContainer isVisible={isSidebarVisible} NavBarAt="1200px">
               <StyledLi>
                 <StyledLink showAt="1200px" onClick={handleGanttChartPage}>
                   <FontAwesomeIcon

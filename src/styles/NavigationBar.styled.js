@@ -88,9 +88,11 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export const NavBarContainer = styled.nav.withConfig({
-  shouldForwardProp: (prop) => !["NavBarAt"].includes(prop),
+  shouldForwardProp: (prop) => !["NavBarAt", "isVisible"].includes(prop),
 })`
-  ${({ NavBarAt }) =>
+  transition: left 0.5s ease;
+
+  ${({ NavBarAt, isVisible }) =>
     NavBarAt &&
     `
     @media (max-width: ${NavBarAt}) {
@@ -102,10 +104,8 @@ export const NavBarContainer = styled.nav.withConfig({
       top: 90px;
       z-index: 2;
       background-color: #002f7b;
-      left: 0;
+      left: ${isVisible ? "0" : "-100%"};
       flex-direction: column;
-      left: -100%;
-      transition: 0.5s;
     }
   `}
 `;
