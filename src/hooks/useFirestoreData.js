@@ -7,12 +7,6 @@ function useFirestoreData(userId) {
 
   useEffect(() => {
     const db = firebase.firestore();
-
-    if (!userId) {
-      console.error("會員尚未登入");
-      return;
-    }
-
     const fetchUserData = async () => {
       try {
         const userDoc = await db.collection("users").doc(userId).get();
