@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
 import firebase from "../../lib/firebase";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import useProjectData from "@/hooks/useProjectData";
-import { GlobalStyle } from "@/styles/Global";
 import { setTasksModified } from "../../redux/action/taskAction";
+import Calendar from "@/components/Calendar";
+import Header from "@/components/Header";
+import useProjectData from "@/hooks/useProjectData";
+import useAuth from "@/hooks/useAuth";
+import { GlobalStyle } from "@/styles/Global";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import {
@@ -16,28 +19,15 @@ import {
   NavBarContainer,
   StyledFontAwesomeIcon,
 } from "@/styles/NavigationBar.styled";
-import {
-  StyledSaveDataToFireStorePopUp,
-  StyledContent,
-  StyledTextContainer,
-  StyledButtonContainer,
-  StyledCancelButton,
-  StyledSaveTaskNameContainer,
-  StyledSaveButton,
-  StyledTaskNameInputDate,
-  StyledErrorMessage,
-} from "@/styles/SaveDataToFirestorePopup.styled";
-import Calendar from "@/components/Calendar";
-import Header from "@/components/Header";
-import useAuth from "@/hooks/useAuth";
+import SaveToFirestorePopup from "@/components/SaveToFirestorePopup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFloppyDisk,
-  faFilePdf,
-  faFolder,
-  faRightFromBracket,
-  faShareFromSquare,
   faBars,
+  faFolder,
+  faFilePdf,
+  faFloppyDisk,
+  faShareFromSquare,
+  faRightFromBracket,
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
@@ -225,9 +215,10 @@ const GanttChartPage = () => {
 
   useEffect(() => {
     if (isSaveDataToFireStorePopupVisible && dialogRef.current) {
+      console.log("Calling showModal on dialog");
       dialogRef.current.showModal();
     }
-  }, [isSaveDataToFireStorePopupVisible]);
+  }, [isSaveDataToFireStorePopupVisible, dialogRef]);
 
   const handleSaveDataToFireStorePopup = () => {
     setIsSaveDataToFireStorePopupVisible(true);
@@ -284,29 +275,15 @@ const GanttChartPage = () => {
       <Calendar />
       <ToastContainer />
 
-      {isSaveDataToFireStorePopupVisible && (
-        <StyledSaveDataToFireStorePopUp ref={dialogRef}>
-          <StyledContent>
-            <StyledTextContainer>另存新檔</StyledTextContainer>
-          </StyledContent>
-          <StyledSaveTaskNameContainer>
-            專案名稱:
-            <StyledTaskNameInputDate
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-            />
-          </StyledSaveTaskNameContainer>
-          <StyledButtonContainer>
-            <StyledSaveButton onClick={handleSaveButton}>儲存</StyledSaveButton>
-            <StyledCancelButton onClick={handleClosePopup}>
-              取消
-            </StyledCancelButton>
-          </StyledButtonContainer>
-          {errorMessage && (
-            <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
-          )}
-        </StyledSaveDataToFireStorePopUp>
-      )}
+      <SaveToFirestorePopup
+        ref={dialogRef}
+        isVisible={isSaveDataToFireStorePopupVisible}
+        projectName={projectName}
+        setProjectName={setProjectName}
+        errorMessage={errorMessage}
+        onSave={handleSaveButton}
+        onCancel={handleClosePopup}
+      />
     </>
   );
 };
