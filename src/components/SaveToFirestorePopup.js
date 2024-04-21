@@ -48,7 +48,6 @@ const SaveToFirestorePopup = forwardRef(
   }
 );
 
-// Set a displayName for the component
 SaveToFirestorePopup.displayName = "SaveToFirestorePopup";
 
 export default SaveToFirestorePopup;
