@@ -74,6 +74,8 @@ const GanttChartPage = () => {
 
   const handleClosePopup = () => {
     setIsSaveDataToFireStorePopupVisible(false);
+    setErrorMessage("");
+    setProjectName("");
     if (dialogRef.current) {
       dialogRef.current.close();
     }
@@ -82,13 +84,11 @@ const GanttChartPage = () => {
   const handleSaveButton = async () => {
     if (!projectName) {
       setErrorMessage("專案名稱不可空白");
-
       return;
     }
     await saveDataToFirestore();
     handleClosePopup();
     setProjectName("");
-    setErrorMessage("");
   };
 
   const saveDataToFirestore = async () => {
@@ -153,7 +153,6 @@ const GanttChartPage = () => {
   const exportPDF = () => {
     const input = document.getElementById("pdf-container");
     const originalStyle = input.style.cssText;
-    // 擴展元素以顯示所有內容
     input.style.width = "auto";
     input.style.minWidth = "2240px";
     input.style.overflow = "visible";
