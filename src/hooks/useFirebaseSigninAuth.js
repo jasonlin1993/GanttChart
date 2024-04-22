@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithRedirect,
 } from "firebase/auth";
 import firebase from "../lib/firebase";
 
@@ -47,7 +48,7 @@ function useFirebaseSignInAuth() {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(getAuth(), provider);
+      await signInWithRedirect(getAuth(), provider);
     } catch (error) {
       setError("Google 第三方登入錯誤");
       return false;

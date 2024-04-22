@@ -6,20 +6,6 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-
-  async headers() {
-    return [
-      {
-        source: "/register",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-        ],
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
