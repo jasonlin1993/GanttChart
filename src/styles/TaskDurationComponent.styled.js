@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDragTaskDurationComponent = styled.div`
+export const StyledTaskDurationComponent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,13 +13,6 @@ export const StyledDragTaskDurationComponent = styled.div`
   border: 1px solid #ccc;
   position: absolute;
   left: ${(props) => props.$leftPercentage};
-
-  &:hover {
-    border: 1px solid black;
-    & > div {
-      display: flex;
-    }
-  }
 `;
 
 export const StyledLeftDragAndDropContainer = styled.div`

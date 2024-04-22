@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyledDragTaskDurationComponent,
-  StyledLeftDragAndDropContainer,
-  StyledCenterDragAndDropContainer,
-  StyledRightDragAndDropContainer,
-} from "@/styles/TaskDurationComponent.styled";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { StyledTaskDurationComponent } from "@/styles/TaskDurationComponent.styled";
 
 const TaskDurationComponent = ({ startDate, endDate, daysInMonth, color }) => {
   const start = new Date(startDate);
@@ -19,27 +12,11 @@ const TaskDurationComponent = ({ startDate, endDate, daysInMonth, color }) => {
 
   return (
     <>
-      <StyledDragTaskDurationComponent
+      <StyledTaskDurationComponent
         $widthPercentage={widthPercentage}
         $leftPercentage={leftPercentage}
         $backgroundColor={color}
-      >
-        <StyledLeftDragAndDropContainer>
-          <FontAwesomeIcon
-            icon={faEllipsisVertical}
-            size="lg"
-            color="#eef0f2"
-          />
-        </StyledLeftDragAndDropContainer>
-        <StyledCenterDragAndDropContainer />
-        <StyledRightDragAndDropContainer>
-          <FontAwesomeIcon
-            icon={faEllipsisVertical}
-            size="lg"
-            color="#eef0f2"
-          />
-        </StyledRightDragAndDropContainer>
-      </StyledDragTaskDurationComponent>
+      />
     </>
   );
 };
