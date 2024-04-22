@@ -2,34 +2,38 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
+import firebase from "../lib/firebase";
 import { useRouter } from "next/router";
 import { MainPageButtonStyled } from "@/styles/Button.styled";
 import {
-  StyledNav,
   StyledUl,
   StyledLi,
   StyledLink,
-  MobileIconWrapper,
+  StyledNav,
   NavBarContainer,
+  MobileIconWrapper,
 } from "@/styles/NavigationBar.styled";
-import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
 import {
-  MainPageSectionStyled,
+  Hr,
+  Title,
+  SmallText,
   MainPageText,
   DescribeText,
   MainPageContainer,
+  TaskColorContainer,
+  TaskImageContainer,
+  ExportToPdfContainer,
+  CenteredFlexContainer,
+  MainPageSectionStyled,
+  MainPageTextContainer,
   MainPageColumnSectionStyled,
   MainPageReverseColumnSectionStyled,
-  MainPageTextContainer,
-  Title,
-  SmallText,
-  Hr,
-  ImageContainer,
-  CenteredFlexContainer,
 } from "@/styles/MainPage.styled";
+import { GlobalStyle, GlobalBackGroundColor } from "@/styles/Global";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import firebase from "../lib/firebase";
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -129,7 +133,7 @@ const MainPage = () => {
         </MainPageSectionStyled>
         <Hr />
         <MainPageColumnSectionStyled>
-          <ImageContainer />
+          <TaskImageContainer />
           <MainPageTextContainer>
             <Title>動態刪除或新增任務</Title>
             <SmallText>隨時根據專案需求增加或移除任務</SmallText>
@@ -145,17 +149,16 @@ const MainPage = () => {
             <SmallText>這個功能使得報告溝通更加便捷</SmallText>
             <SmallText>團隊協作還是客戶匯報都輕鬆應對</SmallText>
           </MainPageTextContainer>
-          <ImageContainer />
+          <ExportToPdfContainer />
         </MainPageReverseColumnSectionStyled>
         <Hr />
         <MainPageColumnSectionStyled>
-          <ImageContainer />
+          <TaskColorContainer />
           <MainPageTextContainer>
-            <Title>Drag & Drop </Title>
-            <SmallText>以直觀的拖放操作</SmallText>
-            <SmallText>輕鬆安排和調整任務進度</SmallText>
-            <SmallText>此功能讓計劃管理變得更加靈活</SmallText>
-            <SmallText>可迅速更新專案時間表</SmallText>
+            <Title>任務顏色選擇 </Title>
+            <SmallText>自訂任務顏色，使每一項目一目了然</SmallText>
+            <SmallText>透過顏色輕鬆區分不同的階段任務</SmallText>
+            <SmallText>增強專案的視覺效果和易讀性</SmallText>
           </MainPageTextContainer>
         </MainPageColumnSectionStyled>
         <Hr />
