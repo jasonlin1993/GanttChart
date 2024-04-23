@@ -12,8 +12,8 @@ export const DayGrid = styled.div`
   display: flex;
   text-align: center;
   width: 100vw;
-  min-width: auto; // 將此設置為 auto 或 100%
-  white-space: nowrap; // 防止元素換行
+  min-width: auto;
+  white-space: nowrap;
   justify-content: right;
   border: 1px solid #002f7b;
   border-top: none;
@@ -66,8 +66,8 @@ export const TaskRow = styled.div`
   border-left: none;
   width: 100vw;
   height: 51px;
-  min-width: auto; // 將此設置為 auto 或 100%
-  white-space: nowrap; // 防止元素換行
+  min-width: auto;
+  white-space: nowrap;
   padding: 0;
   position: relative;
   &:after {
