@@ -76,7 +76,7 @@ function Calendar() {
             <AddTask />
             {tasks.map((task) => (
               <React.Fragment key={task.id}>
-                <TaskInput key={task.id} task={task} />
+                <TaskInput task={task} />
               </React.Fragment>
             ))}
           </div>
