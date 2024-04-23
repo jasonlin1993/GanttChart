@@ -1,12 +1,12 @@
 import firebase from "../../lib/firebase";
-import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setTasksModified } from "../../redux/action/taskAction";
-import Calendar from "@/components/Calendar";
 import Header from "@/components/Header";
-import useProjectData from "@/hooks/useProjectData";
+import Calendar from "@/components/Calendar";
 import useAuth from "@/hooks/useAuth";
+import useProjectData from "@/hooks/useProjectData";
 import { GlobalStyle } from "@/styles/Global";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -133,7 +133,6 @@ const GanttChartPage = () => {
           },
           { merge: true }
         );
-      console.log("已成功儲存到 FireStore");
       dispatch(setTasksModified(false));
     } catch (error) {
       console.error("存檔失敗:", error);
@@ -146,7 +145,7 @@ const GanttChartPage = () => {
       localStorage.setItem("LogOutSuccess", "true");
       router.push("/");
     } catch (error) {
-      console.log("Logout Error:", error);
+      console.error("Logout Error:", error);
     }
   };
 
@@ -214,7 +213,6 @@ const GanttChartPage = () => {
 
   useEffect(() => {
     if (isSaveDataToFireStorePopupVisible && dialogRef.current) {
-      console.log("Calling showModal on dialog");
       dialogRef.current.showModal();
     }
   }, [isSaveDataToFireStorePopupVisible, dialogRef]);

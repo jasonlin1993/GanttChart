@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FcGoogle } from "react-icons/fc";
 
 export const ButtonStyled = styled.button`
   width: 150px;
@@ -83,6 +84,10 @@ export const GoogleAuthButtonStyled = styled.button`
   }
 `;
 
+export const GoogleIconStyled = styled(FcGoogle)`
+  margin-right: 10px;
+  font-size: 32px;
+`;
 export const FeatureButtonStyled = styled.div`
   display: flex;
   justify-content: center;

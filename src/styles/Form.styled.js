@@ -101,6 +101,7 @@ export const FormContainerStyled = styled.form`
 `;
 
 export const FormInputStyled = styled.input`
+  position: top-center;
   height: 40px;
   padding: 18px;
   font-family: "Viga", sans-serif;

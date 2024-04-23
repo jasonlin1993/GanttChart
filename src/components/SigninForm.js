@@ -13,9 +13,12 @@ import {
   StyledSignInFontAwesomeIcon,
   OneClickMemberLoginStyled,
 } from "@/styles/Form.styled";
-import { FcGoogle } from "react-icons/fc";
+
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { GoogleAuthButtonStyled } from "@/styles/Button.styled";
+import {
+  GoogleAuthButtonStyled,
+  GoogleIconStyled,
+} from "@/styles/Button.styled";
 import useForm from "@/hooks/useForm";
 import useFirebasesSignInAuth from "@/hooks/useFirebaseSigninAuth";
 
@@ -64,7 +67,6 @@ function SignInForm({ onSignUpClick }) {
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignInTextFormStyled>
           <StyledSignInFontAwesomeIcon
-            position="absolute"
             icon={faXmark}
             onClick={handleMainPageClick}
           />
@@ -105,7 +107,7 @@ function SignInForm({ onSignUpClick }) {
           {error && <ErrorMessageStyled>{error}</ErrorMessageStyled>}
           <FormLineStyled />
           <GoogleAuthButtonStyled onClick={handleGoogleClick}>
-            <FcGoogle style={{ margin: "0px 30px -6px 0px" }} size="32px" />
+            <GoogleIconStyled />
             Google 快速登入
           </GoogleAuthButtonStyled>
           <HaveMemberTextStyled onClick={onSignUpClick}>

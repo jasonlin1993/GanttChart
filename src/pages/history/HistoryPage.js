@@ -54,8 +54,8 @@ const HistoryPage = () => {
         const doc = await projectRef.get();
         if (doc.exists) {
           const projectData = doc.data();
-          dispatch(setTasks(projectData.tasks)); // 更新任務列表
-          dispatch(setDate(projectData.date)); // 更新日期
+          dispatch(setTasks(projectData.tasks));
+          dispatch(setDate(projectData.date));
           router.push({
             pathname: "/ganttchart",
             query: { projectId: projectId },
@@ -77,7 +77,7 @@ const HistoryPage = () => {
       localStorage.setItem("LogOutSuccess", "true");
       router.push("/");
     } catch (error) {
-      console.log("Logout Error:", error);
+      console.error("Logout Error:", error);
     }
   };
   return (

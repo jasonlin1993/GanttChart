@@ -20,7 +20,7 @@ import TaskDurationComponent from "./TaskDurationComponent";
 import TaskInput from "@/components/TaskInput";
 import AddTask from "./AddTask";
 
-function Calendar(taskId, startDate, endDate) {
+function Calendar() {
   const dispatch = useDispatch();
   const { year, month } = useSelector((state) => state.date);
   const tasks = useSelector((state) => state.tasks.tasks);

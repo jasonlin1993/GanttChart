@@ -45,7 +45,6 @@ function SignupForm({ onSignInClick }) {
       <FormStyled onSubmit={handleSubmit}>
         <HeaderSignUpTextFormStyled>
           <StyledSignUpFontAwesomeIcon
-            position="absolute"
             icon={faXmark}
             onClick={handleMainPageClick}
           />
@@ -91,7 +90,7 @@ function SignupForm({ onSignInClick }) {
           {submitMessage && (
             <SubmitMessageStyled>{submitMessage}</SubmitMessageStyled>
           )}
-          <FormLineStyled position="top-center" />
+          <FormLineStyled />
 
           <HaveMemberTextStyled onClick={onSignInClick}>
             已經有帳號了?

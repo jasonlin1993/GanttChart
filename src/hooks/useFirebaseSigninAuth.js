@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signInWithRedirect,
