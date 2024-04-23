@@ -63,23 +63,26 @@ const EditTaskInputPopUp = forwardRef(
             <ColorBlock
               color="yellow"
               width="34px"
-              $hoverColor="#e0e000"
+              $hoverColor="#E0E000"
               $borderRadius="5px 0 0 5px"
               isSelected={selectedColor === "yellow"}
               handleColorSelect={handleColorSelect}
             />
             <ColorBlock
               color="blue"
+              $hoverColor="#0000CC"
               isSelected={selectedColor === "blue"}
               handleColorSelect={handleColorSelect}
             />
             <ColorBlock
               color="green"
+              $hoverColor="#00E000"
               isSelected={selectedColor === "green"}
               handleColorSelect={handleColorSelect}
             />
             <ColorBlock
               color="gray"
+              $hoverColor="#707070"
               isSelected={selectedColor === "gray"}
               handleColorSelect={handleColorSelect}
             />

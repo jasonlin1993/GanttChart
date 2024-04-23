@@ -36,7 +36,7 @@ export const HistoryProject = styled.div`
   width: calc(16.66665% - 20px);
   height: auto;
   background-color: white;
-  width: 250px;
+  width: 260px;
   height: 80px;
   border-radius: 5px;
   font-size: 15px;
