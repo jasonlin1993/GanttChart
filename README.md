@@ -25,6 +25,8 @@
 
 ## 專案摘要
 「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。這個工具的設計旨在簡化專案管理流程，無論是專案經理還是團隊成員，都能迅速獲取專案進度的視覺化呈現。
+ ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/app/public/images/ReadMeMainPage.png)
+
 ### 功能亮點
 - 顏色自定義：為不同的任務選擇個性化的顏色標記
 - 即時編輯：簡單的新增和刪除任務，方便調整專案計畫
