@@ -36,6 +36,7 @@
 
 ## 開發介紹
 ### 技術架構及摘要
+![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/developmentArchitecture.png)
 ### 目錄架構
 ### 開發流程
 ### 程式設計摘要
