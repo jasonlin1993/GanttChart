@@ -37,6 +37,10 @@
 ## 開發介紹
 ### 技術架構及摘要
 ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/developmentArchitecture.png)
+
+- 前端開發: 使用 React、Redux toolkit、styled-components，並實踐 RWD、reusable React componet
+- 後端開發: 使用 Firebase 服務開發資料庫、會員系統等
+- 開發工具: 使用 Git/GitHub 做版本控管
 ### 目錄架構
 ### 開發流程
 ### 程式設計摘要
