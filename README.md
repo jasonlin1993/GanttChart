@@ -45,6 +45,9 @@
 以 create-next-app 建立專案目錄基礎分立 src、public，其中 src 之中分立 components、hooks、lib、pages、redux、styles 等子目錄
 - components: 包含所有 UI 組件，如表單、按鈕及其他元件
 - hooks: 自定義 React hook，用於實現各種功能如會員認證或資料庫管理
+- lib: 主要為 Firebase 的配置和初始化
+- redux: 包含 Redux 動作，用於狀態管理
+- styles: 儲存 Styled Components 的元件樣式，按組件分類
 
 ### 開發流程
 ### 程式設計摘要
