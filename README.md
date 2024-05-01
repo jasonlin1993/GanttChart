@@ -42,7 +42,8 @@
 - 後端開發: 使用 Firebase 服務開發資料庫、會員系統等
 - 開發工具: 使用 Git/GitHub 做版本控管
 ### 目錄架構
-以 create-next-app 建立專案目錄基礎分立 src、public
+以 create-next-app 建立專案目錄基礎分立 src、public，其中 src 之中分立 components、hooks、lib、pages、redux、styles 等子目錄
+
 
 ### 開發流程
 ### 程式設計摘要
