@@ -69,7 +69,7 @@
 - ##### Firebase Authentication
 - ##### Vercel
 - ##### 環境變數
-- 
+  
 #### 開發工具
 - ##### Git/GitHub 
 - ##### ESLint / Prettier　
