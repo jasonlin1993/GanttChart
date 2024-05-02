@@ -54,51 +54,59 @@
 
 ### 程式設計摘要
 1. SPA 路由與頁面結構
-- 使用 Next.js 的自動路由機制處理 SPA（單頁應用）的路由需求。
-- 核心頁面包括甘特圖（Gantt Chart）、歷史紀錄、註冊頁面等，由 /pages 目錄下的對應 JS 文件控制。
+- 使用 Next.js 的自動路由機制處理 SPA（單頁應用）的路由需求
+- 核心頁面包括甘特圖（Gantt Chart）、歷史紀錄、註冊頁面等，由 /pages 目錄下的對應 JS 文件控制
   
 2. 會員系統和驗證
-- 利用 Firebase Authentication 實現用戶註冊、登入和登出功能。
-- 自訂 Hook useAuth 管理認證狀態並提供跨組件的登入狀態共享。
+- 利用 Firebase Authentication 實現用戶註冊、登入和登出功能
+- 自訂 Hook useAuth 管理認證狀態並提供跨組件的登入狀態共享
 
 3. 資料庫和 Firestore 整合
-- 使用自定義 Hook 如 useFirestoreData 和 useProjectData 來處理與 Firebase Firestore 的數據交互。
-- useFirestoreData 獲取用戶資訊和項目數據；useProjectData 負責管理項目相關任務和日期的狀態。
+- 使用自定義 Hook 如 useFirestoreData 和 useProjectData 來處理與 Firebase Firestore 的數據交互
+- useFirestoreData 獲取用戶資訊和項目數據；useProjectData 負責管理項目相關任務和日期的狀態
 
 4. Redux Toolkit 狀態管理
-- 使用 Redux Toolkit 管理應用的狀態，如日期和任務數據。
-- 利用 actions 和 reducers 更新和同步前端的狀態，例如 dateAction 和 taskAction。
+- 使用 Redux Toolkit 管理應用的狀態，如日期和任務數據
+- 利用 actions 和 reducers 更新和同步前端的狀態，例如 dateAction 和 taskAction
   
 5. 功能性元件
 - 元件如 Calendar、TaskInput、Header 等負責呈現 UI 並與用戶互動。
-- 使用 styled-components 定義元件的風格，例如 Button.styled.js 和 Header.styled.js，以確保應用的視覺一致性。
+- 使用 styled-components 定義元件的風格，例如 Button.styled.js 和 Header.styled.js，以確保應用的視覺一致性
 
 6. 進階功能與互動
-- 提供 PDF 導出功能，利用 html2canvas 和 jspdf 套件將甘特圖頁面轉換為 PDF 文件。
-- 實現動態 UI 互動，如導航欄的顯示/隱藏、資料存儲彈窗等。
+- 提供 PDF 導出功能，利用 html2canvas 和 jspdf 套件將甘特圖頁面轉換為 PDF 文件
+- 實現動態 UI 互動，如導航欄的顯示/隱藏、資料存儲彈窗等
 ## 附錄
 ### 技術介紹
 #### 前端
 - ###### React and Next.js
   利用 Next.js 框架開發，以 React 為基礎，實現服務端渲染（SSR）和靜態站點生成（SSG），優化性能和SEO。
 - ##### Styled Components
-  使用 Styled Components 在 React 組件中撰寫 CSS，提高元件的可重用性和封裝性。
+  使用 Styled Components 在 React 組件中撰寫 CSS，提高元件的可重用性和封裝性
 - ##### Redux toolkit
-  使用 Redux Toolkit 管理應用的狀態，包括任務和日期數據，使狀態管理更簡潔有效。
+  使用 Redux Toolkit 管理應用的狀態，包括任務和日期數據，使狀態管理更簡潔有效
 - ##### React toastify
+  使用 React Toastify 提供交互反饋，如成功登錄、註冊通知等。
 - ##### jspdf / html2canvas
+  集成 jspdf 和 html2canvas 實現頁面到 PDF 的轉換，方便用戶導出專案的甘特圖
 
 #### 後端
 - ##### Firebase Firestore
+  使用 Firestore 作為 NoSQL 資料庫，存儲用戶數據和專案任務
 - ##### Firebase Authentication
-- ##### Vercel
+  利用 Firebase Authentication 實現用戶認證功能，包括註冊、登錄和登出
+- ##### Vercel 部屬
+  使用 Vercel 進行部署
 - ##### 環境變數
+  透過 Next.js 的支持使用環境變數來管理敏感設定，確保開發和生產環境的配置安全
   
 #### 開發工具
-- ##### Git/GitHub 
+- ##### Git/GitHub
+  使用 Git 進行版本控制 
 - ##### ESLint / Prettier　
   導入 ESLint / Prettier 統一開發風格
 - ##### Create-next-app
+  使用 Create-next-app 快速搭建 Next.js 應用框架
 ### 專案介紹
 - #### 新增刪除任務
 - #### 任務顏色選擇
