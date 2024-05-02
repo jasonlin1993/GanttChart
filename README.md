@@ -54,9 +54,16 @@
 
 ### 程式設計摘要
 1. SPA 路由與頁面結構
-- 使用 Firebase Authentication 建立後端會員系統  
-2. 歷史頁面
-- 
+- 使用 Next.js 的自動路由機制處理 SPA（單頁應用）的路由需求。
+- 核心頁面包括甘特圖（Gantt Chart）、歷史紀錄、註冊頁面等，由 /pages 目錄下的對應 JS 文件控制。
+  
+2. 會員系統和驗證
+- 利用 Firebase Authentication 實現用戶註冊、登入和登出功能。
+- 自訂 Hook useAuth 管理認證狀態並提供跨組件的登入狀態共享。
+
+3. 資料庫和 Firestore 整合
+- 使用自定義 Hook 如 useFirestoreData 和 useProjectData 來處理與 Firebase Firestore 的數據交互。
+- useFirestoreData 獲取用戶資訊和項目數據；useProjectData 負責管理項目相關任務和日期的狀態。
 ## 附錄
 ### 技術介紹
 #### 前端
