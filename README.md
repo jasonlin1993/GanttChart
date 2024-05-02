@@ -86,7 +86,7 @@
 - ##### Redux toolkit
   使用 Redux Toolkit 管理應用的狀態，包括任務和日期數據，使狀態管理更簡潔有效
 - ##### React toastify
-  使用 React Toastify 提供交互反饋，如成功登錄、註冊通知等。
+  使用 React Toastify 提供交互反饋，如成功登錄、註冊通知等
 - ##### jspdf / html2canvas
   集成 jspdf 和 html2canvas 實現頁面到 PDF 的轉換，方便用戶導出專案的甘特圖
 
