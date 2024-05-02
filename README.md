@@ -118,5 +118,17 @@
   - #### 刪除任務
     ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/DeleteTask.gif)
 - #### 任務顏色選擇
+  選擇不同顏色，透過顏色區分不同任務項目
+  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ChooseTaskColor.gif)
 - #### 檔案輸出
+  一鍵輸出網頁內容為 pdf
+  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/exportToPdf.gif)
 - #### 歷史紀錄
+  透過儲存檔案 / 另存新檔，儲存不同專案內容
+
+  - #### 檔案儲存
+    ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/saveProject.gif)
+
+  - #### 另存新檔
+    ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/saveProjectToNewFile.gif)
+   
