@@ -64,6 +64,18 @@
 3. 資料庫和 Firestore 整合
 - 使用自定義 Hook 如 useFirestoreData 和 useProjectData 來處理與 Firebase Firestore 的數據交互。
 - useFirestoreData 獲取用戶資訊和項目數據；useProjectData 負責管理項目相關任務和日期的狀態。
+
+4. Redux Toolkit 狀態管理
+- 使用 Redux Toolkit 管理應用的狀態，如日期和任務數據。
+- 利用 actions 和 reducers 更新和同步前端的狀態，例如 dateAction 和 taskAction。
+  
+5.功能性元件
+- 組件如 Calendar、TaskInput、Header 等負責呈現 UI 並與用戶互動。
+- 使用 styled-components 定義元件的風格，例如 Calendar.styled.js 和 Header.styled.js，以確保應用的視覺一致性。
+
+6. 進階功能與互動
+- 提供 PDF 導出功能，利用 html2canvas 和 jspdf 库將甘特圖頁面轉換為 PDF 文件。
+- 實現動態 UI 互動，如導航欄的顯示/隱藏、資料存儲彈窗等。
 ## 附錄
 ### 技術介紹
 #### 前端
