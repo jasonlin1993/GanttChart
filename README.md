@@ -69,7 +69,7 @@
 - 使用 Redux Toolkit 管理應用的狀態，如日期和任務數據。
 - 利用 actions 和 reducers 更新和同步前端的狀態，例如 dateAction 和 taskAction。
   
-5.功能性元件
+5. 功能性元件
 - 組件如 Calendar、TaskInput、Header 等負責呈現 UI 並與用戶互動。
 - 使用 styled-components 定義元件的風格，例如 Calendar.styled.js 和 Header.styled.js，以確保應用的視覺一致性。
 
