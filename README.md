@@ -79,9 +79,12 @@
 ## 附錄
 ### 技術介紹
 #### 前端
-- ###### Stled components
-  使用 Styled Components 配合 React 開發
+- ###### React and Next.js
+  利用 Next.js 框架開發，以 React 為基礎，實現服務端渲染（SSR）和靜態站點生成（SSG），優化性能和SEO。
+- ##### Styled Components
+  使用 Styled Components 在 React 組件中撰寫 CSS，提高元件的可重用性和封裝性。
 - ##### Redux toolkit
+  使用 Redux Toolkit 管理應用的狀態，包括任務和日期數據，使狀態管理更簡潔有效。
 - ##### React toastify
 - ##### jspdf / html2canvas
 
@@ -95,7 +98,7 @@
 - ##### Git/GitHub 
 - ##### ESLint / Prettier　
   導入 ESLint / Prettier 統一開發風格
-- Create-next-app
+- ##### Create-next-app
 ### 專案介紹
 - #### 新增刪除任務
 - #### 任務顏色選擇
