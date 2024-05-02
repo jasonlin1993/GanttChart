@@ -53,11 +53,18 @@
 以 Git Flow 為基礎進行開發
 
 ### 程式設計摘要
+1. 會員系統建立、登入狀態管理
+2. 登入狀態驗證
 ## 附錄
 ### 技術介紹
 #### 前端
+- ###### Stled components
+  使用 Styled Components 配合 React 開發
+
 #### 後端
 #### 開發工具
+- ##### ESLint / Prettier　
+  導入 ESLint / Prettier 統一開發風格
 ### 專案介紹
 - #### 新增刪除任務
 - #### 任務顏色選擇
