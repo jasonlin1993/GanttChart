@@ -114,7 +114,9 @@
   可以新增、刪除任務，隨時根據專案需求增加或移除任務
 
   - #### 新增任務
-     ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/AddTask.gif)
+    ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/AddTask.gif)
+  - #### 刪除任務
+    ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/DeleteTask.gif)
 - #### 任務顏色選擇
 - #### 檔案輸出
 - #### 歷史紀錄
