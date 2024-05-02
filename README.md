@@ -111,7 +111,10 @@
 「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。這個工具的設計旨在簡化專案管理流程，無論是專案經理還是團隊成員，都能迅速獲取專案進度的視覺化呈現。
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
 - #### 新增刪除任務
-  可以一個按鈕新增、刪除任務，隨時根據專案需求增加或移除任務
+  可以新增、刪除任務，隨時根據專案需求增加或移除任務
+
+  - #### 新增任務
+     ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/AddTask.gif)
 - #### 任務顏色選擇
 - #### 檔案輸出
 - #### 歷史紀錄
