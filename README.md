@@ -60,11 +60,21 @@
 #### 前端
 - ###### Stled components
   使用 Styled Components 配合 React 開發
+- ##### Redux toolkit
+- ##### React toastify
+- ##### jspdf / html2canvas
 
 #### 後端
+- ##### Firebase Firestore
+- ##### Firebase Authentication
+- ##### Vercel
+- ##### 環境變數
+- 
 #### 開發工具
+- ##### Git/GitHub 
 - ##### ESLint / Prettier　
   導入 ESLint / Prettier 統一開發風格
+- Create-next-app
 ### 專案介紹
 - #### 新增刪除任務
 - #### 任務顏色選擇
