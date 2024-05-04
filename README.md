@@ -92,7 +92,7 @@
 
 #### 後端
 - ##### Firebase Firestore
-  使用 Firestore 作為 NoSQL 資料庫，存儲用戶數據和專案任務
+  使用 Firestore 作為非關聯式資料庫，存儲用戶數據和專案任務
 - ##### Firebase Authentication
   利用 Firebase Authentication 實現用戶認證功能，包括註冊、登錄和登出
 - ##### Vercel 部屬
