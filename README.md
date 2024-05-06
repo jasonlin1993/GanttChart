@@ -50,7 +50,7 @@
 - styles: 儲存 Styled Components 的元件樣式，按組件分類
 
 ### 開發流程
-以 Git Flow 為基礎進行開發
+以 Git 為基礎進行開發
 
 ### 程式設計摘要
 1. SPA 路由與頁面結構
