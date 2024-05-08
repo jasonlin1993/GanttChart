@@ -1,11 +1,10 @@
 import React from "react";
 import GanttChartPage from "./GanttChartPage";
-import { Analytics } from "@vercel/analytics/react";
+
 const GanttChart = () => {
   return;
-  <Analytics>
-    <GanttChartPage />
-  </Analytics>;
+
+  <GanttChartPage />;
 };
 
 export default GanttChart;
