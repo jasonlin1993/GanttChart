@@ -2,9 +2,7 @@ import React from "react";
 import HistoryPage from "./HistoryPage";
 
 const History = () => {
-  return;
-
-  <HistoryPage />;
+  return <HistoryPage />;
 };
 
 export default History;
