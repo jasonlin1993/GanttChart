@@ -1,4 +1,13 @@
-# GanttChart - 線上甘特圖工具
+<table>
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/logo.png" width="150" style="border-radius: 50px; float: right;" />
+    </td>
+    <td>
+      <h1>GanttChart - 線上甘特圖工具</h1>
+    </td>
+  </tr>
+</table>
 
 # 目錄
 1. [專案展示](#專案展示)
