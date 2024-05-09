@@ -1,4 +1,5 @@
 # GanttChart - 線上甘特圖工具
+ ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/logo.png)
 # 目錄
 1. [專案展示](#專案展示)
 2. [專案摘要](#專案摘要)
