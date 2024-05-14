@@ -53,7 +53,12 @@ function useFirebaseSignInAuth() {
     try {
       await signInWithPopup(getAuth(), provider);
     } catch (error) {
-      setError("Google 第三方登入錯誤");
+      if (
+        error.code !== "auth/cancelled-popup-request" &&
+        error.code !== "auth/popup-closed-by-user"
+      ) {
+        setError("Google 第三方登入錯誤");
+      }
       return false;
     }
   };
