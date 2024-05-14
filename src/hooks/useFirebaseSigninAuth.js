@@ -5,25 +5,28 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
+import { useRouter } from "next/router";
 import firebase from "../lib/firebase";
 
 function useFirebaseSignInAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebase.auth(), (user) => {
       if (user) {
         setUser(user);
+        router.push("/ganttchart");
       } else {
         setUser(null);
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   const signInWithEmail = async (email, password) => {
     if (!email || !password) {
@@ -38,6 +41,7 @@ function useFirebaseSignInAuth() {
 
     try {
       await signInWithEmailAndPassword(firebase.auth(), email, password);
+      router.push("/ganttchart");
     } catch (error) {
       setError("帳號或密碼輸入錯誤");
       return false;
@@ -47,7 +51,7 @@ function useFirebaseSignInAuth() {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithRedirect(getAuth(), provider);
+      await signInWithPopup(getAuth(), provider);
     } catch (error) {
       setError("Google 第三方登入錯誤");
       return false;
