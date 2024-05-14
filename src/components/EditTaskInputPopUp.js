@@ -97,12 +97,12 @@ const EditTaskInputPopUp = forwardRef(
           </StyledEditTaskDurationColorPickContainer>
         </StyledEditTaskDurationContainer>
         <StyledEditTaskButtonContainer>
-          <StyledEditTaskSaveButton onClick={handleSave}>
-            儲存
-          </StyledEditTaskSaveButton>
           <StyledEditTaskCancelButton onClick={handleClose}>
             取消
           </StyledEditTaskCancelButton>
+          <StyledEditTaskSaveButton onClick={handleSave}>
+            儲存
+          </StyledEditTaskSaveButton>
         </StyledEditTaskButtonContainer>
         {errorMessage && (
           <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
