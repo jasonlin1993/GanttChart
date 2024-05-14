@@ -5,7 +5,7 @@ export const StyledHeader = styled.header`
   background-color: #002f7b;
   color: #eef0f2;
   max-width: 100%;
-  height: 90px;
+  height: 60px;
   font-size: 20px;
   justify-content: space-between;
   align-content: center;
@@ -25,7 +25,7 @@ export const HeaderWebTitleTextStyled = styled.div`
   justify-content: center;
   align-content: center;
   width: 250px;
-  font-size: 40px;
+  font-size: 30px;
 
   @media (max-width: 510px) {
     font-size: 30px;

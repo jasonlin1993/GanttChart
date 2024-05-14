@@ -17,7 +17,7 @@ export const MobileIconWrapper = styled.div.withConfig({
       font-size:30px;
       width:50px;
       cursor:pointer;
-      margin:29px 15px 25px 0px;
+      margin:15px 15px 25px 0px;
       
     }
   `}
@@ -47,10 +47,10 @@ export const StyledLink = styled.a.withConfig({
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 90px;
+  height: 60px;
   width: 170px;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 20px;
   position: relative;
   transition: background-image 0.4s ease-out;
   &::after {
@@ -101,7 +101,7 @@ export const NavBarContainer = styled.nav.withConfig({
       width: 100%;
       height: 100vh;
       position: absolute;
-      top: 90px;
+      top: 60px;
       z-index: 2;
       background-color: #002f7b;
       left: ${isVisible ? "0" : "-100%"};

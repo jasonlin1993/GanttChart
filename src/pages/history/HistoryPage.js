@@ -35,7 +35,7 @@ const HistoryPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const userId = firebase.auth().currentUser?.uid;
-  const { memberName, projects } = useFirestoreData(userId);
+  const { projects } = useFirestoreData(userId);
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
