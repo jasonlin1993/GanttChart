@@ -114,7 +114,7 @@ const HistoryPage = () => {
       <HistoryPageContainer>
         <HistoryPageContainerSection>
           <HistoryPageMemberNameContainer>
-            {memberName} 工程專案紀錄
+            工程專案紀錄
           </HistoryPageMemberNameContainer>
 
           {projects.map((project) => (

@@ -13,11 +13,17 @@ import firebase from "../lib/firebase";
 function useFirebaseSignInAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const [authProvider, setAuthProvider] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebase.auth(), (user) => {
+    const auth = getAuth();
+
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const tokenResult = await user.getIdTokenResult();
+        const providerId = tokenResult.claims.firebase.sign_in_provider;
+        setAuthProvider(providerId);
         setUser(user);
         router.push("/ganttchart");
       } else {
@@ -51,7 +57,9 @@ function useFirebaseSignInAuth() {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(getAuth(), provider);
+      const result = await signInWithPopup(getAuth(), provider);
+      const providerId = result.additionalUserInfo.providerId;
+      setAuthProvider(providerId);
     } catch (error) {
       if (
         error.code !== "auth/cancelled-popup-request" &&
@@ -63,7 +71,7 @@ function useFirebaseSignInAuth() {
     }
   };
 
-  return { user, error, signInWithEmail, signInWithGoogle };
+  return { user, error, authProvider, signInWithEmail, signInWithGoogle };
 }
 
 export default useFirebaseSignInAuth;
