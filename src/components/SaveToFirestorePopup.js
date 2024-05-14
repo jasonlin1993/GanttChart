@@ -37,8 +37,8 @@ const SaveToFirestorePopup = forwardRef(
           />
         </StyledSaveTaskNameContainer>
         <StyledButtonContainer>
-          <StyledSaveButton onClick={onSave}>儲存</StyledSaveButton>
           <StyledCancelButton onClick={onCancel}>取消</StyledCancelButton>
+          <StyledSaveButton onClick={onSave}>儲存</StyledSaveButton>
         </StyledButtonContainer>
         {errorMessage && (
           <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
