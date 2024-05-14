@@ -57,7 +57,7 @@ function useFirebaseSignInAuth() {
         error.code !== "auth/cancelled-popup-request" &&
         error.code !== "auth/popup-closed-by-user"
       ) {
-        setError("Google 第三方登入錯誤");
+        console.log("Google 第三方登入取消");
       }
       return false;
     }
