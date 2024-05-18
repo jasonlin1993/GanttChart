@@ -18,7 +18,6 @@ const TaskDurationComponent = ({
   const start = new Date(startDate);
   const end = new Date(endDate);
   const durationInDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
-
   const [size, setSize] = useState({
     width: "",
     left: "",

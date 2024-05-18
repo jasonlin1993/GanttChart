@@ -84,6 +84,14 @@ const taskReducer = (state = initialState, action) => {
               }
             : task
         ),
+        isTasksModified: true,
+      };
+
+    case "UPDATE_TASK_ORDER":
+      return {
+        ...state,
+        tasks: action.payload,
+        isTasksModified: true,
       };
 
     default:

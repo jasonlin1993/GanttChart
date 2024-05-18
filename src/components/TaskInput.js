@@ -12,11 +12,12 @@ import {
   StyledInput,
   StyledDeleteButton,
   StyledEditTaskInputButton,
+  StyledDragHandleDots,
 } from "../styles/TaskInput.styled";
 import { faXmark, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function TaskInput({ task }) {
+function TaskInput({ task, index, moveTask }) {
   const dispatch = useDispatch();
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -36,7 +37,7 @@ function TaskInput({ task }) {
     const formatToDateInputValue = (date) => {
       let day = date.getDate();
       let month = date.getMonth() + 1;
-      const year = date.getFullYear();
+      let year = date.getFullYear();
       month = month < 10 ? `0${month}` : month;
       day = day < 10 ? `0${day}` : day;
       return `${year}-${month}-${day}`;
@@ -88,8 +89,30 @@ function TaskInput({ task }) {
     setErrorMessage("");
   };
 
+  const handleDragStart = (e) => {
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", index);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const fromIndex = e.dataTransfer.getData("text/plain");
+    moveTask(parseInt(fromIndex), index);
+  };
+
   return (
-    <StyledTaskInputContainer>
+    <StyledTaskInputContainer
+      draggable
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+    >
+      <StyledDragHandleDots />
       <StyledInput
         value={taskName}
         onChange={handleNameChange}

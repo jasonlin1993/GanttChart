@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setDate } from "../redux/action/dateAction";
-import { updateTaskDates } from "../redux/action/taskAction"; // 添加這行
+import { updateTaskDates, updateTaskOrder } from "../redux/action/taskAction";
 import { StyledFontAwesomeIcon } from "@/styles/Calendar.styled";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -59,6 +59,13 @@ function Calendar() {
     dispatch(updateTaskDates(taskId, newStartDate, newEndDate));
   };
 
+  const moveTask = (fromIndex, toIndex) => {
+    const updatedTasks = [...tasks];
+    const [movedTask] = updatedTasks.splice(fromIndex, 1);
+    updatedTasks.splice(toIndex, 0, movedTask);
+    dispatch(updateTaskOrder(updatedTasks));
+  };
+
   return (
     <>
       <div id="pdf-container">
@@ -79,9 +86,9 @@ function Calendar() {
         <FlexContainer>
           <div>
             <AddTask />
-            {tasks.map((task) => (
+            {tasks.map((task, index) => (
               <React.Fragment key={task.id}>
-                <TaskInput task={task} />
+                <TaskInput task={task} index={index} moveTask={moveTask} />
               </React.Fragment>
             ))}
           </div>

@@ -48,4 +48,10 @@ export const setDate = (date) => {
 export const updateTaskDates = (taskId, newStartDate, newEndDate) => ({
   type: "UPDATE_TASK_DATES",
   payload: { taskId, newStartDate, newEndDate },
+  isTasksModified: true,
+});
+
+export const updateTaskOrder = (tasks) => ({
+  type: "UPDATE_TASK_ORDER",
+  payload: tasks,
 });

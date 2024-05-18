@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RxDragHandleDots2 } from "react-icons/rx";
 
 export const StyledTaskInputContainer = styled.div`
   display: flex;
@@ -14,13 +15,12 @@ export const StyledTaskInputContainer = styled.div`
 
 export const StyledInput = styled.input`
   flex-grow: 1;
-  padding: 0 0 0 10px;
+  padding: 0 0 0 5px;
   border: none;
   outline: none;
   width: 90%;
-  margin-left: 15px;
   color: #002f7b;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 5px;
 
   &:hover {
@@ -209,4 +209,10 @@ export const StyledErrorMessage = styled.div`
   bottom: 5px;
   font-size: 15px;
   font-weight: bold;
+`;
+
+export const StyledDragHandleDots = styled(RxDragHandleDots2)`
+  margin: 0px 0px 0px 10px;
+  cursor: move;
+  font-size: 22px;
 `;
