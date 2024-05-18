@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setDate } from "../redux/action/dateAction";
+import { updateTaskDates } from "../redux/action/taskAction"; // 添加這行
 import { StyledFontAwesomeIcon } from "@/styles/Calendar.styled";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -53,6 +54,11 @@ function Calendar() {
     const dayOfWeek = date.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
+
+  const handleDateChange = (taskId, newStartDate, newEndDate) => {
+    dispatch(updateTaskDates(taskId, newStartDate, newEndDate));
+  };
+
   return (
     <>
       <div id="pdf-container">
@@ -63,7 +69,6 @@ function Calendar() {
             direction="left"
           />
           {`${year} 年 ${month} 月 `}
-
           <StyledFontAwesomeIcon
             icon={faCaretRight}
             onClick={handleNextMonth}
@@ -104,6 +109,9 @@ function Calendar() {
                       endDate={task.endDate}
                       daysInMonth={daysInMonth}
                       color={task.color}
+                      onDateChange={(newStartDate, newEndDate) =>
+                        handleDateChange(task.id, newStartDate, newEndDate)
+                      }
                     />
                   )}
                   {days.map((day, dayIndex) => (

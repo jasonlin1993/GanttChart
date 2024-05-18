@@ -44,3 +44,8 @@ export const setDate = (date) => {
     payload: date,
   };
 };
+
+export const updateTaskDates = (taskId, newStartDate, newEndDate) => ({
+  type: "UPDATE_TASK_DATES",
+  payload: { taskId, newStartDate, newEndDate },
+});

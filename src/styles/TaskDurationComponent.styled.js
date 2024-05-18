@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledTaskDurationComponent = styled.div`
+export const StyledDragTaskDurationComponent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +16,7 @@ export const StyledTaskDurationComponent = styled.div`
 `;
 
 export const StyledLeftDragAndDropContainer = styled.div`
-  display: none;
+  display: ${(props) => (props.hovered ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   margin: 0px 4px;
@@ -33,7 +33,7 @@ export const StyledCenterDragAndDropContainer = styled.div`
 `;
 
 export const StyledRightDragAndDropContainer = styled.div`
-  display: none;
+  display: ${(props) => (props.hovered ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   margin: 0px 4px;

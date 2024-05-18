@@ -39,6 +39,7 @@ export const DayWrapper = styled.div`
 export const MonthLabelStyle = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #eef0f2;
   font-weight: bold;
   padding: 15px 0;
@@ -47,6 +48,7 @@ export const MonthLabelStyle = styled.div`
   font-size: 25px;
   color: #002f7b;
   width: 100%;
+  height: 50px;
 `;
 
 export const TaskDayCell = styled.div`

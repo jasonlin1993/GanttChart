@@ -72,6 +72,20 @@ const taskReducer = (state = initialState, action) => {
         isTasksModified: action.payload,
       };
 
+    case "UPDATE_TASK_DATES":
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.taskId
+            ? {
+                ...task,
+                startDate: action.payload.newStartDate,
+                endDate: action.payload.newEndDate,
+              }
+            : task
+        ),
+      };
+
     default:
       return state;
   }
