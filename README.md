@@ -129,7 +129,7 @@
 - ##### Create-next-app
   使用 Create-next-app 快速搭建 Next.js 應用框架
 ### 專案介紹
-「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。這個工具的設計旨在簡化專案管理流程，無論是專案經理還是團隊成員，都能迅速獲取專案進度的視覺化呈現。
+「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
  
 - #### Drag & Drop
