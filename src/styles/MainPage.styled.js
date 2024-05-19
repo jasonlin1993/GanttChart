@@ -2,6 +2,20 @@ import styled from "styled-components";
 import Image from "../../public/images/crud.gif";
 import Gif from "../../public/images/exportToPdf.gif";
 import Color from "../../public/images/taskColor.gif";
+import DragAndDropImage from "../../public/images/DragDropTaskAndTime.gif";
+
+export const DragAndDropContainer = styled.div`
+  background-image: url(${DragAndDropImage.src});
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  @media (max-width: 1200px) {
+    width: 80vw;
+    height: 40vw;
+    margin: 0px;
+  }
+`;
 
 export const TaskImageContainer = styled.div`
   background-image: url(${Image.src});

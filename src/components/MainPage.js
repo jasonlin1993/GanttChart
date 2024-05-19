@@ -24,6 +24,7 @@ import {
   TaskImageContainer,
   ExportToPdfContainer,
   CenteredFlexContainer,
+  DragAndDropContainer,
   MainPageSectionStyled,
   MainPageTextContainer,
   MainPageColumnSectionStyled,
@@ -131,36 +132,45 @@ const MainPage = () => {
             {buttonText}
           </MainPageButtonStyled>
         </MainPageSectionStyled>
-        <Hr />
         <MainPageColumnSectionStyled>
-          <TaskImageContainer />
+          <DragAndDropContainer />
+          <MainPageTextContainer>
+            <Title>Drag & Drop</Title>
+            <SmallText>直觀的拖放操作管理任務時間</SmallText>
+            <SmallText>調整任務排列實現靈活專案規劃</SmallText>
+            <SmallText>專案進度更加直觀操作更加便捷</SmallText>
+          </MainPageTextContainer>
+        </MainPageColumnSectionStyled>
+        <Hr />
+        <MainPageReverseColumnSectionStyled>
           <MainPageTextContainer>
             <Title>動態刪除或新增任務</Title>
             <SmallText>隨時根據專案需求增加或移除任務</SmallText>
             <SmallText>動態調整保證甘特圖的即時更新</SmallText>
             <SmallText>確保計劃的靈活性與實時性</SmallText>
           </MainPageTextContainer>
-        </MainPageColumnSectionStyled>
+          <TaskImageContainer />
+        </MainPageReverseColumnSectionStyled>
         <Hr />
-        <MainPageReverseColumnSectionStyled>
+        <MainPageColumnSectionStyled>
+          <ExportToPdfContainer />
           <MainPageTextContainer>
             <Title>輸出檔案為 PDF 檔</Title>
             <SmallText>一鍵將你的甘特圖轉化為 PDF 格式</SmallText>
             <SmallText>這個功能使得報告溝通更加便捷</SmallText>
             <SmallText>團隊協作還是客戶匯報都輕鬆應對</SmallText>
           </MainPageTextContainer>
-          <ExportToPdfContainer />
-        </MainPageReverseColumnSectionStyled>
+        </MainPageColumnSectionStyled>
         <Hr />
-        <MainPageColumnSectionStyled>
-          <TaskColorContainer />
+        <MainPageReverseColumnSectionStyled>
           <MainPageTextContainer>
             <Title>任務顏色選擇 </Title>
             <SmallText>自訂任務顏色，使每一項目一目了然</SmallText>
             <SmallText>透過顏色輕鬆區分不同的階段任務</SmallText>
             <SmallText>增強專案的視覺效果和易讀性</SmallText>
           </MainPageTextContainer>
-        </MainPageColumnSectionStyled>
+          <TaskColorContainer />
+        </MainPageReverseColumnSectionStyled>
         <Hr />
         <MainPageColumnSectionStyled>
           <Title>將您的項目視覺化，</Title>
