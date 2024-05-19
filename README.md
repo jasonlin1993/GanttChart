@@ -105,20 +105,18 @@
   使用 Styled Components 在 React 組件中撰寫 CSS，提高元件的可重用性和封裝性
 - ##### Redux toolkit
   使用 Redux Toolkit 管理應用的狀態，包括任務和日期數據，使狀態管理更簡潔有效
-- ##### React toastify
-  使用 React Toastify 提供交互反饋，如成功登錄、註冊通知等
-- ##### jspdf / html2canvas
-  集成 jspdf 和 html2canvas 實現頁面到 PDF 的轉換，方便用戶導出專案的甘特圖
 
 #### 後端
 - ##### Firebase Firestore
   使用 Firestore 作為非關聯式資料庫，存儲用戶數據和專案任務
 - ##### Firebase Authentication
   利用 Firebase Authentication 實現用戶認證功能，包括註冊、登錄和登出
-- ##### Vercel 部屬
-  使用 Vercel 進行部署
 - ##### 環境變數
   使用環境變數來管理敏感設定
+
+#### 雲端部屬
+- ##### Vercel 部屬
+  使用 Vercel 進行部署
   
 #### 開發工具
 - ##### Git/GitHub
@@ -127,6 +125,11 @@
   導入 ESLint / Prettier 統一開發風格
 - ##### Create-next-app
   使用 Create-next-app 快速搭建 Next.js 應用框架
+- ##### React toastify
+  使用 React Toastify 提供交互反饋，如成功登錄、註冊通知等
+- ##### jspdf / html2canvas
+  集成 jspdf 和 html2canvas 實現頁面到 PDF 的轉換，方便用戶導出專案的甘特圖
+
 ### 專案介紹
 「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
