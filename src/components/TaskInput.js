@@ -40,7 +40,7 @@ function TaskInput({ task, index, moveTask }) {
     const firstDayOfMonth = new Date(year, month - 1, 1);
     const lastDayOfMonth = new Date(year, month, 0);
     const formatToDateInputValue = (date) => {
-      let day = date.getData();
+      let day = date.getDate();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
       month = month < 10 ? `0${month}` : month;
