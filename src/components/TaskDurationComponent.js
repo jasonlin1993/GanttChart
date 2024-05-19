@@ -27,6 +27,9 @@ const TaskDurationComponent = ({
     return {
       width: widthPercentage,
       left: leftPercentage,
+      durationInDays,
+      start,
+      end,
     };
   };
   const [size, setSize] = useState(
@@ -70,6 +73,11 @@ const TaskDurationComponent = ({
         const deltaX =
           ((mouseUpEvent.pageX - startPosition.x) / window.innerWidth) * 100;
         const daysMoved = Math.round((deltaX / 100) * daysInMonth);
+        const { durationInDays, start } = calculateSize(
+          startDate,
+          endDate,
+          daysInMonth
+        );
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("mouseup", onMouseUp);
 
