@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateTaskDuration,
@@ -19,44 +25,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function TaskInput({ task, index, moveTask }) {
   const dispatch = useDispatch();
-  const [selectedTaskId, setSelectedTaskId] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [taskName, setTaskName] = useState(task.name);
-  const { year, month } = useSelector((state) => state.date);
-  const [minDate, setMinDate] = useState("");
-  const [maxDate, setMaxDate] = useState("");
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isEditPopupVisible, setIsEditPopupVisible] = useState(false);
-  const dialogRef = useRef(null);
+  const [taskState, setTaskState] = useState({
+    selectedTaskId: "",
+    startDate: "",
+    endDate: "",
+    taskName: task.name,
+    selectedColor: null,
+    errorMessage: "",
+    isEditPopupVisible: false,
+  });
 
-  useEffect(() => {
+  const { year, month } = useSelector((state) => state.date);
+  const [minDate, maxDate] = useMemo(() => {
     const firstDayOfMonth = new Date(year, month - 1, 1);
     const lastDayOfMonth = new Date(year, month, 0);
     const formatToDateInputValue = (date) => {
-      let day = date.getDate();
+      let day = date.getData();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
       month = month < 10 ? `0${month}` : month;
       day = day < 10 ? `0${day}` : day;
       return `${year}-${month}-${day}`;
     };
-    setMinDate(formatToDateInputValue(firstDayOfMonth));
-    setMaxDate(formatToDateInputValue(lastDayOfMonth));
+    return [
+      formatToDateInputValue(firstDayOfMonth),
+      formatToDateInputValue(lastDayOfMonth),
+    ];
   }, [year, month]);
 
+  const dialogRef = useRef(null);
+
   useEffect(() => {
-    if (isEditPopupVisible && dialogRef.current) {
+    if (taskState.isEditPopupVisible && dialogRef.current) {
       dialogRef.current.showModal();
-    } else if (dialogRef.current && !isEditPopupVisible) {
+    } else if (dialogRef.current && !taskState.isEditPopupVisible) {
       dialogRef.current.close();
     }
-  }, [isEditPopupVisible, dialogRef]);
+  }, [taskState.isEditPopupVisible]);
 
   const handleTaskInputPopup = () => {
-    setSelectedTaskId(task.id);
-    setIsEditPopupVisible(true);
+    setTaskState((prevState) => ({
+      ...prevState,
+      selectedTaskId: task.id,
+      isEditPopupVisible: true,
+    }));
   };
 
   const handleDelete = () => {
@@ -64,46 +76,62 @@ function TaskInput({ task, index, moveTask }) {
   };
 
   const handleNameChange = (e) => {
-    setTaskName(e.target.value);
+    setTaskState((prevState) => ({
+      ...prevState,
+      taskName: e.target.value,
+    }));
   };
 
   const handleNameUpdate = () => {
-    dispatch(updateTaskName(task.id, taskName));
+    dispatch(updateTaskName(task.id, taskState.taskName));
   };
 
   const handleSave = () => {
+    const { startDate, endDate, selectedColor } = taskState;
     if (!startDate || !endDate || !selectedColor) {
-      if (!startDate || !endDate) {
-        setErrorMessage("請選擇任務時間");
-      } else if (!selectedColor) {
-        setErrorMessage("請選擇任務顏色");
-      }
+      setTaskState((prevState) => ({
+        ...prevState,
+        errorMessage:
+          !startDate || !endDate ? "請選擇任務時間" : "請選擇任務顏色",
+      }));
       return;
     }
     if (new Date(startDate) > new Date(endDate)) {
-      setErrorMessage("任務日期錯誤");
+      setTaskState((prevState) => ({
+        ...prevState,
+        errorMessage: "任務日期錯誤",
+      }));
       return;
     }
-    dispatch(updateTaskDuration(selectedTaskId, startDate, endDate));
-    setIsEditPopupVisible(false);
-    setErrorMessage("");
+    dispatch(updateTaskDuration(taskState.selectedTaskId, startDate, endDate));
+    setTaskState((prevState) => ({
+      ...prevState,
+      isEditPopupVisible: false,
+      errorMessage: "",
+    }));
   };
 
-  const handleDragStart = (e) => {
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/plain", index);
-  };
+  const handleDragStart = useCallback(
+    (e) => {
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", index);
+    },
+    [index]
+  );
 
-  const handleDragOver = (e) => {
+  const handleDragOver = useCallback((e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
-  };
+  }, []);
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const fromIndex = e.dataTransfer.getData("text/plain");
-    moveTask(parseInt(fromIndex), index);
-  };
+  const handleDrop = useCallback(
+    (e) => {
+      e.preventDefault();
+      const fromIndex = e.dataTransfer.getData("text/plain");
+      moveTask(parseInt(fromIndex), index);
+    },
+    [index, moveTask]
+  );
 
   return (
     <StyledTaskInputContainer
@@ -114,34 +142,40 @@ function TaskInput({ task, index, moveTask }) {
     >
       <StyledDragHandleDots />
       <StyledInput
-        value={taskName}
+        value={taskState.taskName}
         onChange={handleNameChange}
         onBlur={handleNameUpdate}
       />
       <StyledEditTaskInputButton onClick={handleTaskInputPopup}>
         <FontAwesomeIcon icon={faPencil} />
       </StyledEditTaskInputButton>
-
       <EditTaskInputPopUp
         ref={dialogRef}
-        isVisible={isEditPopupVisible}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
+        isVisible={taskState.isEditPopupVisible}
+        startDate={taskState.startDate}
+        setStartDate={(date) =>
+          setTaskState((prevState) => ({ ...prevState, startDate: date }))
+        }
+        endDate={taskState.endDate}
+        setEndDate={(date) =>
+          setTaskState((prevState) => ({ ...prevState, endDate: date }))
+        }
         minDate={minDate}
         maxDate={maxDate}
-        selectedColor={selectedColor}
+        selectedColor={taskState.selectedColor}
         handleColorSelect={(color) => {
-          dispatch(updateTaskColor(selectedTaskId, color));
-          setSelectedColor(color);
+          dispatch(updateTaskColor(taskState.selectedTaskId, color));
+          setTaskState((prevState) => ({ ...prevState, selectedColor: color }));
         }}
         handleClose={() => {
-          setIsEditPopupVisible(false);
-          setErrorMessage("");
+          setTaskState((prevState) => ({
+            ...prevState,
+            isEditPopupVisible: false,
+            errorMessage: "",
+          }));
         }}
         handleSave={handleSave}
-        errorMessage={errorMessage}
+        errorMessage={taskState.errorMessage}
       />
 
       <StyledDeleteButton onClick={handleDelete}>
