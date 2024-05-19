@@ -95,6 +95,8 @@
 - 使用原生 DOM 事件處理（mousemove 和 mouseup）實現任務的拖放功能。在用戶拖動任務兩端時，動態更新任務的寬度和位置，並在拖放結束後更新任務的起始和結束日期。
 - 使用 JavaScript 原生 Date 對象計算任務的持續時間和起始/結束日期。根據用戶操作動態計算並更新日期，確保日期計算的準確性和即時性。
 - 利用 Redux Toolkit 管理應用狀態，包括任務的日期和顏色等。使用 actions 和 reducers 確保狀態在應用中的各個部分同步更新。
+- 使用 HTML5 Drag and Drop API 實現任務的拖曳排序功能。通過 onDragStart、onDragOver 和 onDrop 事件處理函數，實現任務的拖放操作。使用 dataTransfer 存儲拖動任務的索引，並在 onDrop 時更新任務順序。
+  
 ## 附錄
 ### 技術介紹
 #### 前端
