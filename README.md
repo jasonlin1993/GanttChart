@@ -38,7 +38,7 @@
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
 
 ### 功能亮點
-- Drag & Drop: 拖曳任務時間和順序，提升編輯效率
+- Drag & Drop: 拖曳任務時間和任務順序，提升編輯效率
 - 顏色自定義: 為不同的任務選擇個性化的顏色標記
 - 即時編輯: 簡單的新增和刪除任務，方便調整專案任務
 - PDF導出: 一鍵將你的甘特圖轉換為PDF格式
