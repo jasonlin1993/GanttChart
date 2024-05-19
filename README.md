@@ -34,7 +34,7 @@
 - 測試密碼: 123456
 
 ## 專案摘要
-「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。這個工具的設計旨在簡化專案管理流程，無論是專案經理還是團隊成員，都能迅速獲取專案進度的視覺化呈現。
+「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
 
 ### 功能亮點
@@ -87,6 +87,8 @@
 6. 進階功能與互動
 - 提供 PDF 導出功能，利用 html2canvas 和 jspdf 套件將甘特圖頁面轉換為 PDF 文件
 - 實現動態 UI 互動，如導航欄的顯示/隱藏、資料存儲彈窗等
+
+7. Drag & Drop
 ## 附錄
 ### 技術介紹
 #### 前端
