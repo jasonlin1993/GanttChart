@@ -38,11 +38,12 @@
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
 
 ### 功能亮點
-- 顏色自定義：為不同的任務選擇個性化的顏色標記
-- 即時編輯：簡單的新增和刪除任務，方便調整專案任務
-- PDF導出：一鍵將你的甘特圖轉換為PDF格式
-- 歷史紀錄頁面：使用 Firebase Firestore 資料庫，儲存不同工程專案
-- 會員登入系統：使用 Firebase Authentication 作為會員登入登出功能
+- Drag & Drop: 拖曳任務時間和順序，提升編輯效率
+- 顏色自定義: 為不同的任務選擇個性化的顏色標記
+- 即時編輯: 簡單的新增和刪除任務，方便調整專案任務
+- PDF導出: 一鍵將你的甘特圖轉換為PDF格式
+- 歷史紀錄頁面: 使用 Firebase Firestore 資料庫，儲存不同工程專案
+- 會員登入系統: 使用 Firebase Authentication 作為會員登入登出功能
 
 ## 開發介紹
 ### 技術架構及摘要
@@ -120,6 +121,11 @@
 ### 專案介紹
 「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。這個工具的設計旨在簡化專案管理流程，無論是專案經理還是團隊成員，都能迅速獲取專案進度的視覺化呈現。
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
+ 
+- #### Drag & Drop
+  直觀的拖放操作管理任務時間，調整任務排列實現靈活專案規劃
+  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/DragDropTaskAndTime.gif)
+   
 - #### 新增刪除任務
   可以新增、刪除任務，隨時根據專案需求增加或移除任務
 
