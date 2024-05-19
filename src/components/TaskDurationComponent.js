@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyledDragTaskDurationComponent,
   StyledLeftDragAndDropContainer,
@@ -15,15 +15,7 @@ const TaskDurationComponent = ({
   color,
   onDateChange,
 }) => {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-  const durationInDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
-  const [size, setSize] = useState({
-    width: "",
-    left: "",
-  });
-  const [hovered, setHovered] = useState(false);
-  useEffect(() => {
+  const calculateSize = (startDate, endDate, daysInMonth) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const durationInDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
@@ -31,59 +23,74 @@ const TaskDurationComponent = ({
     const startDay = new Date(startDate).getDate();
     const startDayIndex = startDay - 1;
     const leftPercentage = `${(startDayIndex / daysInMonth) * 100}%`;
-    setSize({
+
+    return {
       width: widthPercentage,
       left: leftPercentage,
-    });
+    };
+  };
+  const [size, setSize] = useState(
+    calculateSize(startDate, endDate, daysInMonth)
+  );
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    setSize(calculateSize(startDate, endDate, daysInMonth));
   }, [startDate, endDate, daysInMonth]);
 
-  const handleResize = (side) => (mouseDownEvent) => {
-    const startWidthPercentage = parseFloat(size.width);
-    const startLeftPercentage = parseFloat(size.left);
-    const startPosition = { x: mouseDownEvent.pageX, y: mouseDownEvent.pageY };
+  const handleResize = useCallback(
+    (side) => (mouseDownEvent) => {
+      const startWidthPercentage = parseFloat(size.width);
+      const startLeftPercentage = parseFloat(size.left);
+      const startPosition = {
+        x: mouseDownEvent.pageX,
+        y: mouseDownEvent.pageY,
+      };
 
-    function onMouseMove(mouseMoveEvent) {
-      const deltaX =
-        ((mouseMoveEvent.pageX - startPosition.x) / window.innerWidth) * 100;
-      let newWidthPercentage;
-      let newLeftPercentage;
+      function onMouseMove(mouseMoveEvent) {
+        const deltaX =
+          ((mouseMoveEvent.pageX - startPosition.x) / window.innerWidth) * 100;
+        let newWidthPercentage;
+        let newLeftPercentage;
 
-      if (side === "right") {
-        newWidthPercentage = startWidthPercentage + deltaX;
-        setSize({ width: `${newWidthPercentage}%`, left: size.left });
-      } else if (side === "left") {
-        newWidthPercentage = startWidthPercentage - deltaX;
-        newLeftPercentage = startLeftPercentage + deltaX;
-        setSize({
-          width: `${newWidthPercentage}%`,
-          left: `${newLeftPercentage}%`,
-        });
+        if (side === "right") {
+          newWidthPercentage = startWidthPercentage + deltaX;
+          setSize({ width: `${newWidthPercentage}%`, left: size.left });
+        } else if (side === "left") {
+          newWidthPercentage = startWidthPercentage - deltaX;
+          newLeftPercentage = startLeftPercentage + deltaX;
+          setSize({
+            width: `${newWidthPercentage}%`,
+            left: `${newLeftPercentage}%`,
+          });
+        }
       }
-    }
 
-    function onMouseUp(mouseUpEvent) {
-      const deltaX =
-        ((mouseUpEvent.pageX - startPosition.x) / window.innerWidth) * 100;
-      const daysMoved = Math.round((deltaX / 100) * daysInMonth);
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
+      function onMouseUp(mouseUpEvent) {
+        const deltaX =
+          ((mouseUpEvent.pageX - startPosition.x) / window.innerWidth) * 100;
+        const daysMoved = Math.round((deltaX / 100) * daysInMonth);
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
 
-      if (side === "right") {
-        const newEndDate = new Date(startDate);
-        newEndDate.setDate(
-          newEndDate.getDate() + durationInDays + daysMoved - 1
-        );
-        onDateChange(startDate, newEndDate.toISOString().split("T")[0]);
-      } else if (side === "left") {
-        const newStartDate = new Date(start);
-        newStartDate.setDate(start.getDate() + daysMoved);
-        onDateChange(newStartDate.toISOString().split("T")[0], endDate);
+        if (side === "right") {
+          const newEndDate = new Date(startDate);
+          newEndDate.setDate(
+            newEndDate.getDate() + durationInDays + daysMoved - 1
+          );
+          onDateChange(startDate, newEndDate.toISOString().split("T")[0]);
+        } else if (side === "left") {
+          const newStartDate = new Date(start);
+          newStartDate.setDate(start.getDate() + daysMoved);
+          onDateChange(newStartDate.toISOString().split("T")[0], endDate);
+        }
       }
-    }
 
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  };
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    },
+    [size, startDate, endDate, daysInMonth, onDateChange]
+  );
 
   return (
     <>
