@@ -88,7 +88,6 @@
 
 6. 進階功能與互動
 - 提供 PDF 導出功能，利用 html2canvas 和 jspdf 套件將甘特圖頁面轉換為 PDF 文件
-- 實現動態 UI 互動，如導航欄的顯示/隱藏、資料存儲彈窗等
 
 7. Drag & Drop
 - 使用 useState 和 useEffect 管理組件狀態與生命周期函數。useState 用於存儲任務的尺寸和位置，useEffect 用於根據任務的起始日期和結束日期計算這些尺寸。
