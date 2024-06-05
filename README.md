@@ -23,6 +23,7 @@
 4. [附錄](#附錄)
    - [技術介紹](#技術介紹)
    - [專案介紹](#專案介紹)
+     - [拖曳功能](#拖曳功能)
      - [新增、刪除任務](#新增刪除任務)
      - [任務顏色選擇](#任務顏色選擇)
      - [檔案輸出](#檔案輸出)
@@ -133,7 +134,7 @@
 「GanttChart」讓你能夠直觀地在線上創建和分享你的工程甘特圖。
  ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ReadMeMainPage.png)
  
-- #### Drag & Drop
+- #### 拖曳功能
   直觀的拖放操作管理任務時間，調整任務排列實現靈活專案規劃
   ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/DragDropTaskAndTime.gif)
    
@@ -142,14 +143,18 @@
 
   - #### 新增任務
     ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/AddTask.gif)
+    
   - #### 刪除任務
     ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/DeleteTask.gif)
+    
 - #### 任務顏色選擇
   選擇不同顏色，透過顏色區分不同任務項目
   ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/ChooseTaskColor.gif)
+  
 - #### 檔案輸出
   一鍵輸出網頁內容為 pdf
   ![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/exportToPdf.gif)
+  
 - #### 歷史紀錄
   透過儲存檔案 / 另存新檔，儲存不同專案內容
 
