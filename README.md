@@ -48,7 +48,6 @@
 
 ## 開發介紹
 ### 技術架構及摘要
-![](https://raw.githubusercontent.com/jasonlin1993/GanttChart/main/public/images/developmentArchitecture.png)
 
 - 前端開發: 使用 React、Redux toolkit、styled-components，並實踐 RWD、reusable React componet
 - 後端開發: 使用 Firebase 服務開發資料庫、會員系統等
@@ -121,8 +120,6 @@
 #### 開發工具
 - ##### Git/GitHub
   使用 Git 進行版本控制 
-- ##### ESLint / Prettier　
-  導入 ESLint / Prettier 統一開發風格
 - ##### Create-next-app
   使用 Create-next-app 快速搭建 Next.js 應用框架
 - ##### React toastify
