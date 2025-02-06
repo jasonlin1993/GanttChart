@@ -30,7 +30,7 @@
      - [歷史紀錄](#歷史紀錄)
      
 ## 專案展示
-- 專案網址: https://gantt-chart-phi.vercel.app/
+- 專案網址: https://gantt-chart-phi.vercel.app/ (已停止運作)
 - 測試帳號: test@test.com   
 - 測試密碼: 123456
 
